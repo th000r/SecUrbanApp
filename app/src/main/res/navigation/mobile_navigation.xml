@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_profile">
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_results" />
+
+    <fragment
+        android:id="@+id/nav_results"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.results.ResultsFragment"
+        android:label="@string/results"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_activities"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.activities.ActivitiesFragment"
+        android:label="@string/activities"
+        tools:layout="@layout/fragment_activities" />
+
+    <fragment
+        android:id="@+id/nav_help"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.help.HelpFragment"
+        android:label="@string/help"
+        tools:layout="@layout/fragment_activities" />
+
+    <fragment
+        android:id="@+id/nav_site_notice"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.site_notice.SiteNoticeFragment"
+        android:label="@string/site_notice"
+        tools:layout="@layout/fragment_activities" />
+
+</navigation>
