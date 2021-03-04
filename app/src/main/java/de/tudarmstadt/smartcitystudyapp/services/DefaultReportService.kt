@@ -9,7 +9,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 const val targetIp = "127.0.0.1" //set to proper value for local testing
 // TODO make configurable for proper release/put actual backend deployment in
 
-class DefaultReportService : ReportService {
+object DefaultReportService : ReportService {
     override suspend fun sendReport(report: Report): String {
         val client = OkHttpClient()
         val url = "http://$targetIp:8080/report"
