@@ -1,6 +1,7 @@
 package de.tudarmstadt.smartcitystudyapp.services
 
 import de.tudarmstadt.smartcitystudyapp.database.UserDao
+import de.tudarmstadt.smartcitystudyapp.model.StudyGroup
 import de.tudarmstadt.smartcitystudyapp.model.User
 import javax.inject.Inject
 

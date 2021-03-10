@@ -9,13 +9,13 @@
         android:id="@+id/nav_profile"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.profile.ProfileFragment"
         android:label="@string/profile"
-        tools:layout="@layout/fragment_results" />
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_results"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.results.ResultsFragment"
         android:label="@string/results"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_results" />
 
     <fragment
         android:id="@+id/nav_activities"
@@ -27,12 +27,12 @@
         android:id="@+id/nav_help"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.help.HelpFragment"
         android:label="@string/help"
-        tools:layout="@layout/fragment_activities" />
+        tools:layout="@layout/fragment_help" />
 
     <fragment
         android:id="@+id/nav_site_notice"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.site_notice.SiteNoticeFragment"
         android:label="@string/site_notice"
-        tools:layout="@layout/fragment_activities" />
+        tools:layout="@layout/fragment_site_notice" />
 
 </navigation>

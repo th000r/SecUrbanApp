@@ -1,11 +1,7 @@
 package de.tudarmstadt.smartcitystudyapp.services
 
+import de.tudarmstadt.smartcitystudyapp.model.StudyGroup
 import de.tudarmstadt.smartcitystudyapp.model.User
-
-enum class StudyGroup {
-    GROUP_1,
-    GROUP_2
-}
 
 interface UserService {
     suspend fun getUserId() : String?
