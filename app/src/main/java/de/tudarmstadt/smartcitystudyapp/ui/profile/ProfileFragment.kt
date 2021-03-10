@@ -13,7 +13,6 @@ import de.tudarmstadt.smartcitystudyapp.R
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
-
     private val profileViewModel by viewModels<ProfileViewModel>()
 
     override fun onCreateView(
@@ -24,7 +23,10 @@ class ProfileFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
         val textView: TextView = root.findViewById(R.id.text_profile)
         val testButton: Button = root.findViewById(R.id.test_button)
-        testButton.setOnClickListener { profileViewModel.sendDummyReport() }
+        testButton.setOnClickListener {
+            println("Test network button pressed")
+            profileViewModel.sendDummyReport(it)
+        }
         profileViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })

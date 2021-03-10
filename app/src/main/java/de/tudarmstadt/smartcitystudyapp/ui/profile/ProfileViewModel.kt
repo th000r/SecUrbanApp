@@ -1,5 +1,6 @@
 package de.tudarmstadt.smartcitystudyapp.ui.profile
 
+import android.view.View
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,22 +13,19 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel @ViewModelInject constructor(
     private val reportService: ReportService
-) : ViewModel() {
+): ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is profile Fragment"
     }
     val text: LiveData<String> = _text
 
-    fun setText(text: String) {
-        _text.postValue(text)
-    }
-
-    fun sendDummyReport() {
+    fun sendDummyReport(view: View) {
+        println("Sending dummy report")
         viewModelScope.launch(Dispatchers.IO) {
             val report = Report("42069", "my message", location = true, picture = false)
             val response = reportService.sendReport(report)
-            setText(response)
+            _text.postValue(response)
         }
     }
 }

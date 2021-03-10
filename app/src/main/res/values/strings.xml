@@ -17,4 +17,8 @@
     <string name="studyId">Teilnehmernummer</string>
     <string name="enter">Eingeben</string>
     <string name="settings_show_welcome">Wilkommensnachricht zeigen</string>
+    <string name="invalid_user_id">Diese Teilnehmernummer gibt es nicht.</string>
+    <string name="explanation_text">Hier kommt ein längerer Text, der das ganze Studienprozedere erklärt etc. pp. lorem impsum dolor.</string>
+    <string name="welcome1">Wilkommen 1</string>
+    <string name="enter_user_id">Teilnehmernummer eingeben</string>
 </resources>
