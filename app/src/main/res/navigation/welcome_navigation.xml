@@ -11,7 +11,7 @@
         android:label="@string/welcome1"
         tools:layout="@layout/fragment_explanation">
         <action
-            android:id="@+id/action_nav_explanation_to_nav_user_id_entry2"
+            android:id="@+id/action_nav_explanation_forward"
             app:destination="@id/nav_user_id_entry" />
     </fragment>
 
@@ -21,7 +21,7 @@
         android:label="@string/enter_user_id"
         tools:layout="@layout/fragment_user_id_entry">
         <action
-            android:id="@+id/action_nav_user_id_entry_to_nav_explanation"
+            android:id="@+id/action_nav_user_id_back"
             app:destination="@id/nav_explanation" />
     </fragment>
 
