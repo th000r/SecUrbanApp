@@ -21,4 +21,6 @@
     <string name="explanation_text">Hier kommt ein längerer Text, der das ganze Studienprozedere erklärt etc. pp. lorem impsum dolor.</string>
     <string name="welcome1">Wilkommen 1</string>
     <string name="enter_user_id">Teilnehmernummer eingeben</string>
+    <string name="back_button_text">Zurück</string>
+    <string name="forward_button_text">Weiter</string>
 </resources>
