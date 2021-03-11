@@ -21,7 +21,7 @@ class HelpFragment : Fragment() {
     ): View? {
         helpViewModel =
             ViewModelProvider(this).get(HelpViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_results, container, false)
+        val root = inflater.inflate(R.layout.fragment_incidents, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
         helpViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it

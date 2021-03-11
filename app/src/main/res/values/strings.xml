@@ -23,4 +23,8 @@
     <string name="enter_user_id">Teilnehmernummer eingeben</string>
     <string name="back_button_text">Zurück</string>
     <string name="forward_button_text">Weiter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reports">Meldungen</string>
+    <string name="incidents">Ereignisse</string>
 </resources>
