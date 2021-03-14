@@ -8,11 +8,14 @@
             android:id="@+id/nav_profile"
             android:title="@string/profile" />
         <item
-            android:id="@+id/nav_results"
-            android:title="@string/results" />
+            android:id="@+id/nav_incidents"
+            android:title="@string/incidents" />
         <item
             android:id="@+id/nav_activities"
             android:title="@string/activities" />
+        <item
+            android:id="@+id/nav_reports"
+            android:title="@string/reports" />
         <item
             android:id="@+id/nav_help"
             android:title="@string/help" />

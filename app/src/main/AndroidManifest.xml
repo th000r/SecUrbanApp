@@ -15,12 +15,10 @@
         android:theme="@style/Theme.SmartCityStudyApp">
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"
             android:theme="@style/Theme.SmartCityStudyApp.NoActionBar">
         </activity>
         <activity
             android:name=".WelcomeActivity"
-            android:label="@string/title_activity_welcome"
             android:theme="@style/Theme.SmartCityStudyApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
