@@ -42,4 +42,9 @@
     <string name="slide_3_title">Anleitung zum Menü:</string>
     <string name="slide_3_description">Unter dem Menüpunkt Ereignisse kannst du Probleme oder Missstände an die zuständige Behörde melden.
     </string>
+
+    <!-- Help -->
+    <string name="help_heading">Fragen zur App?</string>
+    <string name="help_subheading">Wir helfen dir weiter!</string>
+
 </resources>
