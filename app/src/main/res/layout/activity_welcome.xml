@@ -5,10 +5,32 @@
     android:layout_height="match_parent"
     tools:showIn="@layout/activity_welcome">
 
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/gradient"/>
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/black"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo_inapp"/>
 
     <LinearLayout
         android:id="@+id/layoutDots"
@@ -24,7 +46,7 @@
         android:layout_height="1dp"
         android:layout_above="@id/layoutDots"
         android:alpha=".5"
-        android:background="@android:color/white" />
+        android:background="@android:color/transparent" />
 
     <Button
         android:id="@+id/btn_next"
@@ -35,9 +57,9 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
         android:background="@null"
         android:text="@string/next"
         android:textColor="@android:color/white" />
-
 
 </RelativeLayout>
