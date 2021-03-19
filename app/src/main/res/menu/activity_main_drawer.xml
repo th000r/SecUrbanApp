@@ -4,23 +4,23 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
+        <!--<item
             android:id="@+id/nav_profile"
-            android:title="@string/profile" />
+            android:title="@string/profile" /> -->
         <item
             android:id="@+id/nav_incidents"
             android:title="@string/incidents" />
-        <item
-            android:id="@+id/nav_activities"
-            android:title="@string/activities" />
-        <item
-            android:id="@+id/nav_reports"
-            android:title="@string/reports" />
-        <item
-            android:id="@+id/nav_help"
-            android:title="@string/help" />
-        <item
-            android:id="@+id/nav_site_notice"
-            android:title="@string/site_notice" />
-    </group>
+        <!--<item<item
+           android:id="@+id/nav_activities"
+           android:title="@string/activities" />
+       <item
+           android:id="@+id/nav_reports"
+           android:title="@string/reports" />-->
+       <item
+           android:id="@+id/nav_help"
+           android:title="@string/help" />
+       <item
+           android:id="@+id/nav_site_notice"
+           android:title="@string/site_notice" />
+   </group>
 </menu>
