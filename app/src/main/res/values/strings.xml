@@ -34,4 +34,6 @@
     <string name="slide_1_title">Vielen Dank,</string>
     <string name="slide_1_heading">dass du bei unserer Studie mitmachst!</string>
     <string name="slide_1_description">Hier hast du die Möglichkeit deinen individuellen Code einzugeben:</string>
+
+    <string name="slide_2_title">Hier eine kurze Anleitung:</string>
 </resources>

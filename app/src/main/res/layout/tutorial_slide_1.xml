@@ -1,47 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/baseline_favorite_24" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
 
         <TextView
-            android:layout_marginTop="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
             android:text="@string/slide_1_title"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            android:layout_marginStart="60dp"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/slide_1_heading"
-            android:textStyle="bold"
             android:layout_marginStart="60dp"
-            android:textSize="18sp"/>
+            android:layout_marginLeft="60dp"
+            android:text="@string/slide_1_heading"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <View
             android:layout_width="250dp"
+            android:layout_height="1dp"
             android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:layout_height="1dp"
-            android:background="@color/grey"/>
+            android:background="@color/grey" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="20dp"
             android:text="@string/slide_1_description"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <EditText
             android:layout_width="150dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
-            android:layout_height="wrap_content"/>
-</LinearLayout>
+            android:layout_marginLeft="60dp"/>
+
+    </LinearLayout>
+</RelativeLayout>
