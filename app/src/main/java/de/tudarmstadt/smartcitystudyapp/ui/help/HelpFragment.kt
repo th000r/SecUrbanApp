@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import kotlin.collections.LinkedHashMap
+
 import de.tudarmstadt.smartcitystudyapp.R
 
 class HelpFragment : Fragment() {
@@ -19,10 +20,12 @@ class HelpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_help, container, false)
-        val textView: TextView = root.findViewById(R.id.text_help)
-        helpViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
+        //val textView: TextView = root.findViewById(R.id.text_help)
+        //helpViewModel.text.observe(viewLifecycleOwner, {
+        //   textView.text = it
+        //})
+
         return root
     }
+
 }
