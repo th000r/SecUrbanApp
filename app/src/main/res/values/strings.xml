@@ -39,4 +39,7 @@
     <string name="slide_2_description">Im Rahmen des SMARTer City - Projekts haben sich die Technische Universität Darmstadt und das Fraunhofer Institut dafür entschieden, eine digitale Plattform aufzubauen, um die direkte Umgebung von städtischen Bewohnern und Städtern sicherer und angenehmer zu gestalten.
     Einwohner von ganz Deutschland können in der SMARTer City - App angeben, wo Missstände im Straßenverkehr und sonstige Probleme im Stadtalltag und öffentlichen Plätzen auftauchen.</string>
     <string name="slide_2_description_2">Insgesamt ist das Ziel unserer App eine umfangreiche Datenbank mithilfe offener Daten der zu kreieren, um Probleme und Missstände schneller erkennen und darauf reagieren zu können.</string>
+    <string name="slide_3_title">Anleitung zum Menü:</string>
+    <string name="slide_3_description">Unter dem Menüpunkt Ereignisse kannst du Probleme oder Missstände an die zuständige Behörde melden.
+    </string>
 </resources>
