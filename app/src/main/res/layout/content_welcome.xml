@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".WelcomeActivity">
 
-    <fragment
+    <!--<fragment
         android:id="@+id/nav_host_fragment_welcome"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
@@ -15,5 +15,5 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/welcome_navigation" />
+        app:navGraph="@navigation/welcome_navigation" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
