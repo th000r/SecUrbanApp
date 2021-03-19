@@ -55,4 +55,40 @@
         android:layout_marginBottom="5dp"
         android:background="@color/main_blue" />
 
+    <Button
+        android:id="@+id/help_button_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/help_button_1"
+        android:textColor="@color/main_blue"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/help_button_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/help_button_2"
+        android:textColor="@color/main_blue"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/help_button_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/help_button_3"
+        android:textColor="@color/main_blue"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/help_button_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/help_button_4"
+        android:textColor="@color/main_blue"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"/>
+
 </LinearLayout>

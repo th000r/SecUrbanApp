@@ -46,10 +46,16 @@
     <!-- Help -->
     <string name="help_heading">Fragen zur App?</string>
     <string name="help_subheading">Wir helfen dir weiter!</string>
+
     <string name="help_header_1">Was ist der Zweck dieser App?</string>
     <string name="help_header_2">Wie funktioniert die App?</string>
     <string name="help_header_3">Was passiert mit meinen Nutzerdaten?</string>
     <string name="help_header_4">Kann ich die Studie abbrechen?</string>
+
+    <string name="help_button_1">⦿ Was ist der Zweck dieser App?</string>
+    <string name="help_button_2">⦿ Wie funktioniert die App?</string>
+    <string name="help_button_3">⦿ Was passiert mit meinen Nutzerdaten?</string>
+    <string name="help_button_4">⦿ Kann ich die Studie abbrechen?</string>
 
     <string name="help_description_2">Derzeit konzentriert sich der Prototyp auf Darmstadt und weitere größere Städte im Umkreis von 400 km. Die Benutzer werden aufgefordert Anomalien nachzugehen/zu bestätigen, welche nicht identifiziert werden können,
     um sicherheitsrelevante Probleme schneller und effizienter zu beheben. Dies geschieht mit der Meldungsfunktion der App. Du bekommst eine Nachricht sobald eine aktuelle Meldung vorliegt. Benutzer können
