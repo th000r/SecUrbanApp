@@ -46,5 +46,19 @@
     <!-- Help -->
     <string name="help_heading">Fragen zur App?</string>
     <string name="help_subheading">Wir helfen dir weiter!</string>
+    <string name="help_header_1">Was ist der Zweck dieser App?</string>
+    <string name="help_header_2">Wie funktioniert die App?</string>
+    <string name="help_header_3">Was passiert mit meinen Nutzerdaten?</string>
+    <string name="help_header_4">Kann ich die Studie abbrechen?</string>
 
+    <string name="help_description_2">Derzeit konzentriert sich der Prototyp auf Darmstadt und weitere größere Städte im Umkreis von 400 km. Die Benutzer werden aufgefordert Anomalien nachzugehen/zu bestätigen, welche nicht identifiziert werden können,
+    um sicherheitsrelevante Probleme schneller und effizienter zu beheben. Dies geschieht mit der Meldungsfunktion der App. Du bekommst eine Nachricht sobald eine aktuelle Meldung vorliegt. Benutzer können
+    außerdem verschiedene Arten von Problemen melden und somit ihre Ideen zur Verbesserung der städtischen Situation beitragen. </string>
+    <string name="help_description_3">Alle personenbezogenen Daten werden anonymisiert auf unseren Servern gespeichert. Deine Eingaben und die Zustimmung zur Analyse deiner Daten (insbesondere zur Erhebung, Speicherung und Veröffentlichung
+    sind natürlich freiwillig.</string>
+    <string name="help_contact_3">Falls du weitere Fragen hast, kannst du dich gerne an folgende Personen wenden:
+    </string>
+    <string name="contact_1">marion.stahl@stud.tu-darmstadt.de</string>
+    <string name="contact_2">nina.gerber@tu-darmstadt.de</string>
+    <string name="help_description_4">Du kannst jederzeit die Studie abbrechen. Dazu kannst du den folgenden Link verwenden.</string>
 </resources>

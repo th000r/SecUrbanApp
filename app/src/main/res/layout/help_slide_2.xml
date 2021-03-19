@@ -28,23 +28,10 @@
             android:layout_toRightOf="@+id/help_icon"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:text="@string/help_heading"
+            android:text="@string/help_header_2"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:layout_below="@+id/heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/help_icon"
-            android:layout_toEndOf="@+id/help_icon"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:text="@string/help_subheading"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            />
 
     </RelativeLayout>
 
@@ -54,5 +41,15 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
         android:background="@color/main_blue" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/help_description_2"/>
 
 </LinearLayout>
