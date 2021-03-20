@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_profile">
+    app:startDestination="@+id/nav_incidents">
 
     <fragment
         android:id="@+id/nav_profile"
@@ -33,7 +33,44 @@
         android:id="@+id/nav_help"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.help.HelpFragment"
         android:label="@string/help"
-        tools:layout="@layout/fragment_help" />
+        tools:layout="@layout/fragment_help">
+        <action
+            android:id="@+id/action_to_help_slide_1"
+            app:destination="@id/nav_help_slide_1" />
+        <action
+            android:id="@+id/action_to_help_slide_2"
+            app:destination="@id/nav_help_slide_2" />
+        <action
+            android:id="@+id/action_to_help_slide_3"
+            app:destination="@id/nav_help_slide_3" />
+        <action
+            android:id="@+id/action_to_help_slide_4"
+            app:destination="@id/nav_help_slide_4" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_help_slide_1"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.help.HelpSlideOneFragment"
+        android:label="@string/help_title_1"
+        tools:layout="@layout/help_slide_1" />
+
+    <fragment
+        android:id="@+id/nav_help_slide_2"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.help.HelpSlideTwoFragment"
+        android:label="@string/help_title_2"
+        tools:layout="@layout/help_slide_2" />
+
+    <fragment
+        android:id="@+id/nav_help_slide_3"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.help.HelpSlideThreeFragment"
+        android:label="@string/help_title_3"
+        tools:layout="@layout/help_slide_3" />
+
+    <fragment
+        android:id="@+id/nav_help_slide_4"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.help.HelpSlideFourFragment"
+        android:label="@string/help_title_4"
+        tools:layout="@layout/help_slide_4" />
 
     <fragment
         android:id="@+id/nav_site_notice"

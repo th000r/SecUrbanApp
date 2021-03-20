@@ -73,4 +73,8 @@
     <string name="incidents_subheader">deiner Umgebung</string>
     <string name="incidents_description">Du hast hier die Möglichkeit deinen Standort zu senden, wenn du etwas melden möchtest!</string>
     <string name="incidents_location">Aktuellen Standort senden!</string>
+    <string name="help_title_1">Zweck der App</string>
+    <string name="help_title_2">Funktionsweise</string>
+    <string name="help_title_3">Nutzerdaten</string>
+    <string name="help_title_4">Studie abbrechen</string>
 </resources>

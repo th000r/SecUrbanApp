@@ -10,7 +10,7 @@
         <item
             android:id="@+id/nav_incidents"
             android:title="@string/incidents" />
-        <!--<item<item
+        <!--<item
            android:id="@+id/nav_activities"
            android:title="@string/activities" />
        <item
