@@ -3,6 +3,7 @@
     package="de.tudarmstadt.smartcitystudyapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".SmartCityStudyApplication"
