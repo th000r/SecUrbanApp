@@ -18,6 +18,7 @@ object DefaultReportService : ReportService {
                 "\"message\":\"${report.message}\"," +
                 "\"locationData\":\"${report.latitude}, ${report.longitude}\"," +
                 "\"picture\":\"${report.picture}\"" +
+                "\"fromNotification\":\"${report.fromNotification}\"" +
                 "}"
         val jsonMediaType = "application/json; charset=utf-8".toMediaType()
         val request =
