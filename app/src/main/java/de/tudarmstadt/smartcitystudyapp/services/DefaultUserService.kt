@@ -23,4 +23,8 @@ class DefaultUserService @Inject constructor(
     override suspend fun setUser(user: User) = withContext(Dispatchers.IO){
         userDao.save(user)
     }
+
+    override suspend fun addPoints(user: User, points: Int) {
+        userDao.save(User(user.userId, user.userName, user.points+points))
+    }
 }

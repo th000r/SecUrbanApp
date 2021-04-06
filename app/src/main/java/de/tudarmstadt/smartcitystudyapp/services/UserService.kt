@@ -6,4 +6,6 @@ interface UserService {
     suspend fun getUserId() : String?
 
     suspend fun setUser(user: User)
+
+    suspend fun addPoints(user: User, points: Int)
 }
