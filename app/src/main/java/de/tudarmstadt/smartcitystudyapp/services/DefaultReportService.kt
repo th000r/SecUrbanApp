@@ -16,7 +16,7 @@ object DefaultReportService : ReportService {
         val postBody = "{" +
                 "\"citizenId\":\"${report.userId}\"," +
                 "\"message\":\"${report.message}\"," +
-                "\"locationData\":\"${report.location}\"," +
+                "\"locationData\":\"${report.latitude}, ${report.longitude}\"," +
                 "\"picture\":\"${report.picture}\"" +
                 "}"
         val jsonMediaType = "application/json; charset=utf-8".toMediaType()
