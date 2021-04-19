@@ -90,6 +90,64 @@
     <string name="water_one">Das Wassersystem ist defekt (z.B. ein Wasserleck oder andere Abwasserprobleme).</string>
     <string name="water_two">Kein heißes/kaltes Wasser steht zur Verfügung.</string>
 
+    <string name="trees_one">Bäume/Äste sind in schlechtem Zustand?</string>
+    <string name="trees_two">Zu wenig Grünanlagen/Bäume?</string>
+    <string name="trees_three">Bäume bzw. Äste können gefährlich werden? (z.B. Wurzeln ragen über die Straße)</string>
+
+    <string name="electronic_one">Stromausfall?</string>
+    <string name="electronic_two">Probleme mit der Elektronik? (z.B. Elektrische Verkabelung freiliegend)</string>
+
+    <string name="vehicles_one">Verlassenes Fahrzeug?</string>
+
+    <string name="buildings_one">Gefahr durch Gebäudestruktur? (z.B. einstürzendes Haus)</string>
+    <string name="buildings_two">Nicht konform? (z.B. Illegale Umwandlung von Wohngebäude/Flächen)</string>
+    <string name="buildings_three">Gebäude ist in schlechtem Zustand? (z.B. Putz bröckelt ab)</string>
+    <string name="buildings_four">Gebäude ist Gefahren ausgesetzt? (z.B. nicht abgesperrt)</string>
+    <string name="buildings_five">Arbeiten am Gebäude sind problematisch? (z.B. Eingänge versperrt)</string>
+    <string name="buildings_six">Elemente des Gebäudes sind defekt? (z.B. Tür, Fenster, Treppen,  ect.) </string>
+
+    <string name="path_one">Weg ist  beschädigt oder blockiert? (z.B. beschädigter Bordstein oder Löcher) </string>
+
+    <string name="devices_one">Rolltreppe/Fahrstuhl defekt?</string>
+    <string name="devices_two">Probleme mit der Heizung? (z.B. in öffentlichen Einrichtungen)</string>
+    <string name="devices_three">Geräte in öffentlichem Gebäude defekt? (z.B. Herd, Boiler)</string>
+    <string name="devices_four">Notwendige Geräte fehlen? (z.B. Rauchmelder)</string>
+
+    <string name="health_one">Gefahrstoffe festgestellt? (z.B. Schimmel,  Asbest, Chemischer Geruch)</string>
+    <string name="health_two">Social Distancing wird missachtet?</string>
+
+    <string name="noise_one">Gibt es in der Gegend lautstärkebedingte Probleme? (z.B. Nachbarn, Fahrzeuge)</string>
+
+    <string name="air_one">Ist die Luftqualität stark beeinträchtigt? (z.B. durch Bauarbeiten, Rauch)</string>
+
+    <string name="garbage_one">Unsachgemäße Entsorgung von Müll festgestellt?</string>
+    <string name="garbage_two">Sperr-/ Elektromüll wurde nicht abgeholt?</string>
+    <string name="garbage_three">Mülleimer ist überfüllt?</string>
+
+    <string name="parking_one">Probleme beim Parken? (z.B. defekte Parkautomaten) </string>
+    <string name="parking_two">Problem mit parkendem Fahrzeug? (z.B. zugeparkter Gehweg, Falschparker)  </string>
+
+    <string name="smoke_one">Rauchbildung?</string>
+
+    <string name="wc_one">Defekte sanitäre Anlagen? (z.B. Wasserhahn defekt) </string>
+
+    <string name="streets_one">Straßen sind beschädigt oder blockiert? (z.B. Schlagloch, Auffahrt)</string>
+    <string name="streets_two">Beleuchtung ist defekt?</string>
+    <string name="streets_three">Schilder defekt/ fehlend oder beklebt?</string>
+    <string name="streets_four">Defekte Ampeln?</string>
+    <string name="streets_five">Vereiste Flächen?</string>
+
+    <string name="animals_one">Tierkadaver gesehen? (z.B. tote Katze)</string>
+    <string name="animals_two">Anhäufung von Nagetieren, Insekten oder Schädlingen?</string>
+    <string name="animals_three">Unsachgemäße Tierhaltung? (z.B. Tiermisshandlung)</string>
+
+    <string name="pollution_one">Illegale Anbringung von Postern?</string>
+    <string name="pollution_two">Graffiti melden?</string>
+    <string name="pollution_three">Räumlichkeiten verschmutzt?</string>
+
+    <string name="pollution_other">Möchtest du andere Probleme melden?</string>
+
+
     <string name="incididents_submit_heading"></string>
     <string name="incididents_submit_description_location">Du hast hier die Möglichkeit deinen Standort zu senden, wenn du etwas melden möchtest.</string>
     <string name="incididents_submit_description_situation">Du hast hier die Möglichkeit die Situation zu beschreiben!</string>
