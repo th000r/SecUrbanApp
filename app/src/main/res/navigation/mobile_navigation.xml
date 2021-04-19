@@ -15,7 +15,11 @@
         android:id="@+id/nav_incidents"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.incidents.IncidentsFragment"
         android:label="@string/incidents"
-        tools:layout="@layout/fragment_incidents" />
+        tools:layout="@layout/fragment_incidents">
+        <action
+            android:id="@+id/action_to_incident_water"
+            app:destination="@id/nav_incident_water" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_activities"
@@ -78,4 +82,19 @@
         android:label="@string/site_notice"
         tools:layout="@layout/fragment_site_notice" />
 
+    <fragment
+        android:id="@+id/nav_incident_water"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.incidents.WaterFragment"
+        android:label="@string/heading_incident_water"
+        tools:layout="@layout/fragment_water">
+        <action
+            android:id="@+id/action_water_to_submit"
+            app:destination="@id/nav_incident_submit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_incident_submit"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.incidents.SubmitFragment"
+        android:label="@string/heading_incident_submit"
+        tools:layout="@layout/fragment_submitincidents" />
 </navigation>
