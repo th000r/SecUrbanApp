@@ -286,5 +286,6 @@
     <string name="side_notice_igd_phone">+49 (0) 6151 - 155 - 0</string>
     <string name="heading_incident_water">Wasserschäden</string>
     <string name="heading_incident_submit">Meldung abschicken</string>
+    <string name="suggestion_heading">Was genau ist passiert?</string>
 
 </resources>

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_to_incident_water"
             app:destination="@id/nav_incident_water" />
+        <action
+            android:id="@+id/action_incidents_to_suggestion"
+            app:destination="@id/nav_incidents_suggestion" />
     </fragment>
 
     <fragment
@@ -90,6 +93,16 @@
         <action
             android:id="@+id/action_water_to_submit"
             app:destination="@id/nav_incident_submit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_incidents_suggestion"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.incidents.SuggestionFragment"
+        android:label="@string/suggestion_heading"
+        tools:layout="@layout/fragment_suggestion">
+        <action
+            android:id="@+id/action_suggestion_to_submit"
+            app:destination="@id/nav_incident_submit"/>
     </fragment>
 
     <fragment
