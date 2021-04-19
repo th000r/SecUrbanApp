@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel @ViewModelInject constructor(
     private val reportService: ReportService
-): ViewModel() {
+) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is profile Fragment"
@@ -23,7 +23,14 @@ class ProfileViewModel @ViewModelInject constructor(
     fun sendDummyReport(view: View) {
         println("Sending dummy report")
         viewModelScope.launch(Dispatchers.IO) {
-            val report = Report("42069", "my message", location = true, picture = false)
+            val report = Report(
+                "42069",
+                "my message",
+                picture = false,
+                latitude = 0.0,
+                longitude = 0.0,
+                fromNotification = false
+            )
             val response = reportService.sendReport(report)
             _text.postValue(response)
         }
