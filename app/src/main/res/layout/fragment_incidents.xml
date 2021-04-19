@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,16 +17,16 @@
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/exclamation_thick"
-            android:adjustViewBounds="true"/>
+            android:adjustViewBounds="true"
+            android:src="@drawable/exclamation_thick" />
 
         <TextView
             android:id="@+id/heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/help_icon"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/help_icon"
             android:text="@string/incidents_header"
             android:textColor="@color/black"
             android:textSize="25sp"
@@ -37,12 +36,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/heading"
-            android:textColor="@color/black"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/help_icon"
             android:text="@string/incidents_subheader"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -61,75 +60,188 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/black"
         android:text="@string/incidents_description"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/incidents_button_water"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_water"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:fadeScrollbars="false"
+        android:scrollbars="vertical">
 
-    <Button
-        android:id="@+id/incidents_button_trees"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_tree"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/incidents_button_electronic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_electronic"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
+            <Button
+                android:id="@+id/incidents_button_water"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_water"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
 
-    <Button
-        android:id="@+id/incidents_button_vehicles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_vehicles"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
+            <Button
+                android:id="@+id/incidents_button_trees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_tree"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
 
-    <Button
-        android:id="@+id/incidents_button_buildings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_buildings"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
+            <Button
+                android:id="@+id/incidents_button_electronic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_electronic"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
 
-    <Button
-        android:id="@+id/incidents_button_devices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_devices"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
+            <Button
+                android:id="@+id/incidents_button_vehicles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_vehicles"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
 
-    <Button
-        android:id="@+id/incidents_button_health"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_health"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
+            <Button
+                android:id="@+id/incidents_button_buildings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_buildings"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
 
+            <Button
+                android:id="@+id/incidents_button_path"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_paths"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_devices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_devices"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_health"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_health"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_noise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_noise"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_air"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_air"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_garbage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_garbage"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_parking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_parking"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_smoke"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_smoke"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_wc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_wc"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_streets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_streets"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_animals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_animals"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_pollution"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_polution"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_other"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
