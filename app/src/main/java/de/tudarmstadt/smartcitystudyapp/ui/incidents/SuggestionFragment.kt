@@ -4,15 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.scopes.FragmentScoped
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.helper.SuggestionsAdapter
+
 
 @FragmentScoped
-class SuggestionFragment: Fragment() {
+class SuggestionFragment : Fragment() {
+
+    var adapter: SuggestionsAdapter? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,16 +27,14 @@ class SuggestionFragment: Fragment() {
         val headingStringId: Int = arguments?.getInt("headingStringId") ?: R.string.water_heading
         val categoryArrayId = arguments?.getInt("categoryStringId") ?: R.array.water_array
         val headingView = root.findViewById<TextView>(R.id.heading)
-        val suggestionsLayout = root.findViewById<LinearLayout>(R.id.suggestions_layout)
+        val recyclerview = root.findViewById<RecyclerView>(R.id.recycler_view)
+
+        adapter = SuggestionsAdapter(resources.getStringArray(categoryArrayId).toMutableList())
+        recyclerview.adapter = adapter
+
+        recyclerview.layoutManager = LinearLayoutManager(activity)
 
         headingView.text = getString(headingStringId)
-        resources.getStringArray(categoryArrayId).forEach { suggestion -> println(suggestion)
-//            val cardView = context?.let { it -> CardView(it).apply {
-//
-//            } }
-//
-//            suggestionsLayout.addView(cardView)
-        }
 
         return root
     }
