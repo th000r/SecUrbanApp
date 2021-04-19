@@ -82,9 +82,20 @@
     <string name="incidents_tree">👁 Bäume</string>
     <string name="incidents_electronic">👁 Elektronik</string>
     <string name="incidents_vehicles">👁 Fahrzeuge</string>
+    <string name="incidents_paths">👁 Geh- und Radwege</string>
     <string name="incidents_buildings">👁 Gebäude</string>
     <string name="incidents_devices">👁 Geräte</string>
-    <string name="incidents_health">👁 Gesundheit</string>
+    <string name="incidents_health">👁 Gesundheitsgefährdung</string>
+    <string name="incidents_noise">👁 Lärm</string>
+    <string name="incidents_air">👁 Luftqualität</string>
+    <string name="incidents_garbage">👁 Müll</string>
+    <string name="incidents_parking">👁 Parken</string>
+    <string name="incidents_smoke">👁 Rauch</string>
+    <string name="incidents_wc">👁 Sanitäre Anlagen</string>
+    <string name="incidents_streets">👁 Straßen</string>
+    <string name="incidents_animals">👁 Tier</string>
+    <string name="incidents_polution">👁 Verschmutzung</string>
+    <string name="incidents_other">👁 Sonstiges</string>
 
     <string name="water_heading">Abwasser und Wasser</string>
     <string name="water_one">Das Wassersystem ist defekt (z.B. ein Wasserleck oder andere Abwasserprobleme).</string>
