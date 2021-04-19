@@ -16,7 +16,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/help"
+            android:src="@drawable/baseline_settings_24"
             android:adjustViewBounds="true"/>
 
         <TextView
