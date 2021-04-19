@@ -38,11 +38,4 @@ class SuggestionFragment : Fragment() {
 
         return root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-//        view.findViewById<Button>(R.id.incidents_button_water).setOnClickListener(
-//            Navigation.createNavigateOnClickListener(R.id.action_to_incident_water)
-//        )
-    }
 }

@@ -1,10 +1,12 @@
 package de.tudarmstadt.smartcitystudyapp.helper;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.navigation.Navigation;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +28,14 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
     @Override
     public SuggestionsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.suggestion_cardview, parent, false);
-        return new SuggestionsViewHolder(view);
+        SuggestionsViewHolder viewHolder = new SuggestionsViewHolder(view);
+        viewHolder.itemView.setOnClickListener(listenerView -> {
+            Bundle bundle = new Bundle();
+            TextView suggestionTextView = viewHolder.itemView.findViewById(R.id.suggestion_text);
+            bundle.putString("suggestion", suggestionTextView.getText().toString());
+            Navigation.findNavController(listenerView).navigate(R.id.action_suggestion_to_submit, bundle);
+        });
+        return viewHolder;
     }
 
     @Override
