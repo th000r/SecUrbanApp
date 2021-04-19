@@ -62,11 +62,16 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:text="@string/incidents_description"
+        android:text="@string/incididents_submit_description_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/location"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -75,57 +80,21 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:text="@string/water_heading"
+        android:text="@string/incididents_submit_description_situation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/water_one_card"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
+    <EditText
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="60dp"/>
+
+    <Button
+        android:id="@+id/incidents_button_submit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="5dp"
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_margin="10dp"
-            android:text="@string/water_one"/>
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:id="@+id/water_two_card"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="5dp"
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/water_two"/>
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
+        android:layout_gravity="center_horizontal"
+        android:text="@string/incidients_submit_button"
+        />
 </LinearLayout>
