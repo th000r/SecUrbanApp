@@ -76,7 +76,7 @@
     <!-- Incidents -->
     <string name="incidents_header">Neue Ereignisse in</string>
     <string name="incidents_subheader">deiner Umgebung</string>
-    <string name="incidents_description">Du hast hier die Möglichkeit deinen Standort zu senden, wenn du etwas melden möchtest!</string>
+    <string name="incidents_description">Hier einige Vorschläge, was du melden könntest:</string>
     <string name="incidents_location">Aktuellen Standort senden!</string>
     <string name="incidents_water">👁 Abwasser und Wasser</string>
     <string name="incidents_tree">👁 Bäume</string>
@@ -85,4 +85,8 @@
     <string name="incidents_buildings">👁 Gebäude</string>
     <string name="incidents_devices">👁 Geräte</string>
     <string name="incidents_health">👁 Gesundheit</string>
+
+    <string name="water_heading">Abwasser und Wasser</string>
+    <string name="water_one">Das Wassersystem ist defekt (z.B. ein Wasserleck oder andere Abwasserprobleme).</string>
+    <string name="water_two">Kein heißes/kaltes Wasser steht zur Verfügung.</string>
 </resources>

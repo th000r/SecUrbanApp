@@ -68,68 +68,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
-        android:id="@+id/incidents_button_water"
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/incidents_water"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="@string/water_heading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
-        android:id="@+id/incidents_button_trees"
+
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/water_one"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_tree"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
+        android:text="@string/water_one"
+        android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/incidents_button_electronic"
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/water_two"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_electronic"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
-
-    <Button
-        android:id="@+id/incidents_button_vehicles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_vehicles"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
-
-    <Button
-        android:id="@+id/incidents_button_buildings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_buildings"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
-
-    <Button
-        android:id="@+id/incidents_button_devices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_devices"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
-
-    <Button
-        android:id="@+id/incidents_button_health"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/incidents_health"
-        android:textColor="@color/main_blue"
-        android:textAllCaps="false"
-        android:background="@android:color/transparent"/>
-
-
+        android:text="@string/water_two"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
