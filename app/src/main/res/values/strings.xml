@@ -89,4 +89,19 @@
     <string name="water_heading">Abwasser und Wasser</string>
     <string name="water_one">Das Wassersystem ist defekt (z.B. ein Wasserleck oder andere Abwasserprobleme).</string>
     <string name="water_two">Kein heißes/kaltes Wasser steht zur Verfügung.</string>
+
+    <!-- Side Notice -->
+    <string name="side_notice_heading">Herausgeber</string>
+    <string name="side_notice_institutions">Technische Universität Darmstadt und Fraunhofer IGD</string>
+    <string name="side_notice_tu_heading">Technische Universität Darmstadt</string>
+    <string name="side_notice_tu_street">Karolinenplatz 5</string>
+    <string name="side_notice_tu_city">64289 Darmstadt</string>
+    <string name="side_notice_tu_mail">experi@psychologie.tu-darmstadt.de</string>
+    <string name="side_notice_tu_phone">+49 (0) 6151 - 16 24080</string>
+    <string name="side_notice_igd_heading">Entwickelt in Kooperation mit Fraunhofer IGD</string>
+    <string name="side_notice_igd_street">Fraunhoferstraße 5</string>
+    <string name="side_notice_igd_city">64283 Darmstadt</string>
+    <string name="side_notice_igd_mail">info@igd.fraunhofer.de</string>
+    <string name="side_notice_igd_phone">+49 (0) 6151 - 155 - 0</string>
+
 </resources>

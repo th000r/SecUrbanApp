@@ -23,10 +23,10 @@ class SiteNoticeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_site_notice, container, false)
-        val textView: TextView = root.findViewById(R.id.text_site_notice)
-        siteNoticeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        // val textView: TextView = root.findViewById(R.id.text_site_notice)
+        // siteNoticeViewModel.text.observe(viewLifecycleOwner, Observer {
+         //   textView.text = it
+        //})
         return root
     }
 }
