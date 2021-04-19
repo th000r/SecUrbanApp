@@ -101,62 +101,169 @@
     <string name="water_one">Das Wassersystem ist defekt (z.B. ein Wasserleck oder andere Abwasserprobleme).</string>
     <string name="water_two">Kein heißes/kaltes Wasser steht zur Verfügung.</string>
 
+    <array name="water_array">
+        <item>Das Wassersystem ist defekt (z.B. ein Wasserleck oder andere Abwasserprobleme).</item>
+        <item>Kein heißes/kaltes Wasser steht zur Verfügung.</item>
+    </array>
+
+    <string name="trees_heading">Bäume</string>
     <string name="trees_one">Bäume/Äste sind in schlechtem Zustand?</string>
     <string name="trees_two">Zu wenig Grünanlagen/Bäume?</string>
     <string name="trees_three">Bäume bzw. Äste können gefährlich werden? (z.B. Wurzeln ragen über die Straße)</string>
 
+    <array name="trees_array">
+        <item>Bäume/Äste sind in schlechtem Zustand?</item>
+        <item>Bäume bzw. Äste können gefährlich werden? (z.B. Wurzeln ragen über die Straße)</item>
+    </array>
+
+    <string name="electronic_heading">Elektronik?</string>
     <string name="electronic_one">Stromausfall?</string>
     <string name="electronic_two">Probleme mit der Elektronik? (z.B. Elektrische Verkabelung freiliegend)</string>
 
+    <array name="electronic_array">
+        <item>Stromausfall?</item>
+        <item>Probleme mit der Elektronik? (z.B. Elektrische Verkabelung freiliegend)</item>
+    </array>
+
+    <string name="vehicles_heading">Fahrzeuge</string>
     <string name="vehicles_one">Verlassenes Fahrzeug?</string>
 
+    <array name="vehicles_array">
+        <item>Verlassenes Fahrzeug?</item>
+    </array>
+
+    <string name="buildings_heading">Gebäude</string>
     <string name="buildings_one">Gefahr durch Gebäudestruktur? (z.B. einstürzendes Haus)</string>
-    <string name="buildings_two">Nicht konform? (z.B. Illegale Umwandlung von Wohngebäude/Flächen)</string>
+    <string name="buildings_two">Nicht konform? (z.B. illegale Umwandlung von Wohngebäude/Flächen)</string>
     <string name="buildings_three">Gebäude ist in schlechtem Zustand? (z.B. Putz bröckelt ab)</string>
     <string name="buildings_four">Gebäude ist Gefahren ausgesetzt? (z.B. nicht abgesperrt)</string>
     <string name="buildings_five">Arbeiten am Gebäude sind problematisch? (z.B. Eingänge versperrt)</string>
-    <string name="buildings_six">Elemente des Gebäudes sind defekt? (z.B. Tür, Fenster, Treppen,  ect.) </string>
+    <string name="buildings_six">Elemente des Gebäudes sind defekt? (z.B. Tür, Fenster, Treppen,  etc.)</string>
 
+    <array name="buildings_array">
+        <item>Gefahr durch Gebäudestruktur? (z.B. einstürzendes Haus)</item>
+        <item>Nicht konform? (z.B. illegale Umwandlung von Wohngebäude/Flächen)</item>
+        <item>Gebäude ist in schlechtem Zustand? (z.B. Putz bröckelt ab)</item>
+        <item>Gebäude ist Gefahren ausgesetzt? (z.B. nicht abgesperrt)</item>
+        <item>Arbeiten am Gebäude sind problematisch? (z.B. Eingänge versperrt)</item>
+        <item>Elemente des Gebäudes sind defekt? (z.B. Tür, Fenster, Treppen,  etc.)</item>
+    </array>
+
+    <string name="path_heading">Geh- und Radwege</string>
     <string name="path_one">Weg ist  beschädigt oder blockiert? (z.B. beschädigter Bordstein oder Löcher) </string>
 
+    <array name="path_array">
+        <item>Weg ist  beschädigt oder blockiert? (z.B. beschädigter Bordstein oder Löcher) </item>
+    </array>
+
+    <string name="devices_heading">Geräte</string>
     <string name="devices_one">Rolltreppe/Fahrstuhl defekt?</string>
     <string name="devices_two">Probleme mit der Heizung? (z.B. in öffentlichen Einrichtungen)</string>
     <string name="devices_three">Geräte in öffentlichem Gebäude defekt? (z.B. Herd, Boiler)</string>
     <string name="devices_four">Notwendige Geräte fehlen? (z.B. Rauchmelder)</string>
 
+    <array name="devices_array">
+        <item>Rolltreppe/Fahrstuhl defekt?</item>
+        <item>Probleme mit der Heizung? (z.B. in öffentlichen Einrichtungen)</item>
+        <item>Geräte in öffentlichem Gebäude defekt? (z.B. Herd, Boiler)</item>
+        <item>Notwendige Geräte fehlen? (z.B. Rauchmelder)</item>
+    </array>
+
+    <string name="health_heading">Gesundheitsgefährdung</string>
     <string name="health_one">Gefahrstoffe festgestellt? (z.B. Schimmel,  Asbest, Chemischer Geruch)</string>
     <string name="health_two">Social Distancing wird missachtet?</string>
 
+    <array name="health_array">
+        <item>Gefahrstoffe festgestellt? (z.B. Schimmel,  Asbest, Chemischer Geruch)</item>
+        <item>Social Distancing wird missachtet?</item>
+    </array>
+
+    <string name="noise_heading">Lärm</string>
     <string name="noise_one">Gibt es in der Gegend lautstärkebedingte Probleme? (z.B. Nachbarn, Fahrzeuge)</string>
 
+    <array name="noise_array">
+        <item>Gibt es in der Gegend lautstärkebedingte Probleme? (z.B. Nachbarn, Fahrzeuge)</item>
+    </array>
+
+    <string name="air_heading">Luft</string>
     <string name="air_one">Ist die Luftqualität stark beeinträchtigt? (z.B. durch Bauarbeiten, Rauch)</string>
 
+    <array name="air_array">
+        <item>Ist die Luftqualität stark beeinträchtigt? (z.B. durch Bauarbeiten, Rauch)</item>
+    </array>
+
+    <string name="garbage_heading">Müll</string>
     <string name="garbage_one">Unsachgemäße Entsorgung von Müll festgestellt?</string>
     <string name="garbage_two">Sperr-/ Elektromüll wurde nicht abgeholt?</string>
     <string name="garbage_three">Mülleimer ist überfüllt?</string>
 
-    <string name="parking_one">Probleme beim Parken? (z.B. defekte Parkautomaten) </string>
-    <string name="parking_two">Problem mit parkendem Fahrzeug? (z.B. zugeparkter Gehweg, Falschparker)  </string>
+    <array name="garbage_array">
+        <item>Unsachgemäße Entsorgung von Müll festgestellt?</item>
+        <item>Sperr-/ Elektromüll wurde nicht abgeholt?</item>
+        <item>Mülleimer ist überfüllt?</item>
+    </array>
 
+    <string name="parking_heading">Parken</string>
+    <string name="parking_one">Probleme beim Parken? (z.B. defekte Parkautomaten) </string>
+    <string name="parking_two">Problem mit parkendem Fahrzeug? (z.B. zugeparkter Gehweg, Falschparker) </string>
+
+    <array name="parking_array">
+        <item>Probleme beim Parken? (z.B. defekte Parkautomaten) </item>
+        <item>Problem mit parkendem Fahrzeug? (z.B. zugeparkter Gehweg, Falschparker) </item>
+    </array>
+
+    <string name="smoke_heading">Rauch</string>
     <string name="smoke_one">Rauchbildung?</string>
 
+    <array name="smoke_array">
+        <item>Rauchbildung?</item>
+    </array>
+
+    <string name="wc_heading">Sanitäre Anlagen</string>
     <string name="wc_one">Defekte sanitäre Anlagen? (z.B. Wasserhahn defekt) </string>
 
+    <array name="wc_array">
+        <item>Defekte sanitäre Anlagen? (z.B. Wasserhahn defekt) </item>
+    </array>
+
+    <string name="streets_heading">Straßen</string>
     <string name="streets_one">Straßen sind beschädigt oder blockiert? (z.B. Schlagloch, Auffahrt)</string>
     <string name="streets_two">Beleuchtung ist defekt?</string>
     <string name="streets_three">Schilder defekt/ fehlend oder beklebt?</string>
     <string name="streets_four">Defekte Ampeln?</string>
     <string name="streets_five">Vereiste Flächen?</string>
 
+    <array name="streets_array">
+        <item>Straßen sind beschädigt oder blockiert? (z.B. Schlagloch, Auffahrt)</item>
+        <item>Beleuchtung ist defekt?</item>
+        <item>Schilder defekt/ fehlend oder beklebt?</item>
+        <item>Defekte Ampeln?</item>
+        <item>Vereiste Flächen?</item>
+    </array>
+
+    <string name="animals_heading">Tiere</string>
     <string name="animals_one">Tierkadaver gesehen? (z.B. tote Katze)</string>
     <string name="animals_two">Anhäufung von Nagetieren, Insekten oder Schädlingen?</string>
     <string name="animals_three">Unsachgemäße Tierhaltung? (z.B. Tiermisshandlung)</string>
 
+    <array name="animals_array">
+        <item>Tierkadaver gesehen? (z.B. tote Katze)</item>
+        <item>Anhäufung von Nagetieren, Insekten oder Schädlingen?</item>
+        <item>Unsachgemäße Tierhaltung? (z.B. Tiermisshandlung)</item>
+    </array>
+
+    <string name="pollution_heading">Verschmutzung</string>
     <string name="pollution_one">Illegale Anbringung von Postern?</string>
     <string name="pollution_two">Graffiti melden?</string>
     <string name="pollution_three">Räumlichkeiten verschmutzt?</string>
 
-    <string name="pollution_other">Möchtest du andere Probleme melden?</string>
+    <array name="pollution_array">
+        <item>Illegale Anbringung von Postern?</item>
+        <item>Graffiti melden?</item>
+        <item>Räumlichkeiten verschmutzt?</item>
+    </array>
+
+    <string name="other">Möchtest du andere Probleme melden?</string>
 
 
     <string name="incididents_submit_heading"></string>
