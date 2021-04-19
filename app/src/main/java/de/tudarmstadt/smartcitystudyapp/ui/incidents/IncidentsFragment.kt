@@ -18,10 +18,10 @@ class IncidentsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_incidents, container, false)
-        val textView: TextView = root.findViewById(R.id.incident_text)
-        incidentsViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
+//        val textView: TextView = root.findViewById(R.id.incident_text)
+//        incidentsViewModel.text.observe(viewLifecycleOwner, {
+//            textView.text = it
+//        })
         return root
     }
 }

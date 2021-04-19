@@ -67,14 +67,22 @@
     <string name="contact_1">marion.stahl@stud.tu-darmstadt.de</string>
     <string name="contact_2">nina.gerber@tu-darmstadt.de</string>
     <string name="help_description_4">Du kannst jederzeit die Studie abbrechen. Dazu kannst du den folgenden Link verwenden.</string>
+    <string name="help_title_1">Zweck der App</string>
+    <string name="help_title_2">Funktionsweise</string>
+    <string name="help_title_3">Nutzerdaten</string>
+    <string name="help_title_4">Studie abbrechen</string>
+
 
     <!-- Incidents -->
     <string name="incidents_header">Neue Ereignisse in</string>
     <string name="incidents_subheader">deiner Umgebung</string>
     <string name="incidents_description">Du hast hier die Möglichkeit deinen Standort zu senden, wenn du etwas melden möchtest!</string>
     <string name="incidents_location">Aktuellen Standort senden!</string>
-    <string name="help_title_1">Zweck der App</string>
-    <string name="help_title_2">Funktionsweise</string>
-    <string name="help_title_3">Nutzerdaten</string>
-    <string name="help_title_4">Studie abbrechen</string>
+    <string name="incidents_water">👁 Abwasser und Wasser</string>
+    <string name="incidents_tree">👁 Bäume</string>
+    <string name="incidents_electronic">👁 Elektronik</string>
+    <string name="incidents_vehicles">👁 Fahrzeuge</string>
+    <string name="incidents_buildings">👁 Gebäude</string>
+    <string name="incidents_devices">👁 Geräte</string>
+    <string name="incidents_health">👁 Gesundheit</string>
 </resources>

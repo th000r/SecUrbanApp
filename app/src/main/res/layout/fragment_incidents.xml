@@ -65,16 +65,68 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/incident_text"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/incidents_button_water"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Das ist die Ereignissansicht"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_horizontal" />
+        android:text="@string/incidents_water"
+        android:textColor="@color/main_blue"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/incidents_button_trees"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/incidents_tree"
+        android:textColor="@color/main_blue"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/incidents_button_electronic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/incidents_electronic"
+        android:textColor="@color/main_blue"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/incidents_button_vehicles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/incidents_vehicles"
+        android:textColor="@color/main_blue"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/incidents_button_buildings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/incidents_buildings"
+        android:textColor="@color/main_blue"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/incidents_button_devices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/incidents_devices"
+        android:textColor="@color/main_blue"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/incidents_button_health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/incidents_health"
+        android:textColor="@color/main_blue"
+        android:textAllCaps="false"
+        android:background="@android:color/transparent"/>
+
 
 </LinearLayout>
