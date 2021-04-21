@@ -26,7 +26,7 @@ class SuggestionFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_suggestion, container, false)
         val headingStringId: Int = arguments?.getInt("headingStringId") ?: R.string.water_heading
         val categoryArrayId = arguments?.getInt("categoryStringId") ?: R.array.water_array
-        val headingView = root.findViewById<TextView>(R.id.heading)
+        val headingView = root.findViewById<TextView>(R.id.suggestion_heading)
         val recyclerview = root.findViewById<RecyclerView>(R.id.recycler_view)
 
         adapter = SuggestionsAdapter(resources.getStringArray(categoryArrayId).toMutableList())
