@@ -263,10 +263,14 @@
         <item>Räumlichkeiten verschmutzt?</item>
     </array>
 
+    <string name="other_heading">Verschmutzung</string>
     <string name="other">Möchtest du andere Probleme melden?</string>
 
+    <array name="other_array">
+        <item>Möchtest du andere Probleme melden?</item>
+    </array>
 
-    <string name="incididents_submit_heading"></string>
+    <string name="incididents_submit_heading">Meldung abschicken</string>
     <string name="incididents_submit_description_location">Du hast hier die Möglichkeit deinen Standort zu senden, wenn du etwas melden möchtest.</string>
     <string name="incididents_submit_description_situation">Du hast hier die Möglichkeit die Situation zu beschreiben!</string>
     <string name="incidients_submit_button">Abschicken</string>
