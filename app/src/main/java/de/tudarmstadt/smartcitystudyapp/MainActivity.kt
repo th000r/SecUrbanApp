@@ -16,8 +16,9 @@ import de.tudarmstadt.smartcitystudyapp.services.UserService
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity: AppCompatActivity() {
-    @Inject lateinit var userService: UserService
+class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var userService: UserService
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +35,7 @@ class MainActivity: AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
+                R.id.nav_main,
 //                R.id.nav_profile,
                 R.id.nav_incidents,
 //                R.id.nav_activities,
