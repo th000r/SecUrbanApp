@@ -6,5 +6,5 @@ data class Report(
     val latitude: Double,
     val longitude: Double,
     val picture: Boolean,
-    val fromNotification: Boolean
+    val source: String
 )
