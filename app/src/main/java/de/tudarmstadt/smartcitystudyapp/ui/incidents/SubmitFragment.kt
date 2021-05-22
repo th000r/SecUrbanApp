@@ -7,19 +7,22 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.scopes.FragmentScoped
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.model.Report
 import de.tudarmstadt.smartcitystudyapp.services.ReportService
+import de.tudarmstadt.smartcitystudyapp.ui.profile.ProfileViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @FragmentScoped
-class SubmitFragment @Inject constructor(
-    private val reportService: ReportService
-) : Fragment() {
+class SubmitFragment @Inject constructor() : Fragment() {
+
+    private val submitViewModel by viewModels<SubmitViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,22 +32,7 @@ class SubmitFragment @Inject constructor(
         val suggestion: String = arguments?.getString("suggestion") ?: ""
         root.findViewById<EditText>(R.id.report_text).setText(suggestion)
         root.findViewById<Button>(R.id.incidents_button_submit)
-            .setOnClickListener { sendDummyReport(it) }
+            .setOnClickListener { submitViewModel.sendDummyReport(it) }
         return root
-    }
-
-    private fun sendDummyReport(view: View) {
-        println("Sending dummy report")
-        lifecycleScope.launch(Dispatchers.IO) {
-            val report = Report(
-                "42069",
-                "my message",
-                picture = false,
-                latitude = 0.0,
-                longitude = 0.0,
-                fromNotification = false
-            )
-            reportService.sendReport(report)
-        }
     }
 }

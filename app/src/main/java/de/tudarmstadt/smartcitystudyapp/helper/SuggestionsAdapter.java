@@ -6,19 +6,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.navigation.Navigation;
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
-import de.tudarmstadt.smartcitystudyapp.R;
-
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import de.tudarmstadt.smartcitystudyapp.R;
+
+@Singleton
 public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.SuggestionsViewHolder> {
 
     public List<String> suggestionsList;
+
+    @Inject
+    public SuggestionsAdapter() {}
 
     public SuggestionsAdapter(List<String> suggestionsList) {
         this.suggestionsList = suggestionsList;
