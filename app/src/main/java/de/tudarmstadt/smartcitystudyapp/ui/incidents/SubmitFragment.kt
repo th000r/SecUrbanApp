@@ -25,7 +25,7 @@ class SubmitFragment : Fragment() {
         val suggestion: String = arguments?.getString("suggestion") ?: ""
         root.findViewById<EditText>(R.id.report_text).setText(suggestion)
         root.findViewById<Button>(R.id.incidents_button_submit)
-            .setOnClickListener { submitViewModel.sendDummyReport(it) }
+            .setOnClickListener { submitViewModel.sendDummyReport(root) }
         return root
     }
 }
