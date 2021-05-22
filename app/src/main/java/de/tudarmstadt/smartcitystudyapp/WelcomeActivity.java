@@ -18,8 +18,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -35,6 +37,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnNext;
     private SharedPreferences sharedPreferences;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,15 +76,16 @@ public class WelcomeActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
 
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int current = getItem(+1);
-                if (current < layouts.length) {
-                    viewPager.setCurrentItem(current);
-                } else {
-                    launchHomeScreen();
-                }
+        btnNext.setOnClickListener(v -> {
+            int current = getItem(+1);
+            if (current == 1) {
+                EditText userIdEntryField = this.findViewById(R.id.user_id_entry_field);
+                userId = userIdEntryField.getText().toString();
+            }
+            if (current < layouts.length) {
+                viewPager.setCurrentItem(current);
+            } else {
+                launchHomeScreen();
             }
         });
     }
@@ -110,11 +114,17 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void launchHomeScreen() {
-        sharedPreferences.edit().putBoolean("show_welcome", true).apply();
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
+        if (userId == null || userId.isEmpty()) {
+            Toast toast = Toast.makeText(this, R.string.user_id_not_set_toast, Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            //TODO: Save user Id to DB
+            sharedPreferences.edit().putBoolean("show_welcome", true).apply();
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void onBackPressed() {
