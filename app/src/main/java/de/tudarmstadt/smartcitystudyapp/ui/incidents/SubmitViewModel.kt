@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.findNavController
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.model.Report
 import de.tudarmstadt.smartcitystudyapp.services.ReportService
@@ -36,6 +37,7 @@ class SubmitViewModel @ViewModelInject constructor(
             reportService.sendReport(report)
             val postToast = Toast.makeText(view.context, R.string.report_sent_toast, Toast.LENGTH_SHORT)
             postToast.show()
+            view.findNavController().navigate(R.id.action_global_home)
             println("Sent dummy report $report")
         }
     }
