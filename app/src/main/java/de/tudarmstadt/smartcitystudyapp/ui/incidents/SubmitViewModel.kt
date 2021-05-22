@@ -19,11 +19,10 @@ class SubmitViewModel @ViewModelInject constructor(
     ViewModel() {
     fun sendDummyReport(view: View) {
         println("Sending dummy report")
-        val reportTextField = view.findViewById<EditText>(R.id.report_text)
         viewModelScope.launch(Dispatchers.IO) {
             val report = Report(
                 userService.getUserId(),
-                reportTextField.text.toString(),
+                view.findViewById<EditText>(R.id.report_text).text.toString(),
                 picture = false,
                 latitude = 0.0,
                 longitude = 0.0,
