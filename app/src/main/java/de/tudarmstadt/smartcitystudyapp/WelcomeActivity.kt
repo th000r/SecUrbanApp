@@ -1,7 +1,6 @@
 package de.tudarmstadt.smartcitystudyapp
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -13,7 +12,6 @@ import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.preference.PreferenceManager
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -36,19 +34,10 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var dots: Array<TextView?>
     private lateinit var layouts: IntArray
     private var btnNext: Button? = null
-    private var sharedPreferences: SharedPreferences? = null
     private var userId: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Checking for first time launch - before calling setContentView()
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-//        val showWelcome = sharedPreferences.getBoolean("show_welcome", true)
-//        if (!showWelcome) {
-//            launchHomeScreen()
-//            finish()
-//        }
-
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
             window.decorView.systemUiVisibility =
@@ -68,8 +57,8 @@ class WelcomeActivity : AppCompatActivity() {
         myViewPagerAdapter = MyViewPagerAdapter()
         viewPager!!.adapter = myViewPagerAdapter
         viewPager!!.addOnPageChangeListener(viewPagerPageChangeListener)
-        btnNext!!.setOnClickListener { v: View? ->
-            val current = getItem(+1)
+        btnNext!!.setOnClickListener {
+            val current = getNextItem()
             if (current == 1) {
                 val userIdEntryField = findViewById<EditText>(R.id.user_id_entry_field)
                 userId = userIdEntryField.text.toString()
@@ -94,11 +83,11 @@ class WelcomeActivity : AppCompatActivity() {
             dots[i]!!.setTextColor(colorsInactive[currentPage])
             dotsLayout!!.addView(dots[i])
         }
-        if (dots.size > 0) dots[currentPage]!!.setTextColor(colorsActive[currentPage])
+        if (dots.isNotEmpty()) dots[currentPage]!!.setTextColor(colorsActive[currentPage])
     }
 
-    private fun getItem(i: Int): Int {
-        return viewPager!!.currentItem + i
+    private fun getNextItem(): Int {
+        return viewPager!!.currentItem + 1
     }
 
     private fun launchHomeScreen() {
@@ -109,7 +98,6 @@ class WelcomeActivity : AppCompatActivity() {
             this.lifecycleScope.launch {
                 userService.setUser(User(userId!!, userId!!))
             }
-            sharedPreferences!!.edit().putBoolean("show_welcome", true).apply()
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
@@ -123,7 +111,7 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     //  viewpager change listener
-    var viewPagerPageChangeListener: OnPageChangeListener = object : OnPageChangeListener {
+    private var viewPagerPageChangeListener: OnPageChangeListener = object : OnPageChangeListener {
         override fun onPageSelected(position: Int) {
             addBottomDots(position)
             if (position == layouts.size - 1) {
