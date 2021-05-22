@@ -8,20 +8,13 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import dagger.hilt.android.scopes.FragmentScoped
+import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.model.Report
-import de.tudarmstadt.smartcitystudyapp.services.ReportService
-import de.tudarmstadt.smartcitystudyapp.ui.profile.ProfileViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@FragmentScoped
-class SubmitFragment @Inject constructor() : Fragment() {
+@AndroidEntryPoint
+class SubmitFragment : Fragment() {
 
-    private val submitViewModel by viewModels<SubmitViewModel>()
+    private val submitViewModel: SubmitViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

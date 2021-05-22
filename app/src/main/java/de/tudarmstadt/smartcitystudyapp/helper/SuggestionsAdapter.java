@@ -13,18 +13,11 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import de.tudarmstadt.smartcitystudyapp.R;
 
-@Singleton
 public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.SuggestionsViewHolder> {
 
     public List<String> suggestionsList;
-
-    @Inject
-    public SuggestionsAdapter() {}
 
     public SuggestionsAdapter(List<String> suggestionsList) {
         this.suggestionsList = suggestionsList;

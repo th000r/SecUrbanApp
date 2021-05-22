@@ -9,7 +9,6 @@ import de.tudarmstadt.smartcitystudyapp.services.ReportService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 class SubmitViewModel @ViewModelInject constructor(private val reportService: ReportService) :
     ViewModel() {
     fun sendDummyReport(view: View) {
