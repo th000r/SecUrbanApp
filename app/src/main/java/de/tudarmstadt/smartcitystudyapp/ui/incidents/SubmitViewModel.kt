@@ -27,7 +27,7 @@ class SubmitViewModel @ViewModelInject constructor(
             val preToast = Toast.makeText(view.context, R.string.report_prepare_toast, Toast.LENGTH_SHORT)
             preToast.show()
             val report = Report(
-                userService.getUserId(),
+                userService.getUserId() ?: "???",
                 view.findViewById<EditText>(R.id.report_text).text.toString(),
                 picture = false,
                 latitude = 0.0,

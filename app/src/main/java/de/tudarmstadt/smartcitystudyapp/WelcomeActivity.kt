@@ -1,206 +1,176 @@
-package de.tudarmstadt.smartcitystudyapp;
+package de.tudarmstadt.smartcitystudyapp
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Build;
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
-import android.text.Html;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Color
+import android.os.Build
+import android.os.Bundle
+import android.text.Html
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.preference.PreferenceManager
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import dagger.hilt.android.AndroidEntryPoint
+import de.tudarmstadt.smartcitystudyapp.model.User
+import de.tudarmstadt.smartcitystudyapp.services.UserService
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * Class structure taken from tutorial at http://www.androidhive.info/2016/05/android-build-intro-slider-app/
  */
-
-public class WelcomeActivity extends AppCompatActivity {
-
-    private ViewPager viewPager;
-    private MyViewPagerAdapter myViewPagerAdapter;
-    private LinearLayout dotsLayout;
-    private TextView[] dots;
-    private int[] layouts;
-    private Button btnNext;
-    private SharedPreferences sharedPreferences;
-    private String userId;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+@AndroidEntryPoint
+class WelcomeActivity : AppCompatActivity() {
+    @Inject
+    lateinit var userService: UserService
+    private var viewPager: ViewPager? = null
+    private var myViewPagerAdapter: MyViewPagerAdapter? = null
+    private var dotsLayout: LinearLayout? = null
+    private lateinit var dots: Array<TextView?>
+    private lateinit var layouts: IntArray
+    private var btnNext: Button? = null
+    private var sharedPreferences: SharedPreferences? = null
+    private var userId: String? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         // Checking for first time launch - before calling setContentView()
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean showWelcome = sharedPreferences.getBoolean("show_welcome", true);
-        if (!showWelcome) {
-            launchHomeScreen();
-            finish();
-        }
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+//        val showWelcome = sharedPreferences.getBoolean("show_welcome", true)
+//        if (!showWelcome) {
+//            launchHomeScreen()
+//            finish()
+//        }
 
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         }
-
-        setContentView(R.layout.activity_welcome);
-
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
-        dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
-        btnNext = (Button) findViewById(R.id.btn_next);
-
-        layouts = new int[]{
-                R.layout.tutorial_slide_1,
-                R.layout.tutorial_slide_2,
-                R.layout.tutorial_slide_3,};
-
-        addBottomDots(0);
-
-        changeStatusBarColor();
-
-        myViewPagerAdapter = new MyViewPagerAdapter();
-        viewPager.setAdapter(myViewPagerAdapter);
-        viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
-
-
-        btnNext.setOnClickListener(v -> {
-            int current = getItem(+1);
+        setContentView(R.layout.activity_welcome)
+        viewPager = findViewById<View>(R.id.view_pager) as ViewPager
+        dotsLayout = findViewById<View>(R.id.layoutDots) as LinearLayout
+        btnNext = findViewById<View>(R.id.btn_next) as Button
+        layouts = intArrayOf(
+            R.layout.tutorial_slide_1,
+            R.layout.tutorial_slide_2,
+            R.layout.tutorial_slide_3
+        )
+        addBottomDots(0)
+        changeStatusBarColor()
+        myViewPagerAdapter = MyViewPagerAdapter()
+        viewPager!!.adapter = myViewPagerAdapter
+        viewPager!!.addOnPageChangeListener(viewPagerPageChangeListener)
+        btnNext!!.setOnClickListener { v: View? ->
+            val current = getItem(+1)
             if (current == 1) {
-                EditText userIdEntryField = this.findViewById(R.id.user_id_entry_field);
-                userId = userIdEntryField.getText().toString();
+                val userIdEntryField = findViewById<EditText>(R.id.user_id_entry_field)
+                userId = userIdEntryField.text.toString()
             }
-            if (current < layouts.length) {
-                viewPager.setCurrentItem(current);
+            if (current < layouts.size) {
+                viewPager!!.currentItem = current
             } else {
-                launchHomeScreen();
+                launchHomeScreen()
             }
-        });
-    }
-
-    private void addBottomDots(int currentPage) {
-        dots = new TextView[layouts.length];
-
-        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
-        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
-
-        dotsLayout.removeAllViews();
-        for (int i = 0; i < dots.length; i++) {
-            dots[i] = new TextView(this);
-            dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);
-            dots[i].setTextColor(colorsInactive[currentPage]);
-            dotsLayout.addView(dots[i]);
         }
-
-        if (dots.length > 0)
-            dots[currentPage].setTextColor(colorsActive[currentPage]);
     }
 
-    private int getItem(int i) {
-        return viewPager.getCurrentItem() + i;
+    private fun addBottomDots(currentPage: Int) {
+        dots = arrayOfNulls(layouts.size)
+        val colorsActive = resources.getIntArray(R.array.array_dot_active)
+        val colorsInactive = resources.getIntArray(R.array.array_dot_inactive)
+        dotsLayout!!.removeAllViews()
+        for (i in dots.indices) {
+            dots[i] = TextView(this)
+            dots[i]!!.text = Html.fromHtml("&#8226;")
+            dots[i]!!.textSize = 35f
+            dots[i]!!.setTextColor(colorsInactive[currentPage])
+            dotsLayout!!.addView(dots[i])
+        }
+        if (dots.size > 0) dots[currentPage]!!.setTextColor(colorsActive[currentPage])
     }
 
-    private void launchHomeScreen() {
-        if (userId == null || userId.isEmpty()) {
-            Toast toast = Toast.makeText(this, R.string.user_id_not_set_toast, Toast.LENGTH_SHORT);
-            toast.show();
+    private fun getItem(i: Int): Int {
+        return viewPager!!.currentItem + i
+    }
+
+    private fun launchHomeScreen() {
+        if (userId == null || userId!!.isEmpty()) {
+            val toast = Toast.makeText(this, R.string.user_id_not_set_toast, Toast.LENGTH_SHORT)
+            toast.show()
         } else {
-            //TODO: Save user Id to DB
-            sharedPreferences.edit().putBoolean("show_welcome", true).apply();
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
+            this.lifecycleScope.launch {
+                userService.setUser(User(userId!!, userId!!))
+            }
+            sharedPreferences!!.edit().putBoolean("show_welcome", true).apply()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            finish()
         }
     }
 
-    public void onBackPressed() {
-        super.onBackPressed();
-        launchHomeScreen();
+    override fun onBackPressed() {
+        super.onBackPressed()
+        launchHomeScreen()
     }
 
     //  viewpager change listener
-    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
-
-        @Override
-        public void onPageSelected(int position) {
-            addBottomDots(position);
-
-            if (position == layouts.length - 1) {
-                btnNext.setText(getString(R.string.start));
+    var viewPagerPageChangeListener: OnPageChangeListener = object : OnPageChangeListener {
+        override fun onPageSelected(position: Int) {
+            addBottomDots(position)
+            if (position == layouts.size - 1) {
+                btnNext!!.text = getString(R.string.start)
             } else {
-                btnNext.setText(getString(R.string.next));
+                btnNext!!.text = getString(R.string.next)
             }
         }
 
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-
-        }
-    };
+        override fun onPageScrolled(arg0: Int, arg1: Float, arg2: Int) {}
+        override fun onPageScrollStateChanged(arg0: Int) {}
+    }
 
     /**
      * Making notification bar transparent
      */
-    private void changeStatusBarColor() {
+    private fun changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
+            val window = window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = Color.TRANSPARENT
         }
     }
 
     /**
      * View pager adapter
      */
-    public class MyViewPagerAdapter extends PagerAdapter {
-        private LayoutInflater layoutInflater;
-
-        public MyViewPagerAdapter() {
+    inner class MyViewPagerAdapter : PagerAdapter() {
+        private var layoutInflater: LayoutInflater? = null
+        override fun instantiateItem(container: ViewGroup, position: Int): Any {
+            layoutInflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view = layoutInflater!!.inflate(layouts[position], container, false)
+            container.addView(view)
+            return view
         }
 
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            View view = layoutInflater.inflate(layouts[position], container, false);
-            container.addView(view);
-
-            return view;
+        override fun getCount(): Int {
+            return layouts.size
         }
 
-        @Override
-        public int getCount() {
-            return layouts.length;
+        override fun isViewFromObject(view: View, obj: Any): Boolean {
+            return view === obj
         }
 
-        @Override
-        public boolean isViewFromObject(View view, Object obj) {
-            return view == obj;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            View view = (View) object;
-            container.removeView(view);
+        override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+            val view = `object` as View
+            container.removeView(view)
         }
     }
 }

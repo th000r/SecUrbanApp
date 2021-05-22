@@ -10,10 +10,10 @@ class DefaultUserService @Inject constructor(
     private val webservice: UserWebservice,
     private val userDao: UserDao
 ) : UserService {
-    override suspend fun getUserId(): String = withContext(Dispatchers.IO){
+    override suspend fun getUserId(): String? = withContext(Dispatchers.IO){
         userDao.loadAll().let {
             if (it.isEmpty()) {
-                "???"
+                null
             } else {
                 it.first().userId
             }
