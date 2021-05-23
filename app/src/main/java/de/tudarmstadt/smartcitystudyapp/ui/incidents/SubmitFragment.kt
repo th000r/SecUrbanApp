@@ -1,6 +1,8 @@
 package de.tudarmstadt.smartcitystudyapp.ui.incidents
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +39,12 @@ class SubmitFragment : Fragment() {
                 true -> galleryButton.visibility = View.VISIBLE
                 false -> galleryButton.visibility = View.INVISIBLE
             }
+        }
+
+        galleryButton.setOnClickListener {
+            val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            galleryIntent.type = "image/*"
+            startActivityForResult(Intent.createChooser(galleryIntent, "Select File"), 0)
         }
         return root
     }
