@@ -98,6 +98,7 @@
         android:id="@+id/report_text"
         android:textColor="@color/black"
         android:layout_width="match_parent"
+        android:maxLength="255"
         android:layout_margin="10dp"
         android:layout_height="60dp"/>
 
