@@ -32,6 +32,7 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
             Bundle bundle = new Bundle();
             TextView suggestionTextView = viewHolder.itemView.findViewById(R.id.suggestion_text);
             bundle.putString("suggestion", suggestionTextView.getText().toString());
+            bundle.putString("source", suggestionTextView.getText().toString());
             Navigation.findNavController(listenerView).navigate(R.id.action_suggestion_to_submit, bundle);
         });
         return viewHolder;

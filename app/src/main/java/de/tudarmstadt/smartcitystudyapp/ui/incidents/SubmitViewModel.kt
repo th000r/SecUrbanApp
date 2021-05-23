@@ -14,6 +14,8 @@ import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
@@ -29,6 +31,8 @@ class SubmitViewModel @ViewModelInject constructor(
     private val reportService: ReportService,
     private val userService: UserService
 ) : ViewModel() {
+    var source: String = SOURCE_OTHER
+
     fun sendDummyReport(view: View) {
         println("Sending dummy report") //TODO: Remove debug reports
         viewModelScope.launch(Dispatchers.IO) {
@@ -77,7 +81,7 @@ class SubmitViewModel @ViewModelInject constructor(
                 location = locationGiven,
                 latitude = latitude,
                 longitude = longitude,
-                source = SOURCE_OTHER
+                source = source
             )
             reportService.sendReport(report)
             Toast.makeText(context, R.string.report_sent_toast, Toast.LENGTH_SHORT).show()

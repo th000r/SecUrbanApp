@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.model.SOURCE_OTHER
 
 @AndroidEntryPoint
 class SubmitFragment : Fragment() {
@@ -26,6 +27,7 @@ class SubmitFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_submitincidents, container, false)
         val suggestion: String = arguments?.getString("suggestion") ?: ""
+        submitViewModel.source = arguments?.getString("source") ?: SOURCE_OTHER
         val galleryButton = root.findViewById<Button>(R.id.incidents_button_gallery)
         val sendPhotoSwitch = root.findViewById<SwitchCompat>(R.id.switch_send_photo)
 
