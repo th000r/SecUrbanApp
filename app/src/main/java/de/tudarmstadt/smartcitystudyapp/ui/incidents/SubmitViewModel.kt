@@ -6,21 +6,17 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.location.LocationManager.GPS_PROVIDER
-import android.os.Build
 import android.os.Looper
 import android.provider.Settings
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
-import com.google.android.gms.location.LocationRequest
-import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.model.Report
 import de.tudarmstadt.smartcitystudyapp.model.SOURCE_OTHER
@@ -28,21 +24,17 @@ import de.tudarmstadt.smartcitystudyapp.services.ReportService
 import de.tudarmstadt.smartcitystudyapp.services.UserService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.function.Consumer
 
 class SubmitViewModel @ViewModelInject constructor(
     private val reportService: ReportService,
     private val userService: UserService
-) :
-    ViewModel() {
+) : ViewModel() {
     fun sendDummyReport(view: View) {
         println("Sending dummy report") //TODO: Remove debug reports
         viewModelScope.launch(Dispatchers.IO) {
             Looper.myLooper() ?: Looper.prepare()
             val context = view.context
-            val preToast =
-                Toast.makeText(context, R.string.report_prepare_toast, Toast.LENGTH_SHORT)
-            preToast.show()
+            Toast.makeText(context, R.string.report_prepare_toast, Toast.LENGTH_SHORT).show()
             val locationSwitch = view.findViewById<SwitchCompat>(R.id.switch_send_location)
 
             var locationGiven = false
@@ -59,12 +51,11 @@ class SubmitViewModel @ViewModelInject constructor(
                         Manifest.permission.ACCESS_FINE_LOCATION
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
-                    val permissionToast = Toast.makeText(
+                    Toast.makeText(
                         context,
                         R.string.location_permission_missing_toast,
                         Toast.LENGTH_LONG
-                    )
-                    permissionToast.show()
+                    ).show()
                 } else {
                     locationGiven = true
                     locationService.getCurrentLocation(
@@ -89,8 +80,7 @@ class SubmitViewModel @ViewModelInject constructor(
                 source = SOURCE_OTHER
             )
             reportService.sendReport(report)
-            val postToast = Toast.makeText(context, R.string.report_sent_toast, Toast.LENGTH_SHORT)
-            postToast.show()
+            Toast.makeText(context, R.string.report_sent_toast, Toast.LENGTH_SHORT).show()
             view.findNavController().navigate(R.id.action_global_home)
             println("Sent dummy report $report")
         }
