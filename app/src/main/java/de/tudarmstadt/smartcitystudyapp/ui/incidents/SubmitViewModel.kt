@@ -34,59 +34,23 @@ class SubmitViewModel @ViewModelInject constructor(
     var source: String = SOURCE_OTHER
 
     fun sendDummyReport(view: View) {
-        println("Sending dummy report") //TODO: Remove debug reports
+        println("Sending report") //TODO: Remove debug reports
         viewModelScope.launch(Dispatchers.IO) {
             Looper.myLooper() ?: Looper.prepare()
             val context = view.context
             Toast.makeText(context, R.string.report_prepare_toast, Toast.LENGTH_SHORT).show()
-            val locationSwitch = view.findViewById<SwitchCompat>(R.id.switch_send_location)
-
-            var locationGiven = false
-            var longitude = 0.0
-            var latitude = 0.0
-
-            if (locationSwitch.isChecked) {
-                val locationService = context.getSystemService(LOCATION_SERVICE) as LocationManager
-                if (!locationService.isProviderEnabled(GPS_PROVIDER)) {
-                    context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-                }
-                if (ActivityCompat.checkSelfPermission(
-                        context,
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    Toast.makeText(
-                        context,
-                        R.string.location_permission_missing_toast,
-                        Toast.LENGTH_LONG
-                    ).show()
-                } else {
-                    locationGiven = true
-                    locationService.getCurrentLocation(
-                        GPS_PROVIDER,
-                        null,
-                        context.mainExecutor,
-                        {
-                            longitude = it.longitude
-                            latitude = it.latitude
-                        }
-                    )
-                }
-            }
 
             val report = Report(
                 userId = userService.getUserId() ?: "???",
                 message = view.findViewById<EditText>(R.id.report_text).text.toString(),
                 picture = view.findViewById<SwitchCompat>(R.id.switch_send_photo).isChecked,
-                location = locationGiven,
-                latitude = latitude,
-                longitude = longitude,
+                location = view.findViewById<SwitchCompat>(R.id.switch_send_location).isChecked,
                 source = source
             )
             reportService.sendReport(report)
             Toast.makeText(context, R.string.report_sent_toast, Toast.LENGTH_SHORT).show()
             view.findNavController().navigate(R.id.action_global_home)
-            println("Sent dummy report $report")
+            println("Sent report $report")
         }
     }
 }
