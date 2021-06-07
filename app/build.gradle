@@ -16,6 +16,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -59,6 +60,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services:9.2.0'
     implementation 'com.google.android.gms:play-services-location:9.2.0'
     kapt "androidx.room:room-compiler:$roomVersion"
+    implementation 'com.android.support:multidex:1.0.3'
 
     // Architecture Components
     implementation "androidx.room:room-runtime:$roomVersion"
