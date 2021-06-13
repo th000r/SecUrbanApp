@@ -6,19 +6,20 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 
-const val targetIp = "127.0.0.1" //set to proper value for local testing
-// TODO make configurable for proper release/put actual backend deployment in
+const val targetUrl = "smartercity.tk.informatik.tu-darmstadt.de"
 
 object DefaultReportService : ReportService {
     override suspend fun sendReport(report: Report): String {
         val client = OkHttpClient()
-        val url = "http://$targetIp:8080/report"
+        val url = "http://$targetUrl:8080/report"
         val postBody = "{" +
-                "\"citizenId\":\"${report.userId}\"," +
+                "\"userId\":\"${report.userId}\"," +
                 "\"message\":\"${report.message}\"," +
-                "\"locationData\":\"${report.latitude}, ${report.longitude}\"," +
+                "\"location\":\"${report.location}," +
+                "\"latitude\":\"${report.latitude}," +
+                "\"longitude\":\"${report.longitude}," +
                 "\"picture\":\"${report.picture}\"" +
-                "\"fromNotification\":\"${report.source}\"" +
+                "\"source\":\"${report.source}\"" +
                 "}"
         val jsonMediaType = "application/json; charset=utf-8".toMediaType()
         val request =

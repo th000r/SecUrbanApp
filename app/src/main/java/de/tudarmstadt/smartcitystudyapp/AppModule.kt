@@ -17,7 +17,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideReportService(): ReportService {
-        return DummyReportService
+        return DefaultReportService
     }
 
     @Singleton
