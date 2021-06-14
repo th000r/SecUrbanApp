@@ -273,7 +273,7 @@
     </array>
 
     <string name="incididents_submit_heading">Meldung abschicken</string>
-    <string name="incididents_submit_description_location">Du hast hier die Möglichkeit deinen Standort zu senden, wenn du etwas melden möchtest.</string>
+    <string name="incididents_submit_description_location">Du hast hier die Möglichkeit deinen Standort zu senden.</string>
     <string name="incididents_submit_description_situation">Du hast hier die Möglichkeit die Situation zu beschreiben!</string>
     <string name="incidients_submit_button">Abschicken</string>
 
