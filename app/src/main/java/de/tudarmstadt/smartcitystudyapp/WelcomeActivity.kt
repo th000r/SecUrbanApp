@@ -57,6 +57,7 @@ class WelcomeActivity : AppCompatActivity() {
         myViewPagerAdapter = MyViewPagerAdapter()
         viewPager!!.adapter = myViewPagerAdapter
         viewPager!!.addOnPageChangeListener(viewPagerPageChangeListener)
+
         btnNext!!.setOnClickListener {
             val current = getNextItem()
             if (current == 1) {
