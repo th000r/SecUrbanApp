@@ -40,8 +40,9 @@
     Einwohner von ganz Deutschland können in der SMARTer City - App angeben, wo Missstände im Straßenverkehr und sonstige Probleme im Stadtalltag und öffentlichen Plätzen auftauchen.</string>
     <string name="slide_2_description_2">Insgesamt ist das Ziel unserer App eine umfangreiche Datenbank mithilfe offener Daten der zu kreieren, um Probleme und Missstände schneller erkennen und darauf reagieren zu können.</string>
     <string name="slide_3_title">Anleitung zum \n Menü:</string>
-    <string name="slide_3_description">Unter dem Menüpunkt Ereignisse kannst du Probleme oder Missstände an die zuständige Behörde melden.
-    </string>
+    <string name="slide_3_description">Die wichtigsten Funktionen der App kurz erklärt:</string>
+    <string name="slide_3_description_two">Im Reiter Ereignisse kannst du Meldungen über Probleme und Auffälligkeiten in deiner Umgebung machen. Dazu hast du die Möglichkeit deine GPS-Daten durchzugeben, einen kurzen Text anzugeben oder/und ein Foto hochzuladen. Falls du keine konkreten Ereignisse in der Umgebung hast, kannst du dir auch erstmal die Vorschläge anschauen, die am häufigsten in anderen Städten gemeldet wurden.</string>
+
 
     <!-- Help -->
     <string name="help_heading">Fragen zur App?</string>
