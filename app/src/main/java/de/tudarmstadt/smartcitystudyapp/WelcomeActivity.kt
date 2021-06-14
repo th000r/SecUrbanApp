@@ -35,6 +35,7 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var layouts: IntArray
     private var btnNext: Button? = null
     private var userId: String? = null
+    private var codeEntered: Boolean? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +44,8 @@ class WelcomeActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         }
+
+        codeEntered = false
         setContentView(R.layout.activity_welcome)
         viewPager = findViewById<View>(R.id.view_pager) as ViewPager
         dotsLayout = findViewById<View>(R.id.layoutDots) as LinearLayout
@@ -63,6 +66,7 @@ class WelcomeActivity : AppCompatActivity() {
             if (current == 1) {
                 val userIdEntryField = findViewById<EditText>(R.id.user_id_entry_field)
                 userId = userIdEntryField.text.toString()
+                codeEntered = true
             }
             if (current < layouts.size) {
                 viewPager!!.currentItem = current
@@ -107,8 +111,14 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        launchHomeScreen()
+        if (codeEntered == false) {
+            val toast = Toast.makeText(this, R.string.user_id_not_set_toast, Toast.LENGTH_SHORT)
+            toast.show()
+        } else {
+            super.onBackPressed()
+            launchHomeScreen()
+            //TODO ROBERTS
+        }
     }
 
     //  viewpager change listener

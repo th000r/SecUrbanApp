@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,16 +17,16 @@
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/exclamation_thick"
-            android:adjustViewBounds="true"/>
+            android:adjustViewBounds="true"
+            android:src="@drawable/exclamation_thick" />
 
         <TextView
             android:id="@+id/heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/help_icon"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/help_icon"
             android:text="@string/incidents_header"
             android:textColor="@color/black"
             android:textSize="25sp"
@@ -37,12 +36,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/heading"
-            android:textColor="@color/black"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/help_icon"
             android:text="@string/incidents_subheader"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -61,12 +60,12 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/black"
         android:text="@string/incididents_submit_description_location"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_send_location"
@@ -74,13 +73,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
-        android:textColor="@color/black"
-        android:text="Ich möchte meinen Standort übermitteln"/>
+        android:text="Ich möchte meinen Standort übermitteln"
+        android:textColor="@color/black" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/location"/>
+        android:src="@drawable/location" />
 
     <TextView
         android:layout_width="match_parent"
@@ -88,19 +87,28 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/black"
         android:text="@string/incididents_submit_description_situation"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/report_text"
-        android:textColor="@color/black"
+        android:inputType="textMultiLine"
         android:layout_width="match_parent"
-        android:maxLength="255"
+        android:layout_height="60dp"
         android:layout_margin="10dp"
-        android:layout_height="60dp"/>
+        android:maxLength="255"
+        android:textColor="@color/black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/main_blue" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_send_photo"
@@ -108,8 +116,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
-        android:textColor="@color/black"
-        android:text="Ich möchte ein Foto übermitteln"/>
+        android:text="Ich möchte ein Foto übermitteln"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/incidents_button_gallery"
@@ -117,16 +125,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="#00000000"
-        android:textColor="@color/main_blue"
-        android:visibility="invisible"
         android:text="Bild aus Gallery laden"
-        />
+        android:textColor="@color/main_blue"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/incidents_button_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/incidients_submit_button"
-        />
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="@string/incidients_submit_button" />
 </LinearLayout>
