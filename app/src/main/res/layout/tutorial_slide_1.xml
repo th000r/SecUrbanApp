@@ -80,7 +80,7 @@
             android:textColor="@color/black"
             android:layout_marginLeft="60dp"
             android:backgroundTint="@color/white"
-            android:hint="Teilnahmecode eingeben"/>
+            android:hint="@string/code_hint"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
