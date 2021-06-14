@@ -65,6 +65,12 @@
             android:text="@string/slide_1_description"
             android:textStyle="bold" />
 
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/user_id_entry_field"
             android:layout_width="250dp"
@@ -73,7 +79,10 @@
             android:cursorVisible="true"
             android:textColor="@color/black"
             android:layout_marginLeft="60dp"
-            android:backgroundTint="@color/main_blue"/>
+            android:backgroundTint="@color/white"
+            android:hint="Teilnahmecode eingeben"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 </RelativeLayout>
