@@ -48,8 +48,8 @@
         android:layout_marginLeft="80dp"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:text="@string/slide_2_description"/>
 
     <TextView
@@ -59,7 +59,7 @@
         android:layout_marginLeft="80dp"
         android:layout_marginTop="20dp"
         android:textColor="@color/black"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
         android:text="@string/slide_2_description_2"/>
 </LinearLayout>
