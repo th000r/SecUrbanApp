@@ -135,15 +135,33 @@
         android:text="Ich möchte ein Foto übermitteln"
         android:textColor="@color/black" />
 
-    <Button
-        android:id="@+id/incidents_button_gallery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="#00000000"
-        android:text="Bild aus Gallery laden"
-        android:textColor="@color/main_blue"
-        android:visibility="invisible" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/incidents_button_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="Gallery"
+            android:textColor="@color/main_blue"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/incidents_button_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="Kamera"
+            android:textColor="@color/main_blue"
+            android:visibility="invisible" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/incidents_button_submit"
@@ -151,4 +169,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
         android:text="@string/incidients_submit_button" />
+
 </LinearLayout>
