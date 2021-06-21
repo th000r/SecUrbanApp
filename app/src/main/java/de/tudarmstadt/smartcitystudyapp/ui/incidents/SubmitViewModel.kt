@@ -19,6 +19,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
+import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.model.Report
 import de.tudarmstadt.smartcitystudyapp.model.SOURCE_OTHER
@@ -34,23 +35,27 @@ class SubmitViewModel @ViewModelInject constructor(
     var source: String = SOURCE_OTHER
 
     fun sendDummyReport(view: View) {
-        println("Sending report") //TODO: Remove debug reports
-        viewModelScope.launch(Dispatchers.IO) {
-            Looper.myLooper() ?: Looper.prepare()
-            val context = view.context
-            Toast.makeText(context, R.string.report_prepare_toast, Toast.LENGTH_SHORT).show()
+        val context = view.context
 
-            val report = Report(
-                userId = userService.getUserId() ?: "???",
-                message = view.findViewById<EditText>(R.id.report_text).text.toString(),
-                picture = view.findViewById<SwitchCompat>(R.id.switch_send_photo).isChecked,
-                location = view.findViewById<SwitchCompat>(R.id.switch_send_location).isChecked,
-                source = source
-            )
-            reportService.sendReport(report)
-            Toast.makeText(context, R.string.report_sent_toast, Toast.LENGTH_SHORT).show()
-            view.findNavController().navigate(R.id.action_global_home)
-            println("Sent report $report")
+        if(MainActivity.network_status == true) {
+            println("Sending report") //TODO: Remove debug reports
+            viewModelScope.launch(Dispatchers.IO) {
+                Looper.myLooper() ?: Looper.prepare()
+                Toast.makeText(context, R.string.report_prepare_toast, Toast.LENGTH_SHORT).show()
+
+                val report = Report(
+                    userId = userService.getUserId() ?: "???",
+                    message = view.findViewById<EditText>(R.id.report_text).text.toString(),
+                    picture = view.findViewById<SwitchCompat>(R.id.switch_send_photo).isChecked,
+                    location = view.findViewById<SwitchCompat>(R.id.switch_send_location).isChecked,
+                    source = source
+                )
+                reportService.sendReport(report)
+                Toast.makeText(context, R.string.report_sent_toast, Toast.LENGTH_SHORT).show()
+                view.findNavController().navigate(R.id.action_global_home)
+            }
+        } else {
+            Toast.makeText(context, context.getText(R.string.incidents_submit_connectivity_toast), Toast.LENGTH_LONG).show()
         }
     }
 }
