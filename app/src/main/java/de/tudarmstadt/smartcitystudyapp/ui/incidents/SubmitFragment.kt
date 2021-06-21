@@ -19,6 +19,7 @@ import de.tudarmstadt.smartcitystudyapp.model.SOURCE_OTHER
 class SubmitFragment : Fragment() {
 
     private val submitViewModel: SubmitViewModel by viewModels()
+    private val REQUEST_IMAGE_CAPTURE = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +30,7 @@ class SubmitFragment : Fragment() {
         val suggestion: String = arguments?.getString("suggestion") ?: ""
         submitViewModel.source = arguments?.getString("source") ?: SOURCE_OTHER
         val galleryButton = root.findViewById<Button>(R.id.incidents_button_gallery)
+        val cameraButton = root.findViewById<Button>(R.id.incidents_button_camera)
         val sendPhotoSwitch = root.findViewById<SwitchCompat>(R.id.switch_send_photo)
 
         root.findViewById<EditText>(R.id.report_text).setText(suggestion)
@@ -38,8 +40,14 @@ class SubmitFragment : Fragment() {
 
         sendPhotoSwitch.setOnClickListener {
             when (sendPhotoSwitch.isChecked) {
-                true -> galleryButton.visibility = View.VISIBLE
-                false -> galleryButton.visibility = View.INVISIBLE
+                true -> {
+                    galleryButton.visibility = View.VISIBLE
+                    cameraButton.visibility = View.VISIBLE
+                }
+                false -> {
+                    galleryButton.visibility = View.INVISIBLE
+                    cameraButton.visibility = View.INVISIBLE
+                }
             }
         }
 
@@ -47,6 +55,15 @@ class SubmitFragment : Fragment() {
             val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             galleryIntent.type = "image/*"
             startActivityForResult(Intent.createChooser(galleryIntent, "Select File"), 0)
+        }
+
+        cameraButton.setOnClickListener {
+            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            try {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            } catch (e: ActivityNotFoundException) {
+
+            }
         }
         return root
     }
