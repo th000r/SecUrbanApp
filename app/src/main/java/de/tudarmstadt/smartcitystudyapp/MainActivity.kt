@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -15,6 +16,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import de.tudarmstadt.smartcitystudyapp.helper.ConnectionType
+import de.tudarmstadt.smartcitystudyapp.helper.NetworkMonitor
 import de.tudarmstadt.smartcitystudyapp.services.UserService
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,6 +27,10 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var userService: UserService
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private val networkMonitor = NetworkMonitor(this)
+    companion object {
+        var network_status = true
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +66,47 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         drawerLayout.openDrawer(GravityCompat.START)
+
+        // listen for wifi/mobile connectivity changes
+        networkMonitor.result = { isAvailable, type ->
+            runOnUiThread {
+                when (isAvailable) {
+                    true -> {
+                        when (type) {
+                            ConnectionType.Wifi, ConnectionType.Cellular -> {
+                                network_status = true;
+                                Intent().also { intent ->
+                                    intent.setAction(getString(R.string.broadcast_network_status))
+                                    intent.putExtra("status", true)
+                                    LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
+                                }
+
+                            }
+                            else -> { }
+                        }
+                    }
+                    false -> {
+                        network_status = false
+                        Intent().also { intent ->
+                            intent.setAction(getString(R.string.broadcast_network_status))
+                            intent.putExtra("status", false)
+                            LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // register network monitor for broadcasts
+        networkMonitor.register()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        networkMonitor.unregister()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
