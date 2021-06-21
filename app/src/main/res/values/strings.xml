@@ -276,6 +276,7 @@
     <string name="incididents_submit_description_location">Du hast hier die Möglichkeit deinen Standort zu senden.</string>
     <string name="incididents_submit_description_situation">Du hast hier die Möglichkeit die Situation zu beschreiben!</string>
     <string name="incidients_submit_button">Abschicken</string>
+    <string name="incidents_submit_connectivity_toast">Sie benötigen eine aktive Internetverbindung, um die Daten abzusenden</string>
 
     <!-- Side Notice -->
     <string name="side_notice_heading">Herausgeber</string>
