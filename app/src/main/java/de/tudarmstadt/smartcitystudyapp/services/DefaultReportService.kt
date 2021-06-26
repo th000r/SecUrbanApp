@@ -15,10 +15,10 @@ object DefaultReportService : ReportService {
         val postBody = "{" +
                 "\"userId\":\"${report.userId}\"," +
                 "\"message\":\"${report.message}\"," +
-                "\"location\":\"${report.location}," +
-                "\"latitude\":\"${report.latitude}," +
-                "\"longitude\":\"${report.longitude}," +
-                "\"picture\":\"${report.picture}\"" +
+                "\"location\":\"${report.location}\"," +
+                "\"latitude\":${report.latitude}," +
+                "\"longitude\":${report.longitude}," +
+                "\"picture\":\"${report.picture}\"," +
                 "\"source\":\"${report.source}\"" +
                 "}"
         val jsonMediaType = "application/json; charset=utf-8".toMediaType()
