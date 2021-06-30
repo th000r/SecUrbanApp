@@ -294,9 +294,9 @@
     <string name="heading_incident_water">Wasserschäden</string>
     <string name="heading_incident_submit">Meldung abschicken</string>
     <string name="suggestion_heading">Was genau ist passiert?</string>
-    <string name="report_sent_toast">Meldung verschickt. Danke!</string>
+    <string name="report_sent_success_toast">Meldung verschickt. Danke!</string>
+    <string name="report_sent_error_toast">Die Meldung konnte im Moment nicht verschickt werden. Bitte versuchen sie es später noch einmal.</string>
     <string name="report_prepare_toast">Meldung wird verschickt...</string>
     <string name="user_id_not_set_toast">Gebe bitte deinen Teilnahmecode ein</string>
     <string name="location_permission_missing_toast">Standortberechtigung fehlt!</string>
-
 </resources>
