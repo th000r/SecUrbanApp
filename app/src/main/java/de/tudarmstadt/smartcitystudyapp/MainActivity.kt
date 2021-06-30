@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                     true -> {
                         when (type) {
                             ConnectionType.Wifi, ConnectionType.Cellular -> {
-                                networkAvailable = true;
+                                networkAvailable = true
                                 Intent().also { intent ->
                                     intent.setAction(getString(R.string.broadcast_network_status))
                                     intent.putExtra("status", true)
