@@ -1,7 +1,6 @@
 package de.tudarmstadt.smartcitystudyapp.ui.incidents
 
 import android.content.*
-import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -95,7 +94,7 @@ class SubmitFragment : Fragment() {
                 if (intent != null) {
                     if (intent.hasExtra("status")) {
                         if (getString(R.string.broadcast_network_status).equals(intent.action)) {
-                            when (MainActivity.network_status) {
+                            when (MainActivity.networkAvailable) {
                                 true -> {
                                     setButtonColor(view, button_active_color)
                                 }
@@ -113,7 +112,7 @@ class SubmitFragment : Fragment() {
         /* ToDo: is there another possibility to get the network status on creation?
         *  Because the network manager broadcasts the status only on network status changes
         */
-        if(MainActivity.network_status == true) {
+        if(MainActivity.networkAvailable) {
             setButtonColor(view, button_active_color)
         } else {
             setButtonColor(view, button_disabled_color)

@@ -29,7 +29,7 @@ class SubmitViewModel @ViewModelInject constructor(
     fun sendReport(view: View) {
         val context = view.context
 
-        if(MainActivity.network_status == true) {
+        if(MainActivity.networkAvailable) {
             println("Sending report") //TODO: Remove debug reports
             var returnVal = ""
 

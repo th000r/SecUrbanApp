@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val networkMonitor = NetworkMonitor(this)
     companion object {
-        var network_status = true
+        var networkAvailable = true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                     true -> {
                         when (type) {
                             ConnectionType.Wifi, ConnectionType.Cellular -> {
-                                network_status = true;
+                                networkAvailable = true;
                                 Intent().also { intent ->
                                     intent.setAction(getString(R.string.broadcast_network_status))
                                     intent.putExtra("status", true)
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                     false -> {
-                        network_status = false
+                        networkAvailable = false
                         Intent().also { intent ->
                             intent.setAction(getString(R.string.broadcast_network_status))
                             intent.putExtra("status", false)
