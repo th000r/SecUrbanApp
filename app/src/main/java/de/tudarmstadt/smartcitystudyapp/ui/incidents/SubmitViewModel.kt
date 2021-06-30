@@ -34,7 +34,7 @@ class SubmitViewModel @ViewModelInject constructor(
 ) : ViewModel() {
     var source: String = SOURCE_OTHER
 
-    fun sendDummyReport(view: View) {
+    fun sendReport(view: View) {
         val context = view.context
 
         if(MainActivity.network_status == true) {
