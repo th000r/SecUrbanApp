@@ -7,20 +7,20 @@
     <string name="site_notice">Impressum</string>
     <string name="menu_heading">Menü</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_welcome">Wilkommen</string>
+    <string name="title_activity_welcome">Willkommen</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="studyId">Teilnehmernummer</string>
+    <string name="studyId">Personencode</string>
     <string name="enter">Eingeben</string>
-    <string name="settings_show_welcome">Wilkommensnachricht zeigen</string>
-    <string name="invalid_user_id">Diese Teilnehmernummer gibt es nicht.</string>
+    <string name="settings_show_welcome">Willkommensnachricht zeigen</string>
+    <string name="invalid_user_id">Diesen Personencode gibt es nicht.</string>
     <string name="explanation_text">Hier kommt ein längerer Text, der das ganze Studienprozedere erklärt etc. pp. lorem impsum dolor.</string>
-    <string name="welcome1">Wilkommen 1</string>
-    <string name="enter_user_id">Teilnehmernummer eingeben</string>
+    <string name="welcome1">Willkommen 1</string>
+    <string name="enter_user_id">Personencode eingeben</string>
     <string name="back_button_text">Zurück</string>
     <string name="forward_button_text">Weiter</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -31,15 +31,15 @@
     <!-- Tutorial -->
     <string name="next">weiter</string>
     <string name="start">Start</string>
-    <string name="code_hint">Teilnahmecode eingeben</string>
+    <string name="code_hint">Personencode eingeben</string>
     <string name="slide_1_title">Vielen Dank,</string>
     <string name="slide_1_heading">dass du bei unserer Studie mitmachst!</string>
-    <string name="slide_1_description">Hier hast du die Möglichkeit deinen individuellen Code einzugeben:</string>
+    <string name="slide_1_description">Hier hast du die Möglichkeit deinen individuellen Personencode einzugeben:</string>
 
     <string name="slide_2_title">Hier eine kurze \n Anleitung:</string>
-    <string name="slide_2_description">Im Rahmen des SMARTer City - Projekts haben sich die Technische Universität Darmstadt und das Fraunhofer Institut dafür entschieden, eine digitale Plattform aufzubauen, um die direkte Umgebung von städtischen Bewohnern und Städtern sicherer und angenehmer zu gestalten.
+    <string name="slide_2_description">Im Rahmen des SMARTer City - Projekts haben sich die Technische Universität Darmstadt und das Fraunhofer IGD dafür entschieden, eine digitale Plattform aufzubauen, um die direkte Umgebung von städtischen Bewohnern und Städtern sicherer und angenehmer zu gestalten.
     Einwohner von ganz Deutschland können in der SMARTer City - App angeben, wo Missstände im Straßenverkehr und sonstige Probleme im Stadtalltag und öffentlichen Plätzen auftauchen.</string>
-    <string name="slide_2_description_2">Insgesamt ist das Ziel unserer App eine umfangreiche Datenbank mithilfe offener Daten der zu kreieren, um Probleme und Missstände schneller erkennen und darauf reagieren zu können.</string>
+    <string name="slide_2_description_2">Insgesamt ist das Ziel unserer App eine umfangreiche Datenbank mithilfe offener Daten der Stadt zu kreieren, um Probleme und Missstände schneller erkennen und darauf reagieren zu können.</string>
     <string name="slide_3_title">Anleitung zum \n Menü:</string>
     <string name="slide_3_description">Die wichtigsten Funktionen der App kurz erklärt:</string>
     <string name="slide_3_description_two">Im Reiter Ereignisse kannst du Meldungen über Probleme und Auffälligkeiten in deiner Umgebung machen. Dazu hast du die Möglichkeit deine GPS-Daten durchzugeben, einen kurzen Text anzugeben oder/und ein Foto hochzuladen. Falls du keine konkreten Ereignisse in der Umgebung hast, kannst du dir auch erstmal die Vorschläge anschauen, die am häufigsten in anderen Städten gemeldet wurden.</string>
@@ -59,16 +59,13 @@
     <string name="help_button_3">⦿ Was passiert mit meinen Nutzerdaten?</string>
     <string name="help_button_4">⦿ Kann ich die Studie abbrechen?</string>
 
-    <string name="help_description_2">Derzeit konzentriert sich der Prototyp auf Darmstadt und weitere größere Städte im Umkreis von 400 km. Die Benutzer werden aufgefordert Anomalien nachzugehen/zu bestätigen, welche nicht identifiziert werden können,
-    um sicherheitsrelevante Probleme schneller und effizienter zu beheben. Dies geschieht mit der Meldungsfunktion der App. Du bekommst eine Nachricht sobald eine aktuelle Meldung vorliegt. Benutzer können
-    außerdem verschiedene Arten von Problemen melden und somit ihre Ideen zur Verbesserung der städtischen Situation beitragen. </string>
-    <string name="help_description_3">Alle personenbezogenen Daten werden anonymisiert auf unseren Servern gespeichert. Deine Eingaben und die Zustimmung zur Analyse deiner Daten (insbesondere zur Erhebung, Speicherung und Veröffentlichung
-    sind natürlich freiwillig.</string>
+    <string name="help_description_2">Derzeit konzentriert sich der Prototyp auf Darmstadt und weitere größere Städte im Umkreis von 200 km. Die Nutzer werden aufgefordert Problemen nachzugehen,um sicherheitsrelevante Probleme schneller und effizienter zu beheben. </string>
+    <string name="help_description_3">Alle personenbezogenen Daten werden pseudonymisiert und auf unseren Servern gespeichert. Deine Eingaben und die Zustimmung zur Analyse deiner Daten (insbesondere zur Erhebung, Speicherung und Veröffentlichung) sind natürlich freiwillig.</string>
     <string name="help_contact_3">Falls du weitere Fragen hast, kannst du dich gerne an folgende Personen wenden:
     </string>
     <string name="contact_1">marion.stahl@stud.tu-darmstadt.de</string>
     <string name="contact_2">nina.gerber@tu-darmstadt.de</string>
-    <string name="help_description_4">Du kannst jederzeit die Studie abbrechen. Dazu kannst du den folgenden Link verwenden.</string>
+    <string name="help_description_4">Du kannst die Studie jederzeit abbrechen. Dazu kannst du den folgenden Link verwenden.</string>
     <string name="help_title_1">Zweck der App</string>
     <string name="help_title_2">Funktionsweise</string>
     <string name="help_title_3">Nutzerdaten</string>
@@ -95,7 +92,7 @@
     <string name="incidents_smoke">👁 Rauch</string>
     <string name="incidents_wc">👁 Sanitäre Anlagen</string>
     <string name="incidents_streets">👁 Straßen</string>
-    <string name="incidents_animals">👁 Tier</string>
+    <string name="incidents_animals">👁 Tiere</string>
     <string name="incidents_polution">👁 Verschmutzung</string>
     <string name="incidents_other">👁 Sonstiges</string>
 
@@ -140,7 +137,7 @@
     <string name="buildings_three">Gebäude ist in schlechtem Zustand? (z.B. Putz bröckelt ab)</string>
     <string name="buildings_four">Gebäude ist Gefahren ausgesetzt? (z.B. nicht abgesperrt)</string>
     <string name="buildings_five">Arbeiten am Gebäude sind problematisch? (z.B. Eingänge versperrt)</string>
-    <string name="buildings_six">Elemente des Gebäudes sind defekt? (z.B. Tür, Fenster, Treppen,  etc.)</string>
+    <string name="buildings_six">Elemente des Gebäudes sind defekt? (z.B. Tür, Fenster, Treppen, etc.)</string>
 
     <array name="buildings_array">
         <item>Gefahr durch Gebäudestruktur? (z.B. einstürzendes Haus)</item>
@@ -152,7 +149,7 @@
     </array>
 
     <string name="path_heading">Geh- und Radwege</string>
-    <string name="path_one">Weg ist  beschädigt oder blockiert? (z.B. beschädigter Bordstein oder Löcher) </string>
+    <string name="path_one">Weg ist beschädigt oder blockiert? (z.B. beschädigter Bordstein oder Löcher) </string>
 
     <array name="path_array">
         <item>Weg ist  beschädigt oder blockiert? (z.B. beschädigter Bordstein oder Löcher) </item>
@@ -176,7 +173,7 @@
     <string name="health_two">Social Distancing wird missachtet?</string>
 
     <array name="health_array">
-        <item>Gefahrstoffe festgestellt? (z.B. Schimmel,  Asbest, Chemischer Geruch)</item>
+        <item>Gefahrstoffe festgestellt? (z.B. Schimmel, Asbest, Chemischer Geruch)</item>
         <item>Social Distancing wird missachtet?</item>
     </array>
 
@@ -295,7 +292,7 @@
     <string name="suggestion_heading">Was genau ist passiert?</string>
     <string name="report_sent_toast">Meldung verschickt. Danke!</string>
     <string name="report_prepare_toast">Meldung wird verschickt...</string>
-    <string name="user_id_not_set_toast">Gebe bitte deinen Teilnahmecode ein</string>
+    <string name="user_id_not_set_toast">Gebe bitte deinen Personencode ein</string>
     <string name="location_permission_missing_toast">Standortberechtigung fehlt!</string>
 
 </resources>
