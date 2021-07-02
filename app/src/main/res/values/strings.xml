@@ -273,6 +273,10 @@
     <string name="incididents_submit_description_location">Du hast hier die Möglichkeit deinen Standort zu senden.</string>
     <string name="incididents_submit_description_situation">Du hast hier die Möglichkeit die Situation zu beschreiben!</string>
     <string name="incidients_submit_button">Abschicken</string>
+    <string name="incidents_submit_connectivity_toast">Sie benötigen eine aktive Internetverbindung, um die Daten abzusenden</string>
+    <string name="incidents_gallery_button">Gallery</string>
+    <string name="incidents_camera_button">Kamera</string>
+
 
     <!-- Side Notice -->
     <string name="side_notice_heading">Herausgeber</string>
@@ -290,9 +294,9 @@
     <string name="heading_incident_water">Wasserschäden</string>
     <string name="heading_incident_submit">Meldung abschicken</string>
     <string name="suggestion_heading">Was genau ist passiert?</string>
-    <string name="report_sent_toast">Meldung verschickt. Danke!</string>
+    <string name="report_sent_success_toast">Meldung verschickt. Danke!</string>
+    <string name="report_sent_error_toast">Die Meldung konnte im Moment nicht verschickt werden. Bitte versuchen sie es später noch einmal.</string>
     <string name="report_prepare_toast">Meldung wird verschickt...</string>
     <string name="user_id_not_set_toast">Gebe bitte deinen Personencode ein</string>
     <string name="location_permission_missing_toast">Standortberechtigung fehlt!</string>
-
 </resources>

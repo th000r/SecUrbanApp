@@ -5,6 +5,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.util.Calendar.*
 
 const val targetUrl = "smartercity.tk.informatik.tu-darmstadt.de"
 
@@ -15,11 +16,12 @@ object DefaultReportService : ReportService {
         val postBody = "{" +
                 "\"userId\":\"${report.userId}\"," +
                 "\"message\":\"${report.message}\"," +
-                "\"location\":\"${report.location}," +
-                "\"latitude\":\"${report.latitude}," +
-                "\"longitude\":\"${report.longitude}," +
-                "\"picture\":\"${report.picture}\"" +
-                "\"source\":\"${report.source}\"" +
+                "\"location\":\"${report.location}\"," +
+                "\"latitude\":${report.latitude}," +
+                "\"longitude\":${report.longitude}," +
+                "\"picture\":\"${report.picture}\"," +
+                "\"source\":\"${report.source}\"," +
+                "\"timestamp\":\"${currentDateTimeString()}\"" +
                 "}"
         val jsonMediaType = "application/json; charset=utf-8".toMediaType()
         val request =
@@ -32,5 +34,11 @@ object DefaultReportService : ReportService {
                 response.body?.string() ?: "Response had no body."
             }
         }
+    }
+
+    private fun currentDateTimeString(): String {
+        val currentDateTime = getInstance()
+        return "${currentDateTime.get(YEAR)}-${currentDateTime.get(MONTH)+1}-${currentDateTime.get(DATE)} " +
+                "${currentDateTime.get(HOUR_OF_DAY)}:${currentDateTime.get(MINUTE)}:${currentDateTime.get(SECOND)}"
     }
 }
