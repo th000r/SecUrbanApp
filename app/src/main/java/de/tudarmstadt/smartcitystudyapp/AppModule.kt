@@ -7,7 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import de.tudarmstadt.smartcitystudyapp.database.UserDatabase
+import de.tudarmstadt.smartcitystudyapp.database.AppDatabase
 import de.tudarmstadt.smartcitystudyapp.services.*
 import javax.inject.Singleton
 
@@ -28,11 +28,11 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideDataBase(@ApplicationContext context: Context): UserDatabase {
+    fun provideDataBase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(
             context.applicationContext,
-            UserDatabase::class.java,
-            "Tasks.db"
+            AppDatabase::class.java,
+            "SmartCityStudy.db"
         ).build()
     }
 
@@ -40,8 +40,16 @@ object AppModule {
     @Provides
     fun provideUserService(
         webservice: UserWebservice,
-        database: UserDatabase
+        database: AppDatabase
     ): UserService {
         return DefaultUserService(webservice, database.userDao())
+    }
+
+    @Singleton
+    @Provides
+    fun provideActivitiesService(
+        database: AppDatabase
+    ): ActivitiesService {
+        return DefaultActivitiesService(database.activitiesDao())
     }
 }

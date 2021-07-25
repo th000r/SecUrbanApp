@@ -6,14 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.R
 
+@AndroidEntryPoint
 class ActivitiesFragment : Fragment() {
-
-    private val activitiesViewModel by viewModels<ActivitiesViewModel>()
+    private val activitiesViewModel: ActivitiesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,15 +23,17 @@ class ActivitiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_activities, container, false)
+        root.findViewById<AppCompatImageButton>(R.id.refresh_activities_button).setOnClickListener {
+            updateActivities()
+        }
+        updateActivities()
+        return root
+    }
+
+    private fun updateActivities() {
         activitiesViewModel.fetchNewIndividualActivities(
             resources.getStringArray(R.array.individual_activities_array).toList()
         )
-        buildIndividualActivitiesList(
-            root.findViewById(R.id.activities_scroll_view),
-            activitiesViewModel.individualActivities,
-            this.context
-        )
-        return root
     }
 
     private fun buildIndividualActivitiesList(view: LinearLayoutCompat, entries: List<String>, context: Context?) {

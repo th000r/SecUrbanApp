@@ -45,6 +45,17 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/refresh_activities_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/heading"
+            android:backgroundTint="#00FFFFFF"
+            android:src="@drawable/quantum_ic_refresh_white_24"
+            android:tint="#0B0404" />
+
     </RelativeLayout>
 
     <View
