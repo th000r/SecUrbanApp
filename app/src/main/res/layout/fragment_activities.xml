@@ -58,7 +58,8 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:fadeScrollbars="false"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        android:id="@+id/activities_scroll_view">
 
     </ScrollView>
 

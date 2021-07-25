@@ -306,6 +306,128 @@
     <string name="activities_header">Neue Aktivitäten in</string>
     <string name="activities_subheader">deiner Umgebung</string>
 
+    <array name="individual_activities_array">
+        <item>Miriam S. aus Kassel hat Abwasser &amp; Wasser Probleme in der Gegend gemeldet!</item>
+        <item>Phil_01 aus Frankfurt hat beschädigte Straßen in der Gegend gemeldet!</item>
+        <item>Jasper L. aus Ober-Ramstadt hat gefährlich werdende Bäume in der Umgebung gemeldet!
+        </item>
+        <item>Phil_01 aus Frankfurt hat beschädigte Straßen in der Gegend gemeldet!</item>
+        <item>Luddi A. aus Frankfurt hat Verschmutzung von Räumlichkeiten in der Umgebung
+            gemeldet!
+        </item>
+        <item>Luise013 aus Roßdorf hat Straßen Probleme gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Anna K. aus Ober-Ramstadt hat blockierte Straßen in der Umgebung gemeldet!</item>
+        <item>Maren A. aus Ober-Ramstadt hat illegale Poster in der Umgebung gemeldet!</item>
+        <item>BetAQQ_222 aus Darmstadt hat Schimmel an öffentlichen Plätzen gemeldet!</item>
+        <item>JürgPer aus Groß-Gerau hat Graffiti gemeldet!</item>
+        <item>Hans123 aus Groß-Gerau hat Verschmutzungen an/ in öffentlichen Plätzen gemeldet!
+        </item>
+        <item>Madelen_331 aus Riedstadt hat Probleme mit Geräten an/ in öffentlichen Plätzen
+            gemeldet!
+        </item>
+        <item>Karen Fuchs aus Niederstetten hat problematische Luftqualität in der Gegend
+            gemeldet!
+        </item>
+        <item>FurtBer aus Heidelberg hat Rauch in der Umgebung gemeldet!</item>
+        <item>Hannes5 aus Darmstadt hat Lärm in der Gegend gemeldet!</item>
+        <item>Peter T. aus Modautal hat einen Tierkadaver gemeldet.</item>
+        <item>P.Torterich hat Geh- &amp; Radweg Probleme in seiner Umgebung gemeldet!</item>
+        <item>Q223Fer aus Brensbach hat Gebäude Probleme gemeldet!</item>
+        <item>Magnus R. aus Kranichstein hat Probleme mit Geräten an/ in öffentlichen Plätzen
+            gemeldet!
+        </item>
+        <item>FururL. hat Probleme mit Geräten an/ in öffentlichen Plätzen gemeldet!</item>
+        <item>Mina3 aus Roßdorf hat andere Probleme (Sonstiges) in der Umgebung gemeldet!</item>
+        <item>WbbTr0 aus Heppenheim hat defektes Gerät gemeldet!</item>
+        <item>M.F. aus Arnsheim hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Phil_Tt23 aus Marburg hat Abwasser &amp; Wasser Probleme in der Gegend gemeldet!</item>
+        <item>Anna_T aus Bensheim hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Maro aus Stuttgart hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Votan012 aus Mainz hat Probleme durch andere Parkende gemeldet!</item>
+        <item>Pippa111 aus Bickenbach hat Straßen Probleme gemeldet!</item>
+        <item>Felix P. aus Groß-Gerau hat blockierte Straßen in der Umgebung gemeldet!</item>
+        <item>MoMaX aus Vogelsberg hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Jule P. aus Darmstadt hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>FATBlo1233 aus Pfungstadt hat defekte Sanitäre Anlagen gemeldet!</item>
+        <item>MarGh aus Riedstadt hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>JOnA_23 aus Darmstadt hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>Master_MCX aus Bad Mergentheim hat problematische Luftqualität in der Gegend
+            gemeldet!
+        </item>
+        <item>Maria_93 aus Weinheim hat Gebäude in schlechtem Zustand gemeldet!</item>
+        <item>Maria_93 aus Weinheim hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>1337 aus Bickenbach hat Straßen Probleme gemeldet!</item>
+        <item>1337 aus Bickenbach hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>Voltaire aus Kranichstein hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Pippa111 aus Frankfurt hat Straßen Probleme gemeldet!</item>
+        <item>1234 aus Münster hat Straßen Probleme gemeldet!</item>
+        <item>Trasse aus Darmstadt hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>RamBam aus Roßdorf hat Straßen Probleme gemeldet!</item>
+        <item>littleLu aus Darmstadt hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>littleLu aus Darmstadt hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat Gebäude in schlechtem Zustand gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat lautstärkebedingte Probleme in der Umgebung gemeldet!
+        </item>
+        <item>Robert_K aus Stuttgart hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat Gebäude in schlechtem Zustand gemeldet!</item>
+        <item>1337 aus Bickenbach hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Miriam S. aus Kassel hat Gefahrstoffe gemeldet!</item>
+        <item>Phil_01 aus Frankfurt hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Jasper L. aus Ober-Ramstadt hat Straßen Probleme gemeldet!</item>
+        <item>Phil_01 aus Frankfurt hat defekte sanitäre Anlagen gemeldet!</item>
+        <item>Luddi A. aus Frankfurt hat Verschmutzungen an/ in öffentlichen Plätzen gemeldet!
+        </item>
+        <item>Luise013 aus Roßdorf hat beschädigte Straßen in der Gegend gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Anna K. aus Ober-Ramstadt hat Geh- &amp; Radweg Probleme in der Umgebung gemeldet!</item>
+        <item>Maren A. aus Ober-Ramstadt hat Rauchbildung in der Umgebung gemeldet!</item>
+        <item>BetAQQ_222 aus Darmstadt hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>JürgPer aus Groß-Gerau hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Madelen_331 aus Riedstadt hat defekte Ampel gemeldet!</item>
+        <item>Karen Fuchs aus Niederstetten hat Straßen Probleme gemeldet!</item>
+        <item>FurtBer aus Heidelberg hat Rauchbildung in der Umgebung gemeldet!</item>
+        <item>Hannes5 aus Darmstadt hat Lärm in der Gegend gemeldet!</item>
+        <item>Peter T. aus Modautal hat einen Tierkadaver gemeldet.</item>
+        <item>P.Torterich hat Geh- &amp; Radweg Probleme in seiner Umgebung gemeldet!</item>
+        <item>Q223Fer aus Brensbach hat Gebäude Probleme gemeldet!</item>
+        <item>Magnus R. hat blockierte Straßen in der Umgebung gemeldet!</item>
+        <item>FururL. hat Probleme mit Geräten an/ in öffentlichen Plätzen gemeldet!</item>
+        <item>Mina3 aus Roßdorf hat andere Probleme (Sonstiges) in der Umgebung gemeldet!</item>
+        <item>WbbTr0 aus Heppenheim hat blockierte Straßen in der Umgebung gemeldet!</item>
+        <item>M.F. aus Arnsheim hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Phil_Tt23 aus Marburg hat Abwasser &amp; Wasser Probleme in der Gegend gemeldet!</item>
+        <item>Anna_T aus Bensheim hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Maro aus Stuttgart hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Votan012 aus Mainz hat defekte Elektronik gemeldet!</item>
+        <item>Pippa111 aus Bickenbach hat Abwasser &amp; Wasser Probleme in der Gegend gemeldet!</item>
+        <item>Felix P. aus Groß-Gerau hat defekte Elektronik gemeldet!</item>
+        <item>MoMaX aus Vogelsberg hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Jule P. aus Darmstadt hat Tierkadaver gemeldet!</item>
+        <item>FATBlo1233 aus Pfungstadt hat defekte Sanitäre Anlagen gemeldet!</item>
+        <item>MarGh aus Riedstadt hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>JOnA_23 aus Darmstadt hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Master_MCX aus Bad Mergentheim hat problematische Luftqualität in der Gegend
+            gemeldet!
+        </item>
+        <item>Maria_93 aus Weinheim hat Gebäude in schlechtem Zustand gemeldet!</item>
+        <item>Maria_93 aus Weinheim hat Geh- &amp; Radweg Probleme in der Umgebung gemeldet!</item>
+        <item>1337 aus Bickenbach hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>Voltaire aus Kranichstein hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Voltaire aus Kranichstein hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Pippa111 aus Frankfurt hat Gebäude in schlechtem Zustand gemeldet!</item>
+        <item>1234 aus Münster hat illegale Poster gemeldet!</item>
+        <item>Trasse aus Darmstadt hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>RamBam aus Roßdorf hat Straßen Probleme gemeldet!</item>
+        <item>littleLu aus Darmstadt hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>littleLu aus Darmstadt hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat Schimmel an öffentlichen Plätzen gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat lautstärkebedingte Probleme in der Umgebung gemeldet!
+        </item>
+        <item>Robert_K aus Stuttgart hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat andere Probleme (Sonstiges) gemeldet!</item>
+    </array>
+
     <!-- Profile -->
     <string name="profile_header">VP-Name</string>
     <string name="profile_subheader">VP-Stadt</string>

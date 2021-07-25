@@ -1,13 +1,14 @@
 package de.tudarmstadt.smartcitystudyapp.ui.activities
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlin.random.Random
 
 class ActivitiesViewModel : ViewModel() {
+    val individualActivities = MutableList(0) { "" }
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is activities Fragment"
+    fun fetchNewIndividualActivities(strings: List<String>) {
+        repeat(Random.nextInt(0, 4)) {
+            individualActivities.add(0, strings[Random.nextInt(0, strings.size-1)])
+        }
     }
-    val text: LiveData<String> = _text
 }
