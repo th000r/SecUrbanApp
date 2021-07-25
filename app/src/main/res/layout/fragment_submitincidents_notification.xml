@@ -80,6 +80,7 @@
         android:background="@color/main_blue" />
 
     <TextView
+        android:id="@+id/text_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -102,12 +103,14 @@
         android:textColor="@color/black" />
 
     <ImageView
+        android:id="@+id/image_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:src="@drawable/location" />
 
     <TextView
+        android:id="@+id/text_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -145,6 +148,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <View
+        android:id="@+id/horizontal_line_view"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="20dp"
@@ -161,6 +165,7 @@
         android:textColor="@color/black" />
 
     <LinearLayout
+        android:id="@+id/photo_button_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">

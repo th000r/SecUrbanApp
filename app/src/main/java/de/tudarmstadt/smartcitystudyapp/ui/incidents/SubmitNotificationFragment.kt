@@ -9,23 +9,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
+import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.model.SOURCE_OTHER
-
 
 @AndroidEntryPoint
-class SubmitFragment : Fragment() {
-
+class SubmitNotificationFragment : Fragment() {
     private val submitViewModel: SubmitViewModel by viewModels()
     private val REQUEST_IMAGE_CAPTURE = 1
     private val button_active_color = R.color.main_blue
@@ -33,27 +30,51 @@ class SubmitFragment : Fragment() {
     private var br: BroadcastReceiver? = null
     private var filter: IntentFilter? = null
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_submitincidents, container, false)
-        val suggestion: String = arguments?.getString("suggestion") ?: ""
-        submitViewModel.source = arguments?.getString("source") ?: SOURCE_OTHER
+        val root =
+            inflater.inflate(R.layout.fragment_submitincidents_notification, container, false)
+        val suggestion = ""
+        submitViewModel.source = "Notification"
         val galleryButton = root.findViewById<Button>(R.id.incidents_button_gallery)
         val cameraButton = root.findViewById<Button>(R.id.incidents_button_camera)
         val sendPhotoSwitch = root.findViewById<SwitchCompat>(R.id.switch_send_photo)
-        var submitButton =  root.findViewById<Button>(R.id.incidents_button_submit)
-        filter = IntentFilter(getString(R.string.broadcast_network_status)).apply{
+        val nothingToReportSwitch = root.findViewById<SwitchCompat>(R.id.switch_send_nothing)
+        var submitButton = root.findViewById<Button>(R.id.incidents_button_submit)
+
+        val incidentDescriptionElements = listOf(
+            root.findViewById<TextView>(R.id.text_location),
+            root.findViewById<SwitchCompat>(R.id.switch_send_location),
+            root.findViewById<ImageView>(R.id.image_location),
+            root.findViewById<TextView>(R.id.text_description),
+            root.findViewById<TextInputLayout>(R.id.text_input_layout),
+            root.findViewById<LinearLayout>(R.id.photo_button_group),
+            root.findViewById(R.id.horizontal_line_view),
+            sendPhotoSwitch
+        )
+
+        filter = IntentFilter(getString(R.string.broadcast_network_status)).apply {
             addAction(R.string.broadcast_network_status.toString())
         }
 
         root.findViewById<EditText>(R.id.report_text).setText(suggestion)
 
         submitButton.setOnClickListener {
-            submitViewModel.sendReport(root, R.id.action_submit_to_thankyou)
+            submitViewModel.sendReport(root, R.id.action_submit_notification_to_thankyou)
+        }
+
+        nothingToReportSwitch.setOnClickListener {
+            when (nothingToReportSwitch.isChecked) {
+                true -> incidentDescriptionElements.forEach {
+                    it.visibility = View.INVISIBLE
+                }
+                false -> incidentDescriptionElements.forEach {
+                    it.visibility = View.VISIBLE
+                }
+            }
         }
 
         sendPhotoSwitch.setOnClickListener {
@@ -70,7 +91,8 @@ class SubmitFragment : Fragment() {
         }
 
         galleryButton.setOnClickListener {
-            val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            val galleryIntent =
+                Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             galleryIntent.type = "image/*"
             startActivityForResult(Intent.createChooser(galleryIntent, "Select File"), 0)
         }
@@ -114,7 +136,7 @@ class SubmitFragment : Fragment() {
         /* ToDo: is there another possibility to get the network status on creation?
         *  Because the network manager broadcasts the status only on network status changes
         */
-        if(MainActivity.networkAvailable) {
+        if (MainActivity.networkAvailable) {
             setButtonColor(view, button_active_color)
         } else {
             setButtonColor(view, button_disabled_color)
@@ -133,7 +155,7 @@ class SubmitFragment : Fragment() {
 
     @Suppress("DEPRECATION")
     fun setButtonColor(view: View, color: Int) {
-        var button =  view.findViewById<Button>(R.id.incidents_button_submit)
+        var button = view.findViewById<Button>(R.id.incidents_button_submit)
         var buttonDrawable: Drawable? = button.getBackground()
         buttonDrawable = DrawableCompat.wrap(buttonDrawable!!)
 
