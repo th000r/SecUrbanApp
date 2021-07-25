@@ -21,11 +21,6 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
-        val textView: TextView = root.findViewById(R.id.text_profile)
-        val testButton: Button = root.findViewById(R.id.test_button)
-        profileViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
         return root
     }
 }
