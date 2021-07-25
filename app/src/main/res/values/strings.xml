@@ -306,4 +306,14 @@
     <string name="activities_header">Neue Aktivitäten in</string>
     <string name="activities_subheader">deiner Umgebung</string>
 
+    <!-- Profile -->
+    <string name="profile_header">VP-Name</string>
+    <string name="profile_subheader">VP-Stadt</string>
+    <string name="profile_button">+ Mach mehr Punkte</string>
+    <string name="profile_points_init">0</string>
+    <string name="profile_points_label">Punkte</string>
+    <string name="profile_incidents_before">Du hast bereits </string>
+    <string name="profile_incidents_after">Meldungen gemacht!</string>
+    <string name="crone_hint">Ab 1500 Punkten bekommst du eine Krone!</string>
+
 </resources>
