@@ -301,4 +301,9 @@
     <string name="location_permission_missing_toast">Standortberechtigung fehlt!</string>
 
     <string name="main_cooperation"><u>In Kooperation mit:</u></string>
+
+    <!-- Activities -->
+    <string name="activities_header">Neue Aktivitäten in</string>
+    <string name="activities_subheader">deiner Umgebung</string>
+
 </resources>
