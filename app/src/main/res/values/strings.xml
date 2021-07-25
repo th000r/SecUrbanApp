@@ -38,11 +38,11 @@
 
     <string name="slide_2_title">Hier eine kurze \n Anleitung:</string>
     <string name="slide_2_description">Im Rahmen des SMARTer City - Projekts haben sich die Technische Universität Darmstadt und das Fraunhofer IGD dafür entschieden, eine digitale Plattform aufzubauen, um die direkte Umgebung von städtischen Bewohnern und Städtern sicherer und angenehmer zu gestalten.
-    Einwohner von ganz Deutschland können in der SMARTer City - App angeben, wo Missstände im Straßenverkehr und sonstige Probleme im Stadtalltag und öffentlichen Plätzen auftauchen.</string>
+    Einwohner von ganz Deutschland können in der SMARTer City - App angeben, wo Missstände im Straßenverkehr und sonstige Probleme im Stadtalltag und auf öffentlichen Plätzen auftauchen.</string>
     <string name="slide_2_description_2">Insgesamt ist das Ziel unserer App eine umfangreiche Datenbank mithilfe offener Daten der Stadt zu kreieren, um Probleme und Missstände schneller erkennen und darauf reagieren zu können.</string>
     <string name="slide_3_title">Anleitung zum \n Menü:</string>
     <string name="slide_3_description">Die wichtigsten Funktionen der App kurz erklärt:</string>
-    <string name="slide_3_description_two">Im Reiter Ereignisse kannst du Meldungen über Probleme und Auffälligkeiten in deiner Umgebung machen. Dazu hast du die Möglichkeit deine GPS-Daten durchzugeben, einen kurzen Text anzugeben oder/und ein Foto hochzuladen. Falls du keine konkreten Ereignisse in der Umgebung hast, kannst du dir auch erstmal die Vorschläge anschauen, die am häufigsten in anderen Städten gemeldet wurden.</string>
+    <string name="slide_3_description_two">Im Reiter Ereignisse kannst du Meldungen über Probleme und Auffälligkeiten in deiner Umgebung machen. Dazu hast du die Möglichkeit deine GPS-Daten durchzugeben, einen kurzen Text anzugeben oder/und ein Foto hochzuladen. Falls keine konkreten Ereignisse in der Umgebung auftreten, kannst du dir auch erstmal die Vorschläge anschauen, die am häufigsten in anderen Städten gemeldet wurden.</string>
 
 
     <!-- Help -->
@@ -262,7 +262,7 @@
         <item>Räumlichkeiten verschmutzt?</item>
     </array>
 
-    <string name="other_heading">Verschmutzung</string>
+    <string name="other_heading">Sonstiges</string>
     <string name="other">Möchtest du andere Probleme melden?</string>
 
     <array name="other_array">
