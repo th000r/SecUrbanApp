@@ -316,4 +316,10 @@
     <string name="profile_incidents_after">Meldungen gemacht!</string>
     <string name="crone_hint">Ab 1500 Punkten bekommst du eine Krone!</string>
 
+    <!-- Notification Incidents -->
+    <!-- Incidents -->
+    <string name="notification_incidents_header">Es ist etwas passiert!</string>
+    <string name="notification_incidents_subheader">In deiner Umgebung!</string>
+    <string name="notification_incidents_description">Hier einige Vorschläge, was du melden könntest:</string>
+
 </resources>
