@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.LinearLayoutCompat
@@ -12,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.model.ActivityEntry
 
 @AndroidEntryPoint
 class ActivitiesFragment : Fragment() {
@@ -23,12 +26,24 @@ class ActivitiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_activities, container, false)
+        val adapter = ArrayAdapter(
+            this.requireContext(), android.R.layout.simple_list_item_1, emptyList<String>().toMutableList()
+        )
+        root.findViewById<ListView>(R.id.activities_scroll_view).adapter = adapter
+
         activitiesViewModel.individualActivities.observe(viewLifecycleOwner, {
-            println("number of activity entries: ${it.size}") //TODO make the flow->live data->item in ui process work
+            adapter.clear()
+            adapter.addAll(
+                it.map(
+                    ActivityEntry::text
+                ).toMutableList()
+            )
         })
+
         root.findViewById<AppCompatImageButton>(R.id.refresh_activities_button).setOnClickListener {
             updateActivities()
         }
+
         updateActivities()
         return root
     }
@@ -37,16 +52,5 @@ class ActivitiesFragment : Fragment() {
         activitiesViewModel.fetchNewIndividualActivities(
             resources.getStringArray(R.array.individual_activities_array).toList()
         )
-    }
-
-    private fun buildIndividualActivitiesList(view: LinearLayoutCompat, entries: List<String>, context: Context?) {
-        repeat(entries.size - view.childCount) {
-            view.addView(TextView(context).apply {
-                text = entries[it]
-                layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-//                    .height = ActionBar.LayoutParams.WRAP_CONTENT
-//                layout.width = ActionBar.LayoutParams.WRAP_CONTENT
-            }, 0)
-        }
     }
 }
