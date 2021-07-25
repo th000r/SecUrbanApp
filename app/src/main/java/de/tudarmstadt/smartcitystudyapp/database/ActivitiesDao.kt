@@ -12,9 +12,9 @@ interface ActivitiesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(user: ActivityEntry)
 
-    @Query("SELECT * FROM activities WHERE id = 0")
+    @Query("SELECT * FROM activities WHERE type = 0")
     fun loadIndividual(): Flow<List<ActivityEntry>>
 
-    @Query("SELECT * FROM activities WHERE id = 1")
+    @Query("SELECT * FROM activities WHERE type = 1")
     fun loadTeam(): Flow<List<ActivityEntry>>
 }
