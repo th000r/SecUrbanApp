@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
@@ -27,7 +28,7 @@
             android:layout_toRightOf="@+id/help_icon"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:text="@string/slide_2_title"
+            android:text="@string/slide_3_title"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -50,7 +51,28 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:text="@string/slide_2_description"/>
+        android:text="@string/slide_3_description"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:text="@string/slide_3_description_two"/>
+
+    <View
+        android:layout_width="250dp"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="5dp"
+        android:background="@color/grey" />
 
     <TextView
         android:layout_width="match_parent"
@@ -59,7 +81,28 @@
         android:layout_marginLeft="80dp"
         android:layout_marginTop="20dp"
         android:textColor="@color/black"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:text="@string/slide_2_description_2"/>
+        android:text="@string/slide_1_description"
+        android:textStyle="bold" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="6">
+
+        <EditText
+            android:id="@+id/user_id_entry_field"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:cursorVisible="true"
+            android:textColor="@color/black"
+            android:layout_marginLeft="80dp"
+            android:backgroundTint="@color/white"
+            android:hint="@string/code_hint"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 </LinearLayout>
