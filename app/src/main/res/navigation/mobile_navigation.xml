@@ -104,5 +104,15 @@
         android:id="@+id/nav_incident_submit"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.incidents.SubmitFragment"
         android:label="@string/heading_incident_submit"
-        tools:layout="@layout/fragment_submitincidents" />
+        tools:layout="@layout/fragment_submitincidents">
+        <action
+            android:id="@+id/action_submit_to_thankyou"
+            app:destination="@id/nav_thankyou"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_thankyou"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.incidents.ThankYouFragment"
+        android:label="@string/heading_incident_thankyou"
+        tools:layout="@layout/fragment_thankyou" />
 </navigation>

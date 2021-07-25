@@ -52,7 +52,9 @@ class SubmitFragment : Fragment() {
 
         root.findViewById<EditText>(R.id.report_text).setText(suggestion)
 
-        submitButton.setOnClickListener { submitViewModel.sendReport(root) }
+        submitButton.setOnClickListener {
+            submitViewModel.sendReport(root)
+        }
 
         sendPhotoSwitch.setOnClickListener {
             when (sendPhotoSwitch.isChecked) {

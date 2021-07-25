@@ -54,7 +54,7 @@ class SubmitViewModel @ViewModelInject constructor(
                 withContext(Dispatchers.Main) {
                     if (!returnVal.contains("Post failed with code")) {
                         Toast.makeText(context, R.string.report_sent_success_toast, Toast.LENGTH_LONG).show()
-                        view.findNavController().navigate(R.id.action_global_home)
+                        view.findNavController().navigate(R.id.action_submit_to_thankyou)
                     } else {
                         Toast.makeText(context, R.string.report_sent_error_toast, Toast.LENGTH_LONG).show()
                     }

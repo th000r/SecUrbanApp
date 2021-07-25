@@ -453,5 +453,6 @@
     <string name="thank_you_points_team_before">Dein Bezirk (WB_01) hat bereits </string>
     <string name="thank_you_points_team_after">Punkte gemacht! Deine Teammates sind fleißig am melden! Weiter so!</string>
     <string name="thank_you_close_button">Schließen</string>
+    <string name="heading_incident_thankyou">Vielen Dank</string>
 
 </resources>
