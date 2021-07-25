@@ -59,7 +59,7 @@
     <string name="help_button_3">⦿ Was passiert mit meinen Nutzerdaten?</string>
     <string name="help_button_4">⦿ Kann ich die Studie abbrechen?</string>
 
-    <string name="help_description_2">Derzeit konzentriert sich der Prototyp auf Darmstadt und weitere größere Städte im Umkreis von 200 km. Die Nutzer werden aufgefordert Problemen nachzugehen,um sicherheitsrelevante Probleme schneller und effizienter zu beheben. </string>
+    <string name="help_description_2">Derzeit konzentriert sich der Prototyp auf Darmstadt und weitere größere Städte im Umkreis von 200 km. Die Nutzer werden aufgefordert Problemen nachzugehen, um sicherheitsrelevante Probleme schneller und effizienter zu beheben. </string>
     <string name="help_description_3">Alle personenbezogenen Daten werden pseudonymisiert und auf unseren Servern gespeichert. Deine Eingaben und die Zustimmung zur Analyse deiner Daten (insbesondere zur Erhebung, Speicherung und Veröffentlichung) sind natürlich freiwillig.</string>
     <string name="help_contact_3">Falls du weitere Fragen hast, kannst du dich gerne an folgende Personen wenden:
     </string>
@@ -286,7 +286,7 @@
     <string name="side_notice_tu_city">64289 Darmstadt</string>
     <string name="side_notice_tu_mail">experi@psychologie.tu-darmstadt.de</string>
     <string name="side_notice_tu_phone">+49 (0) 6151 - 16 24080</string>
-    <string name="side_notice_igd_heading">Entwickelt in Kooperation mit Fraunhofer IGD</string>
+    <string name="side_notice_igd_heading">Entwickelt in Kooperation mit Fraunhofer-Institut für Graphische Datenverarbeitung (IGD)</string>
     <string name="side_notice_igd_street">Fraunhoferstraße 5</string>
     <string name="side_notice_igd_city">64283 Darmstadt</string>
     <string name="side_notice_igd_mail">info@igd.fraunhofer.de</string>
