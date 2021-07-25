@@ -23,6 +23,9 @@ class ActivitiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_activities, container, false)
+        activitiesViewModel.individualActivities.observe(viewLifecycleOwner, {
+            it.forEach{entry -> println(entry.text)} //TODO make the flow->live data->item in ui process work
+        })
         root.findViewById<AppCompatImageButton>(R.id.refresh_activities_button).setOnClickListener {
             updateActivities()
         }

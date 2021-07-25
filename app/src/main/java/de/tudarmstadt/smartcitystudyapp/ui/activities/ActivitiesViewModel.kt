@@ -10,6 +10,7 @@ import de.tudarmstadt.smartcitystudyapp.services.ActivitiesService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.coroutines.coroutineContext
 import kotlin.random.Random
 
 class ActivitiesViewModel @ViewModelInject constructor(
