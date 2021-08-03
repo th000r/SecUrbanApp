@@ -2,4 +2,9 @@
 <resources>
     <!-- Broadcast Actions -->
     <string name="broadcast_network_status">de.tudarmstadt.smartcitystudyapp.broadcast.NETWORK_STATUS</string>
+
+    <!-- Push Notifications Channel -->
+    <string name="channel_name_report">Meldungen</string>
+    <string name="channel_description_report">Meldungen über aktuelle Ereignisse in deiner Umgebung</string>
+    <string name="channel_id_report">de.tudarmstadt.smartcitystudyapp.channel.REPORT</string>
 </resources>
