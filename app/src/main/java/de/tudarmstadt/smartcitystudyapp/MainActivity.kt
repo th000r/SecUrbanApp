@@ -1,18 +1,17 @@
 package de.tudarmstadt.smartcitystudyapp
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
@@ -20,14 +19,24 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.work.Data
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.google.android.material.navigation.NavigationView
+import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.helper.ConnectionType
 import de.tudarmstadt.smartcitystudyapp.helper.NetworkMonitor
-import de.tudarmstadt.smartcitystudyapp.services.PushNotificationService
+import de.tudarmstadt.smartcitystudyapp.helper.NotificationHelper
+import de.tudarmstadt.smartcitystudyapp.helper.NotificationScheduler
 import de.tudarmstadt.smartcitystudyapp.services.UserService
-import de.tudarmstadt.smartcitystudyapp.ui.activities.ActivitiesFragment
 import kotlinx.coroutines.launch
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.LocalTime
+import org.threeten.bp.format.DateTimeFormatter
+import java.util.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -43,7 +52,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var pushNotificationService = PushNotificationService(this)
+        AndroidThreeTen.init(this)
+        // schedulePeriodicNotifications()
+        // var pushNotificationService = PushNotificationService(this)
+        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 1, Calendar.THURSDAY, 17, 35, "test1", "message11")
+        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 2, Calendar.THURSDAY, 17, 24,"test2", "message12")
+        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 3, Calendar.SATURDAY,17, 35,"test3", "message13")
+        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 4, Calendar.SUNDAY,17, 35,"test4", "message14")
+        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 5, Calendar.FRIDAY,17, 35,"test5", "message15")
+        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 6, Calendar.FRIDAY,17, 35,"test6", "message16")
+        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 7, Calendar.FRIDAY,18, 45,"test7", "message17")
+
+
+        NotificationHelper.enableBootReceiver(applicationContext)
 
         val intent = Intent(this, WelcomeActivity::class.java)
         this.lifecycleScope.launch {
@@ -90,7 +111,6 @@ class MainActivity : AppCompatActivity() {
                                     intent.putExtra("status", true)
                                     LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
                                 }
-
                             }
                             else -> { }
                         }
@@ -123,12 +143,12 @@ class MainActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        val builder = pushNotificationService.createNotification(getString(R.string.channel_id_report))
+        // val builder = pushNotificationService.createNotification(getString(R.string.channel_id_report))
 
-        with(NotificationManagerCompat.from(this)) {
-            // notificationId is a unique int for each notification that you must define
-            notify(1, builder.build())
-        }
+//        with(NotificationManagerCompat.from(this)) {
+//            // notificationId is a unique int for each notification that you must define
+//            notify(1, builder.build())
+//        }
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -142,14 +162,11 @@ class MainActivity : AppCompatActivity() {
         // register network monitor for broadcasts
         networkMonitor.register()
 
+        // navigate to report fragment if notification was tapped
         val fromNotification = getIntent().getStringExtra("fragment")
         if (fromNotification != null) {
-            if (fromNotification.equals("activity")) {
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.nav_host_fragment, ActivitiesFragment())
-                transaction.disallowAddToBackStack()
-                transaction.commit()
-            }
+            this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_reports)
+
         }
     }
 
@@ -168,4 +185,35 @@ class MainActivity : AppCompatActivity() {
         return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration) ||
                 super.onSupportNavigateUp()
     }
+
+    @SuppressLint("NewApi")
+    fun schedulePeriodicNotifications() {
+        val WORK_NAME = "ReportNotification"
+        val WORK_TAG = "Reports"
+        val DATA_REMINDER = "ReportData"
+//        val lastUsageTime = LocalTime.now().format(DateTimeFormatter.ISO_TIME)
+
+//        val data = Data.Builder()
+//            .putString(
+//                DATA_REMINDER,
+//                lastUsageTime
+//            )
+//            .build()
+
+        val periodicWork =
+            PeriodicWorkRequestBuilder<NotificationScheduler>(
+                15, TimeUnit.MINUTES
+            )
+                .addTag(WORK_TAG)
+//                .setInputData(data)
+                .build()
+
+        WorkManager.getInstance(applicationContext)
+            .enqueueUniquePeriodicWork(
+                WORK_NAME,
+                ExistingPeriodicWorkPolicy.REPLACE,
+                periodicWork
+            )
+    }
+
 }
