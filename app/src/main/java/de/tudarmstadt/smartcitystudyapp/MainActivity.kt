@@ -1,9 +1,5 @@
 package de.tudarmstadt.smartcitystudyapp
 
-import android.annotation.SuppressLint
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -19,24 +15,14 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.work.Data
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
 import com.google.android.material.navigation.NavigationView
 import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.helper.ConnectionType
 import de.tudarmstadt.smartcitystudyapp.helper.NetworkMonitor
-import de.tudarmstadt.smartcitystudyapp.helper.NotificationHelper
-import de.tudarmstadt.smartcitystudyapp.helper.NotificationScheduler
+import de.tudarmstadt.smartcitystudyapp.services.PushNotificationService
 import de.tudarmstadt.smartcitystudyapp.services.UserService
 import kotlinx.coroutines.launch
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.LocalTime
-import org.threeten.bp.format.DateTimeFormatter
-import java.util.*
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
@@ -53,18 +39,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidThreeTen.init(this)
-        // schedulePeriodicNotifications()
-        // var pushNotificationService = PushNotificationService(this)
-        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 1, Calendar.SUNDAY, 10, 15, "sun1", "10:15")
-        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 2, Calendar.SATURDAY, 10, 15,"sat1", "10:15")
-        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 3, Calendar.MONDAY,8, 35,"mon1", "8:35")
-        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 4, Calendar.MONDAY,9, 0,"mon2", "9:00")
-        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 5, Calendar.MONDAY,10, 35,"mon3", "10:35")
-        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 6, Calendar.MONDAY,12, 35,"mon4", "12:35")
-        NotificationHelper.scheduleRepeatingRTCNotification(applicationContext, 7, Calendar.TUESDAY,10, 0,"tue1", "10:00")
-
-
-        NotificationHelper.enableBootReceiver(applicationContext)
 
         val intent = Intent(this, WelcomeActivity::class.java)
         this.lifecycleScope.launch {
@@ -127,28 +101,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Create the NotificationChannel for reports, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = getString(R.string.channel_name_report)
-            val descriptionText = getString(R.string.channel_description_report)
-            val channel_id = getString(R.string.channel_id_report)
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(channel_id, name, importance).apply {
-                description = descriptionText
-            }
-            // Register the channel with the system
-            val notificationManager: NotificationManager =
-                getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+        // workaround: start service to keep push notifications alive, because android os will
+        // shut down alarm manager to reduce energy consumption
+        val fgsIntent = Intent(this, PushNotificationService::class.java)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(fgsIntent)
+        } else {
+            startService(fgsIntent)
         }
-
-        // val builder = pushNotificationService.createNotification(getString(R.string.channel_id_report))
-
-//        with(NotificationManagerCompat.from(this)) {
-//            // notificationId is a unique int for each notification that you must define
-//            notify(1, builder.build())
-//        }
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -185,35 +145,4 @@ class MainActivity : AppCompatActivity() {
         return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration) ||
                 super.onSupportNavigateUp()
     }
-
-    @SuppressLint("NewApi")
-    fun schedulePeriodicNotifications() {
-        val WORK_NAME = "ReportNotification"
-        val WORK_TAG = "Reports"
-        val DATA_REMINDER = "ReportData"
-//        val lastUsageTime = LocalTime.now().format(DateTimeFormatter.ISO_TIME)
-
-//        val data = Data.Builder()
-//            .putString(
-//                DATA_REMINDER,
-//                lastUsageTime
-//            )
-//            .build()
-
-        val periodicWork =
-            PeriodicWorkRequestBuilder<NotificationScheduler>(
-                15, TimeUnit.MINUTES
-            )
-                .addTag(WORK_TAG)
-//                .setInputData(data)
-                .build()
-
-        WorkManager.getInstance(applicationContext)
-            .enqueueUniquePeriodicWork(
-                WORK_NAME,
-                ExistingPeriodicWorkPolicy.REPLACE,
-                periodicWork
-            )
-    }
-
 }

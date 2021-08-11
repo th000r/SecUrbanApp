@@ -7,4 +7,8 @@
     <string name="channel_name_report">Meldungen</string>
     <string name="channel_description_report">Meldungen über aktuelle Ereignisse in deiner Umgebung</string>
     <string name="channel_id_report">de.tudarmstadt.smartcitystudyapp.channel.REPORT</string>
+
+    <string name="channel_name_fgs_report">Meldung-Manager</string>
+    <string name="channel_description_fgs_report">Warte auf Meldungen über aktuelle Ereignisse in deiner Umgebung</string>
+    <string name="channel_id_fgs_report">de.tudarmstadt.smartcitystudyapp.channel.FGS_REPORT</string>
 </resources>
