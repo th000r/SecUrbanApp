@@ -5,31 +5,61 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.services.PushNotificationService
 
 /**
  * Local Push Notification Helper
  * handles the broadcast messages and generates local push notifications
  */
-class AlarmReceiver : BroadcastReceiver() {
+class AlarmReceiver() : BroadcastReceiver() {
+    private val NOTIFICATION_ID = 9876
+    private val NOTIFICATION_STATUS_ACTIVE = 1
+    private val NOTIFICATION_STATUS_INACTIVE = -1
+    private val NOTIFICATION_KEY_STATUS = "notification_report_status"
+    private val NOTIFICATION_KEY_ID = "notification_report_id"
+
     override fun onReceive(context: Context, intent: Intent) {
-        val id = intent.getIntExtra("id", NotificationHelper.ALARM_TYPE_RTC)
+        val sharedPref = context.getSharedPreferences("de.tudarmstadt.smartcitystudyapp", Context.MODE_PRIVATE)
+        val ed: SharedPreferences.Editor = sharedPref.edit()
+        val action = intent.getStringExtra("action")
+        val broadcastId = intent.getIntExtra("id", NotificationHelper.ALARM_TYPE_RTC)
+        val id = intent.getIntExtra("uid", -1)
         val intentToRepeat = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
             putExtra("fragment", "activity")
         }
 
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(context, id, intentToRepeat, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(context, broadcastId, intentToRepeat, PendingIntent.FLAG_UPDATE_CURRENT)
 
         //Build notification
         val repeatedNotification: Notification =
             buildLocalNotification(context, pendingIntent, intent).build()
 
-        //Send local notification
-        NotificationHelper.getNotificationManager(context)
-            .notify(id, repeatedNotification)
+        when(action) {
+            "display" -> {
+                if (sharedPref.getInt(NOTIFICATION_KEY_ID, 0) != id) {
+                    SharedPref.putNotificationStatus(context.applicationContext, NOTIFICATION_STATUS_ACTIVE)
+                    ed.putInt(NOTIFICATION_KEY_ID, id)
+                    ed.apply()
+                    Log.d("Shared Pref", SharedPref.getNotificationStatus(context.applicationContext).toString())
+                    NotificationHelper.getNotificationManager(context)
+                        .notify(NOTIFICATION_ID, repeatedNotification)
+                }
+            }
+            "cancel" -> {
+                if (sharedPref.getInt(NOTIFICATION_KEY_ID, 0) == id) {
+                    SharedPref.putNotificationStatus(context.applicationContext, NOTIFICATION_STATUS_INACTIVE)
+                    ed.apply()
+                    NotificationHelper.getNotificationManager(context)
+                        .cancelAll()
+                }
+            }
+        }
     }
 
     fun buildLocalNotification(

@@ -114,7 +114,6 @@ class SubmitNotificationFragment : Fragment() {
         // listen for network connectivity changes and set the background color of the submit button
         br = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
-                Log.i("NETWORK", "received")
                 if (intent != null) {
                     if (intent.hasExtra("status")) {
                         if (getString(R.string.broadcast_network_status).equals(intent.action)) {

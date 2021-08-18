@@ -1,8 +1,13 @@
 package de.tudarmstadt.smartcitystudyapp
 
-import android.content.Intent
+import android.content.*
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -20,6 +25,7 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.helper.ConnectionType
 import de.tudarmstadt.smartcitystudyapp.helper.NetworkMonitor
+import de.tudarmstadt.smartcitystudyapp.helper.SharedPref
 import de.tudarmstadt.smartcitystudyapp.services.PushNotificationService
 import de.tudarmstadt.smartcitystudyapp.services.UserService
 import kotlinx.coroutines.launch
@@ -27,7 +33,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
     @Inject
     lateinit var userService: UserService
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -38,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         AndroidThreeTen.init(this)
 
         val intent = Intent(this, WelcomeActivity::class.java)
@@ -47,6 +54,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+
+        SharedPref.registerSharedPrefChangeListener(applicationContext, this)
+        SharedPref.putNotificationStatus(applicationContext, 5)
+
 
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -109,6 +120,15 @@ class MainActivity : AppCompatActivity() {
         } else {
             startService(fgsIntent)
         }
+
+//        val handler = Handler(Looper.getMainLooper())
+//        handler.postDelayed(object : Runnable {
+//            override fun run() {
+//                invalidateOptionsMenu()
+//                Log.d("invalidate shared pref", SharedPref.getNotificationStatus(this@MainActivity.applicationContext).toString())
+//                handler.postDelayed(this, 10000)
+//            }
+//        }, 10000)
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -118,31 +138,66 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
         // register network monitor for broadcasts
         networkMonitor.register()
-
         // navigate to report fragment if notification was tapped
         val fromNotification = getIntent().getStringExtra("fragment")
         if (fromNotification != null) {
             this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_reports)
-
         }
     }
 
     override fun onStop() {
         super.onStop()
         networkMonitor.unregister()
+        SharedPref.unregisterSharedPrefChangeListener(applicationContext, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+
+        setNotificationIconTheme(menu)
+
+        menu.getItem(0)?.setOnMenuItemClickListener {
+            //get shared preferences to remember if a notification was already scheduled and executed
+            val notificationStatus = SharedPref.getNotificationStatus(this)
+            if (notificationStatus > 0) {
+                this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_incident_submit_notification)
+            } else {
+                this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_reports)
+            }
+            return@setOnMenuItemClickListener true
+        }
         return true
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment).navigateUp(appBarConfiguration) ||
                 super.onSupportNavigateUp()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        setNotificationIconTheme(menu)
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    fun setNotificationIconTheme(menu: Menu?) {
+        //get shared preferences to remember if a notification was already scheduled and executed
+        //val notificationStatus = sharedPref!!.getInt(NOTIFICATION_KEY_STATUS, 0)
+        val notificationStatus = SharedPref.getNotificationStatus(this)
+        //Log.d("Notification Status", notificationStatus.toString())
+
+        val wrapper: ContextThemeWrapper
+        if (notificationStatus > 0) {
+            wrapper = ContextThemeWrapper(this, R.style.IconNewNotifications)
+        } else{
+            wrapper = ContextThemeWrapper(this, R.style.IconNoNotifications)
+        }
+        menu?.getItem(0)?.icon?.mutate()?.applyTheme(wrapper.theme)
+    }
+
+    override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
+        Log.d("Shared Preferences", "Change")
     }
 }

@@ -3,19 +3,24 @@ package de.tudarmstadt.smartcitystudyapp.services
 import android.app.*
 import android.content.Context
 import android.content.Intent
-import android.os.Build
-import android.os.IBinder
-import android.os.PowerManager
-import android.os.SystemClock
+import android.os.*
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.helper.NotificationHelper
+import de.tudarmstadt.smartcitystudyapp.model.NotificationSchedule
+import de.tudarmstadt.smartcitystudyapp.model.NotificationStatus
 import java.util.*
 
 class PushNotificationService(): Service(){
     private var wakeLock: PowerManager.WakeLock? = null
-    private var isServiceStarted = false
+    companion object {
+        var notificationSchedule: MutableList<NotificationSchedule> = ArrayList()
+    }
+
+    //ToDo: change to 60 minutes
+    private var rescheduleNotificationTime: Long = 1000 * 60 * 1 // ms, sec, min
 
     /**
      * Not needed
@@ -29,6 +34,15 @@ class PushNotificationService(): Service(){
      */
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         startNotificationService()
+
+        // schedule push notifications every 60 minutes
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                NotificationHelper.scheduleNextRTCNotification(applicationContext)
+                handler.postDelayed(this, rescheduleNotificationTime)
+            }
+        }, rescheduleNotificationTime)
 
         return START_STICKY
     }
@@ -49,23 +63,10 @@ class PushNotificationService(): Service(){
             .setContentIntent(pendingIntent)
             .build()
 
-        // notification schedule
-        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 1, Calendar.SUNDAY, 9, 43, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
-        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 2, Calendar.MONDAY, 17, 22,getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
-        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 3, Calendar.THURSDAY,7, 51,getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
-        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 4, Calendar.FRIDAY,21, 11,getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
-
-        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 5, Calendar.WEDNESDAY,11, 0,"Neue Meldung!", "11:00")
-        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 6, Calendar.WEDNESDAY,12, 0,"Neue Meldung!", "12:00")
-        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 7, Calendar.WEDNESDAY,12, 5,"Neue Meldung!", "12:05")
-        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 8, Calendar.WEDNESDAY,14, 30,"Neue Meldung!", "14:30")
-        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 9, Calendar.WEDNESDAY,18, 0,"Neue Meldung!", "18:00")
-        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 10, Calendar.THURSDAY,0, 30,"Neue Meldung!", "00:30")
-
+        initSchedule()
+        // enable service restart on reboot
         NotificationHelper.enableBootReceiver(applicationContext)
-
         startForeground(9999, notification)
-
         // aquire wake lock to prevent the service from being stopped by doze mode
         wakeLock =
             (getSystemService(Context.POWER_SERVICE) as PowerManager).run {
@@ -109,5 +110,25 @@ class PushNotificationService(): Service(){
         applicationContext.getSystemService(Context.ALARM_SERVICE);
         val alarmService: AlarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager;
         alarmService.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000, restartServicePendingIntent);
+    }
+
+    fun initSchedule() {
+        //ToDo: Replace with real schedule
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+        notificationSchedule.add(NotificationSchedule(1, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 1, NotificationStatus.DISPLAY, "Neue Meldung!", "1: Montag 20 Uhr"))
+        notificationSchedule.add(NotificationSchedule(1, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 2, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationSchedule(2, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 3, NotificationStatus.DISPLAY, "Neue Meldung!", "2: Montag 20 Uhr"))
+        notificationSchedule.add(NotificationSchedule(2, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 4, NotificationStatus.CANCEL))
+
+        // notification schedule
+//        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 1, Calendar.SUNDAY, 9, 43, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
+//        NotificationHelper.cancelNotification(applicationContext, 1, Calendar.SUNDAY, 9, 43, 3)
+//        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 2, Calendar.MONDAY, 17, 22,getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
+//        NotificationHelper.cancelNotification(applicationContext, 2, Calendar.MONDAY, 17, 22, 3)
+//        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 3, Calendar.THURSDAY,7, 51,getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
+//        NotificationHelper.cancelNotification(applicationContext, 3, Calendar.THURSDAY, 7, 51, 3)
+//        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 4, Calendar.FRIDAY,21, 11,getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
+//        NotificationHelper.cancelNotification(applicationContext, 4, Calendar.FRIDAY, 21, 11, 3)
     }
 }

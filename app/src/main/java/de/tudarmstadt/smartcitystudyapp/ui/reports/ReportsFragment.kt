@@ -1,11 +1,11 @@
 package de.tudarmstadt.smartcitystudyapp.ui.reports
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import dagger.hilt.android.AndroidEntryPoint
+import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 
 @AndroidEntryPoint
