@@ -113,22 +113,16 @@ class PushNotificationService(): Service(){
     }
 
     fun initSchedule() {
-        //ToDo: Replace with real schedule
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = System.currentTimeMillis()
-        notificationSchedule.add(NotificationSchedule(1, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 1, NotificationStatus.DISPLAY, "Neue Meldung!", "1: Montag 20 Uhr"))
-        notificationSchedule.add(NotificationSchedule(1, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 2, NotificationStatus.CANCEL))
-        notificationSchedule.add(NotificationSchedule(2, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 3, NotificationStatus.DISPLAY, "Neue Meldung!", "2: Montag 20 Uhr"))
-        notificationSchedule.add(NotificationSchedule(2, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 4, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationSchedule(1, Calendar.FRIDAY, 12, 3, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationSchedule(1, Calendar.FRIDAY, 12, 8, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationSchedule(1, Calendar.SUNDAY, 9, 43, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationSchedule(1, Calendar.SUNDAY, 12, 43, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationSchedule(2, Calendar.MONDAY, 17, 22, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationSchedule(2, Calendar.MONDAY, 20, 22, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationSchedule(3, Calendar.THURSDAY, 7, 51, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationSchedule(3, Calendar.THURSDAY, 10, 51, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationSchedule(4, Calendar.FRIDAY, 21, 11, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationSchedule(4, Calendar.SATURDAY, 0, 11, NotificationStatus.CANCEL))
 
-        // notification schedule
-//        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 1, Calendar.SUNDAY, 9, 43, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
-//        NotificationHelper.cancelNotification(applicationContext, 1, Calendar.SUNDAY, 9, 43, 3)
-//        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 2, Calendar.MONDAY, 17, 22,getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
-//        NotificationHelper.cancelNotification(applicationContext, 2, Calendar.MONDAY, 17, 22, 3)
-//        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 3, Calendar.THURSDAY,7, 51,getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
-//        NotificationHelper.cancelNotification(applicationContext, 3, Calendar.THURSDAY, 7, 51, 3)
-//        NotificationHelper.scheduleWeeklyRTCNotification(applicationContext, 4, Calendar.FRIDAY,21, 11,getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader))
-//        NotificationHelper.cancelNotification(applicationContext, 4, Calendar.FRIDAY, 21, 11, 3)
     }
 }

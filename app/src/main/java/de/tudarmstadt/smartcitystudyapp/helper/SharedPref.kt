@@ -7,6 +7,7 @@ class SharedPref {
     companion object {
         private val SHARED_PREF = "de.tudarmstadt.smartcitystudyapp"
         private val NOTIFICATION_KEY_STATUS = "notification_report_status"
+        private val NOTIFICATION_KEY_ID = "notification_report_id"
 
         fun putNotificationStatus(con: Context, number: Int) {
             val pref = con.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
@@ -18,6 +19,18 @@ class SharedPref {
         fun getNotificationStatus(con: Context): Int {
             val pref = con.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
             return pref.getInt(NOTIFICATION_KEY_STATUS, 0)
+        }
+
+        fun putNotificationId(con: Context, number: Int) {
+            val pref = con.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+            val ed = pref.edit()
+            ed.putInt(NOTIFICATION_KEY_ID, number)
+            ed.apply()
+        }
+
+        fun getNotificationId(con: Context): Int {
+            val pref = con.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+            return pref.getInt(NOTIFICATION_KEY_ID, 0)
         }
 
         fun registerSharedPrefChangeListener(con: Context, listener: SharedPreferences.OnSharedPreferenceChangeListener) {

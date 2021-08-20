@@ -42,22 +42,18 @@ class AlarmReceiver() : BroadcastReceiver() {
 
         when(action) {
             "display" -> {
-                if (sharedPref.getInt(NOTIFICATION_KEY_ID, 0) != id) {
+                if (SharedPref.getNotificationId(context.applicationContext) != id) {
+                    SharedPref.putNotificationId(context.applicationContext, id)
                     SharedPref.putNotificationStatus(context.applicationContext, NOTIFICATION_STATUS_ACTIVE)
-                    ed.putInt(NOTIFICATION_KEY_ID, id)
-                    ed.apply()
-                    Log.d("Shared Pref", SharedPref.getNotificationStatus(context.applicationContext).toString())
                     NotificationHelper.getNotificationManager(context)
                         .notify(NOTIFICATION_ID, repeatedNotification)
-                }
+                    }
             }
             "cancel" -> {
-                if (sharedPref.getInt(NOTIFICATION_KEY_ID, 0) == id) {
                     SharedPref.putNotificationStatus(context.applicationContext, NOTIFICATION_STATUS_INACTIVE)
-                    ed.apply()
+                Log.d("Cancel","Notification")
                     NotificationHelper.getNotificationManager(context)
                         .cancelAll()
-                }
             }
         }
     }

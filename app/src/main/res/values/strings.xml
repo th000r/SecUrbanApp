@@ -443,8 +443,8 @@
     <string name="notification_incidents_subheader">In deiner Umgebung!</string>
     <string name="notification_incidents_description">Bitte hilf uns bei der Erkennung von Problemen, indem du prüfst, ob in deiner Umgebung etwas untypisch ist.</string>
     <string name="notification_incidents_nothing">Hier ist nichts auffälliges!</string>
-    <string name="notification_incidents_fgs_header">Ereignis-Manager</string>
-    <string name="notification_incidents_fgs_subheader">Warten auf Ereignisse in deiner Umgebung</string>
+    <string name="notification_incidents_fgs_header">Ereignis-Service</string>
+    <string name="notification_incidents_fgs_subheader">Warten auf Ereignisse</string>
 
     <!-- Reports -->
     <string name="reports_no_incidents_header">Gerade liegt keine aktuelle Meldung vor</string>

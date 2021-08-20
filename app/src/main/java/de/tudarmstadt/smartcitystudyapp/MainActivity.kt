@@ -56,8 +56,6 @@ class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreference
         }
 
         SharedPref.registerSharedPrefChangeListener(applicationContext, this)
-        SharedPref.putNotificationStatus(applicationContext, 5)
-
 
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -143,7 +141,13 @@ class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreference
         // navigate to report fragment if notification was tapped
         val fromNotification = getIntent().getStringExtra("fragment")
         if (fromNotification != null) {
-            this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_reports)
+            // ToDo: shared pref value does not change after edit (it's only updated after app restart)
+            val notificationStatus = SharedPref.getNotificationStatus(this)
+            if (notificationStatus > 0) {
+                this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_incident_submit_notification)
+            } else {
+                this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_reports)
+            }
         }
     }
 
@@ -162,6 +166,7 @@ class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreference
         menu.getItem(0)?.setOnMenuItemClickListener {
             //get shared preferences to remember if a notification was already scheduled and executed
             val notificationStatus = SharedPref.getNotificationStatus(this)
+            Log.d("Shared Pref", notificationStatus.toString())
             if (notificationStatus > 0) {
                 this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_incident_submit_notification)
             } else {

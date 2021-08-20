@@ -45,7 +45,6 @@ object NotificationHelper {
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.putExtra("title", title)
         intent.putExtra("message", message)
-        // intent.putExtra("id", broadcastId)
         intent.putExtra("uid", id)
         intent.putExtra("action", "display")
         //Setting alarm pending intent

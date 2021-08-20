@@ -20,6 +20,7 @@ import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.helper.SharedPref
 
 @AndroidEntryPoint
 class SubmitNotificationFragment : Fragment() {
@@ -110,7 +111,6 @@ class SubmitNotificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         // listen for network connectivity changes and set the background color of the submit button
         br = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
