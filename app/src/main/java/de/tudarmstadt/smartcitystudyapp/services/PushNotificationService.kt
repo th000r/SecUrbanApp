@@ -20,7 +20,7 @@ class PushNotificationService(): Service(){
     }
 
     //ToDo: change to 60 minutes
-    private var rescheduleNotificationTime: Long = 1000 * 60 * 1 // ms, sec, min
+    private var rescheduleNotificationTime: Long = 1000 * 60 * 60 // ms, sec, min
 
     /**
      * Not needed
