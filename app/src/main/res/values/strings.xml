@@ -43,7 +43,8 @@
     <string name="slide_3_title">Anleitung zum \n Menü:</string>
     <string name="slide_3_description">Die wichtigsten Funktionen der App kurz erklärt:</string>
     <string name="slide_3_description_two">Im Reiter Ereignisse kannst du Meldungen über Probleme und Auffälligkeiten in deiner Umgebung machen. Dazu hast du die Möglichkeit deine GPS-Daten durchzugeben, einen kurzen Text anzugeben oder/und ein Foto hochzuladen. Falls keine konkreten Ereignisse in der Umgebung auftreten, kannst du dir auch erstmal die Vorschläge anschauen, die am häufigsten in anderen Städten gemeldet wurden.</string>
-
+    <string name="slide_2_name_hint">Namen eingeben</string>
+    <string name="slide_2_city_hint">Wohnort eingeben</string>
 
     <!-- Help -->
     <string name="help_heading">Fragen zur App?</string>
