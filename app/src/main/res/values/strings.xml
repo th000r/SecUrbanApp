@@ -142,11 +142,7 @@
 
     <array name="buildings_array">
         <item>Gefahr durch Gebäudestruktur? (z.B. einstürzendes Haus)</item>
-        <item>Nicht konform? (z.B. illegale Umwandlung von Wohngebäude/Flächen)</item>
-        <item>Gebäude ist in schlechtem Zustand? (z.B. Putz bröckelt ab)</item>
         <item>Gebäude ist Gefahren ausgesetzt? (z.B. nicht abgesperrt)</item>
-        <item>Arbeiten am Gebäude sind problematisch? (z.B. Eingänge versperrt)</item>
-        <item>Elemente des Gebäudes sind defekt? (z.B. Tür, Fenster, Treppen,  etc.)</item>
     </array>
 
     <string name="path_heading">Geh- und Radwege</string>
@@ -163,8 +159,6 @@
     <string name="devices_four">Notwendige Geräte fehlen? (z.B. Rauchmelder)</string>
 
     <array name="devices_array">
-        <item>Rolltreppe/Fahrstuhl defekt?</item>
-        <item>Probleme mit der Heizung? (z.B. in öffentlichen Einrichtungen)</item>
         <item>Geräte in öffentlichem Gebäude defekt? (z.B. Herd, Boiler)</item>
         <item>Notwendige Geräte fehlen? (z.B. Rauchmelder)</item>
     </array>
@@ -200,7 +194,6 @@
     <array name="garbage_array">
         <item>Unsachgemäße Entsorgung von Müll festgestellt?</item>
         <item>Sperr-/ Elektromüll wurde nicht abgeholt?</item>
-        <item>Mülleimer ist überfüllt?</item>
     </array>
 
     <string name="parking_heading">Parken</string>
@@ -235,10 +228,7 @@
 
     <array name="streets_array">
         <item>Straßen sind beschädigt oder blockiert? (z.B. Schlagloch, Auffahrt)</item>
-        <item>Beleuchtung ist defekt?</item>
         <item>Schilder defekt/ fehlend oder beklebt?</item>
-        <item>Defekte Ampeln?</item>
-        <item>Vereiste Flächen?</item>
     </array>
 
     <string name="animals_heading">Tiere</string>
@@ -249,7 +239,6 @@
     <array name="animals_array">
         <item>Tierkadaver gesehen? (z.B. tote Katze)</item>
         <item>Anhäufung von Nagetieren, Insekten oder Schädlingen?</item>
-        <item>Unsachgemäße Tierhaltung? (z.B. Tiermisshandlung)</item>
     </array>
 
     <string name="pollution_heading">Verschmutzung</string>
@@ -258,7 +247,6 @@
     <string name="pollution_three">Räumlichkeiten verschmutzt?</string>
 
     <array name="pollution_array">
-        <item>Illegale Anbringung von Postern?</item>
         <item>Graffiti melden?</item>
         <item>Räumlichkeiten verschmutzt?</item>
     </array>
