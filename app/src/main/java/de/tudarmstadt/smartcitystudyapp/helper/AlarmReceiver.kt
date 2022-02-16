@@ -42,6 +42,7 @@ class AlarmReceiver() : BroadcastReceiver() {
 
         when(action) {
             "display" -> {
+                Log.d("Display Notification","Notification " + SharedPref.getNotificationId(context.applicationContext).toString())
                 if (SharedPref.getNotificationId(context.applicationContext) != id) {
                     SharedPref.putNotificationId(context.applicationContext, id)
                     SharedPref.putNotificationStatus(context.applicationContext, NOTIFICATION_STATUS_ACTIVE)
@@ -50,8 +51,8 @@ class AlarmReceiver() : BroadcastReceiver() {
                     }
             }
             "cancel" -> {
-                    SharedPref.putNotificationStatus(context.applicationContext, NOTIFICATION_STATUS_INACTIVE)
-                Log.d("Cancel","Notification")
+                Log.d("Cancel Notification","Notification " + SharedPref.getNotificationId(context.applicationContext).toString())
+                SharedPref.putNotificationStatus(context.applicationContext, NOTIFICATION_STATUS_INACTIVE)
                     NotificationHelper.getNotificationManager(context)
                         .cancelAll()
             }

@@ -25,8 +25,8 @@
     <string name="forward_button_text">Weiter</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="reports">Meldungen</string>
-    <string name="incidents">Ereignisse</string>
+    <!--string name="reports">Meldungen</string-->
+    <string name="incidents">Meldungen</string>
 
     <!-- Tutorial -->
     <string name="next">weiter</string>
@@ -95,6 +95,8 @@
     <string name="incidents_streets">👁 Straßen</string>
     <string name="incidents_animals">👁 Tiere</string>
     <string name="incidents_polution">👁 Verschmutzung</string>
+    <string name="incidents_privacy">👁 Datenschutz</string>
+    <string name="incidents_security">👁 Sicherheit</string>
     <string name="incidents_other">👁 Sonstiges</string>
 
     <string name="water_heading">Abwasser und Wasser</string>
@@ -114,6 +116,16 @@
     <array name="trees_array">
         <item>Bäume/Äste sind in schlechtem Zustand?</item>
         <item>Bäume bzw. Äste können gefährlich werden? (z.B. Wurzeln ragen über die Straße)</item>
+    </array>
+
+    <string name="security_heading">Sicherheit</string>
+    <array name="security_array">
+        <item>Sicherheit gefährdet?</item>
+    </array>
+
+    <string name="privacy_heading">Datenschutz</string>
+    <array name="privacy_array">
+        <item>Privatssphäre gefährdet?</item>
     </array>
 
     <string name="electronic_heading">Elektronik?</string>
@@ -265,6 +277,8 @@
     <string name="incidents_submit_connectivity_toast">Sie benötigen eine aktive Internetverbindung, um die Daten abzusenden</string>
     <string name="incidents_gallery_button">Gallery</string>
     <string name="incidents_camera_button">Kamera</string>
+    <string name="incidents_show_all_button">Alle Aktivitäten anzeigen</string>
+    <string name="incidents_hide_all_button">Alle Aktivitäten ausblenden</string>
 
 
     <!-- Side Notice -->

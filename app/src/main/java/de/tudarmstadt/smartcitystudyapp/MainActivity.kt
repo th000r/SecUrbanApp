@@ -72,7 +72,6 @@ class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreference
                 R.id.nav_profile,
                 R.id.nav_incidents,
                 R.id.nav_activities,
-                R.id.nav_reports,
                 R.id.nav_help,
                 R.id.nav_site_notice
             ), drawerLayout
@@ -146,7 +145,7 @@ class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreference
             if (notificationStatus > 0) {
                 this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_incident_submit_notification)
             } else {
-                this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_reports)
+                this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_incidents)
             }
         }
     }
@@ -170,7 +169,7 @@ class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreference
             if (notificationStatus > 0) {
                 this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_incident_submit_notification)
             } else {
-                this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_reports)
+                this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_incidents)
             }
             return@setOnMenuItemClickListener true
         }

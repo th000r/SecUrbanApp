@@ -22,7 +22,7 @@ class ActivitiesViewModel @ViewModelInject constructor(
     fun fetchNewIndividualActivities(strings: List<String>) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             activitiesService.saveNewIndividualActivities(
-                List(Random.nextInt(0, 4)) {
+                List(Random.nextInt(0, 2)) {
                     strings[Random.nextInt(0, strings.size - 1)]
                 }
             )

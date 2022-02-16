@@ -35,11 +35,11 @@
         android:label="@string/activities"
         tools:layout="@layout/fragment_activities" />
 
-    <fragment
+    <!--fragment
         android:id="@+id/nav_reports"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.reports.ReportsFragment"
         android:label="@string/reports"
-        tools:layout="@layout/fragment_reports" />
+        tools:layout="@layout/fragment_reports" /-->
 
     <fragment
         android:id="@+id/nav_help"

@@ -20,7 +20,7 @@ class PushNotificationService(): Service(){
     }
 
     //ToDo: change to 60 minutes
-    private var rescheduleNotificationTime: Long = 1000 * 60 * 60 // ms, sec, min
+    private var rescheduleNotificationTime: Long = 1000 * 60 * 1 // ms, sec, min
 
     /**
      * Not needed
@@ -113,16 +113,22 @@ class PushNotificationService(): Service(){
     }
 
     fun initSchedule() {
-        notificationSchedule.add(NotificationSchedule(1, Calendar.FRIDAY, 12, 3, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
-        notificationSchedule.add(NotificationSchedule(1, Calendar.FRIDAY, 12, 8, NotificationStatus.CANCEL))
-        notificationSchedule.add(NotificationSchedule(1, Calendar.SUNDAY, 9, 43, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
-        notificationSchedule.add(NotificationSchedule(1, Calendar.SUNDAY, 12, 43, NotificationStatus.CANCEL))
-        notificationSchedule.add(NotificationSchedule(2, Calendar.MONDAY, 17, 22, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
-        notificationSchedule.add(NotificationSchedule(2, Calendar.MONDAY, 20, 22, NotificationStatus.CANCEL))
-        notificationSchedule.add(NotificationSchedule(3, Calendar.THURSDAY, 7, 51, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
-        notificationSchedule.add(NotificationSchedule(3, Calendar.THURSDAY, 10, 51, NotificationStatus.CANCEL))
-        notificationSchedule.add(NotificationSchedule(4, Calendar.FRIDAY, 21, 11, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
-        notificationSchedule.add(NotificationSchedule(4, Calendar.SATURDAY, 0, 11, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationSchedule(1, Calendar.SATURDAY, 18, 35, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationSchedule(1, Calendar.SATURDAY, 18, 45, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationSchedule(2, Calendar.SATURDAY, 18, 50, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationSchedule(2, Calendar.SATURDAY, 18, 55, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationSchedule(3, Calendar.SATURDAY, 19, 5, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
 
+
+        /*        notificationSchedule.add(NotificationSchedule(1, Calendar.FRIDAY, 12, 3, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+            notificationSchedule.add(NotificationSchedule(1, Calendar.FRIDAY, 12, 8, NotificationStatus.CANCEL))
+            notificationSchedule.add(NotificationSchedule(1, Calendar.SUNDAY, 9, 43, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+            notificationSchedule.add(NotificationSchedule(1, Calendar.SUNDAY, 12, 43, NotificationStatus.CANCEL))
+            notificationSchedule.add(NotificationSchedule(2, Calendar.MONDAY, 17, 22, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+            notificationSchedule.add(NotificationSchedule(2, Calendar.MONDAY, 20, 22, NotificationStatus.CANCEL))
+            notificationSchedule.add(NotificationSchedule(3, Calendar.THURSDAY, 7, 51, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+            notificationSchedule.add(NotificationSchedule(3, Calendar.THURSDAY, 10, 51, NotificationStatus.CANCEL))
+            notificationSchedule.add(NotificationSchedule(4, Calendar.FRIDAY, 21, 11, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+            notificationSchedule.add(NotificationSchedule(4, Calendar.SATURDAY, 0, 11, NotificationStatus.CANCEL))*/
     }
 }
