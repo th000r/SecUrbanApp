@@ -60,4 +60,21 @@ object AppModule {
     ): NotificationService {
         return DefaultNotificationService(database.notificationDao())
     }
+
+    @Singleton
+    @Provides
+    fun provideTeamService(
+        database: AppDatabase
+    ): TeamService {
+        return DefaultTeamService(database.teamDao())
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideUsersAndTeamService(
+        database: AppDatabase
+    ): UsersAndTeamService {
+        return DefaultUsersAndTeamService(database.usersAndTeamDao())
+    }
 }

@@ -14,6 +14,9 @@
            android:id="@+id/nav_activities"
            android:title="@string/activities" />
         <item
+            android:id="@+id/nav_team_activities"
+            android:title="@string/team_activities" />
+        <item
            android:id="@+id/nav_help"
            android:title="@string/help" />
        <item

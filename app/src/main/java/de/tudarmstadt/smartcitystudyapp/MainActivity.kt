@@ -75,6 +75,7 @@ class MainActivity() : AppCompatActivity() {
                 R.id.nav_profile,
                 R.id.nav_incidents,
                 R.id.nav_activities,
+                R.id.nav_team_activities,
                 R.id.nav_help,
                 R.id.nav_site_notice
             ), drawerLayout
@@ -138,7 +139,9 @@ class MainActivity() : AppCompatActivity() {
             getUnreadNotificationCount()
         }
 
-        if (wasStarted) {
+        val action = intent.getStringExtra("pushNotification")
+
+        if (wasStarted && action == "display") {
             Log.d("MainActivity", "Unread Count: " + count.toString())
             if (count > 0) {
                 this.findNavController(R.id.nav_host_fragment)

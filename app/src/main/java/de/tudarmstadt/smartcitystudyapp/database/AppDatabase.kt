@@ -4,11 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import de.tudarmstadt.smartcitystudyapp.model.ActivityEntry
-import de.tudarmstadt.smartcitystudyapp.model.Notification
-import de.tudarmstadt.smartcitystudyapp.model.User
+import de.tudarmstadt.smartcitystudyapp.model.*
 
-@Database(entities = [User::class, ActivityEntry::class, Notification::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, ActivityEntry::class, Notification::class, Team::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     companion object {
         private var INSTANCE: AppDatabase? = null
@@ -29,4 +27,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun activitiesDao(): ActivitiesDao
 
     abstract fun notificationDao(): NotificationDao
+
+    abstract fun teamDao(): TeamDao
+
+    abstract fun usersAndTeamDao(): UsersAndTeamDao
 }

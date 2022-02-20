@@ -3,6 +3,7 @@
     <string name="profile">Profil</string>
     <string name="results">Ergebnisse</string>
     <string name="activities">Aktivitäten</string>
+    <string name="team_activities">Teamaktivitäten</string>
     <string name="help">Hilfe</string>
     <string name="site_notice">Impressum</string>
     <string name="menu_heading">Menü</string>
@@ -301,6 +302,8 @@
     <string name="report_sent_error_toast">Die Meldung konnte im Moment nicht verschickt werden. Bitte versuchen sie es später noch einmal.</string>
     <string name="report_prepare_toast">Meldung wird verschickt...</string>
     <string name="user_id_not_set_toast">Gebe bitte deinen Personencode ein</string>
+    <string name="user_name_not_set_toast">Gebe bitte deinen Namen ein</string>
+    <string name="user_city_not_set_toast">Gebe bitte deine Stadt ein</string>
     <string name="location_permission_missing_toast">Standortberechtigung fehlt!</string>
 
     <string name="main_cooperation"><u>In Kooperation mit:</u></string>
