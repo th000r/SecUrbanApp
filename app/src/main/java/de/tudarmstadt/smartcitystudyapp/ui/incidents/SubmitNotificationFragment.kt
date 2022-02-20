@@ -20,7 +20,6 @@ import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.helper.SharedPref
 
 @AndroidEntryPoint
 class SubmitNotificationFragment : Fragment() {
@@ -162,8 +161,8 @@ class SubmitNotificationFragment : Fragment() {
             DrawableCompat.setTint(buttonDrawable, ResourcesCompat.getColor(resources, color, null))
             button.background = buttonDrawable
         } else {
-            button.setBackgroundColor(resources.getColor(color));
-            button.invalidate();
+            button.setBackgroundColor(resources.getColor(color))
+            button.invalidate()
         }
     }
 }

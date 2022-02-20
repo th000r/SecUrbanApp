@@ -1,7 +1,5 @@
 package de.tudarmstadt.smartcitystudyapp.ui.incidents
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Looper
 import android.util.Log
 import android.view.View
@@ -56,22 +54,6 @@ class SubmitViewModel @ViewModelInject constructor(
                 withContext(Dispatchers.Main) {
                     if (!returnVal.contains("Post failed with code")) {
                         Toast.makeText(context, R.string.report_sent_success_toast, Toast.LENGTH_LONG).show()
-                        if (source == "Notification") {
-                            val sharedPref = context.getSharedPreferences("de.tudarmstadt.smartcitystudyapp.shared_key", Context.MODE_PRIVATE)
-                            val ed: SharedPreferences.Editor = sharedPref.edit()
-
-                            for (key in sharedPref.all.keys) {
-                                if (key == "notifications") {
-                                    ed.putInt("notifications", 0)
-                                    continue
-                                }
-                                var value = sharedPref.all.getValue(key)
-                                if (value != 0 || value != 99) {
-                                    ed.putInt(key, 99)
-                                    Log.d("notification","send")
-                                }
-                            }
-                        }
                         view.findNavController().navigate(finalActionId)
                     } else {
                         Toast.makeText(context, R.string.report_sent_error_toast, Toast.LENGTH_LONG).show()

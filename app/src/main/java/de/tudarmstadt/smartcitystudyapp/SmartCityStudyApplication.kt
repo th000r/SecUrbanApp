@@ -9,4 +9,12 @@ class SmartCityStudyApplication : Application() {
     override fun attachBaseContext(context: Context?) {
         super.attachBaseContext(context)
     }
+
+    override fun onCreate() {
+        super.onCreate()
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
+    }
 }

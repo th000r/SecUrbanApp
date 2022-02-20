@@ -5,18 +5,25 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.services.PushNotificationService
+import de.tudarmstadt.smartcitystudyapp.database.AppDatabase
+import de.tudarmstadt.smartcitystudyapp.services.NotificationService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
 
 /**
  * Local Push Notification Helper
  * handles the broadcast messages and generates local push notifications
  */
 class AlarmReceiver() : BroadcastReceiver() {
+    @Inject
+    lateinit var notificationService: NotificationService
     private val NOTIFICATION_ID = 9876
     private val NOTIFICATION_STATUS_ACTIVE = 1
     private val NOTIFICATION_STATUS_INACTIVE = -1
@@ -24,14 +31,16 @@ class AlarmReceiver() : BroadcastReceiver() {
     private val NOTIFICATION_KEY_ID = "notification_report_id"
 
     override fun onReceive(context: Context, intent: Intent) {
-        val sharedPref = context.getSharedPreferences("de.tudarmstadt.smartcitystudyapp", Context.MODE_PRIVATE)
-        val ed: SharedPreferences.Editor = sharedPref.edit()
         val action = intent.getStringExtra("action")
         val broadcastId = intent.getIntExtra("id", NotificationHelper.ALARM_TYPE_RTC)
         val id = intent.getIntExtra("uid", -1)
         val intentToRepeat = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            putExtra("fragment", "activity")
+            when(action) {
+                "display" -> putExtra("pushNotification", "display")
+                "cancel" -> putExtra("pushNotification", "cancel")
+            }
+
         }
 
         val pendingIntent: PendingIntent = PendingIntent.getActivity(context, broadcastId, intentToRepeat, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -42,21 +51,31 @@ class AlarmReceiver() : BroadcastReceiver() {
 
         when(action) {
             "display" -> {
-                Log.d("Display Notification","Notification " + SharedPref.getNotificationId(context.applicationContext).toString())
-                if (SharedPref.getNotificationId(context.applicationContext) != id) {
-                    SharedPref.putNotificationId(context.applicationContext, id)
-                    SharedPref.putNotificationStatus(context.applicationContext, NOTIFICATION_STATUS_ACTIVE)
-                    NotificationHelper.getNotificationManager(context)
+                Log.d("Display Notification","Notification " + id)
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    updateNotificationStatus(context, id.toString(), 1)
+                }
+
+                NotificationHelper.getNotificationManager(context)
                         .notify(NOTIFICATION_ID, repeatedNotification)
-                    }
+
             }
             "cancel" -> {
-                Log.d("Cancel Notification","Notification " + SharedPref.getNotificationId(context.applicationContext).toString())
-                SharedPref.putNotificationStatus(context.applicationContext, NOTIFICATION_STATUS_INACTIVE)
-                    NotificationHelper.getNotificationManager(context)
-                        .cancelAll()
+                Log.d("Cancel Notification","Notification " + id)
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    updateNotificationStatus(context, id.toString(), -1)
+                }
+
+                NotificationHelper.getNotificationManager(context)
+                    .cancelAll()
             }
         }
+    }
+
+    suspend fun updateNotificationStatus(context: Context, id: String, status: Int) {
+        AppDatabase.getDatabase(context).notificationDao().save(de.tudarmstadt.smartcitystudyapp.model.Notification(id.toString(), status))
     }
 
     fun buildLocalNotification(

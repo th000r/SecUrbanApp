@@ -41,6 +41,7 @@ class IncidentsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.invalidateOptionsMenu()
         return inflater.inflate(R.layout.fragment_incidents, container, false)
     }
 
@@ -55,5 +56,10 @@ class IncidentsFragment : Fragment() {
                 )
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.invalidateOptionsMenu()
     }
 }

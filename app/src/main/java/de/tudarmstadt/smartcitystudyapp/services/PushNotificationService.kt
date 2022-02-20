@@ -4,7 +4,6 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.*
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
@@ -59,6 +58,7 @@ class PushNotificationService(): Service(){
         val notification = NotificationCompat.Builder(this, getString(R.string.channel_id_fgs_report))
             .setContentTitle(getString(R.string.notification_incidents_fgs_header))
             .setContentText(getString(R.string.notification_incidents_fgs_subheader))
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setSmallIcon(R.drawable.logo_inapp)
             .setContentIntent(pendingIntent)
             .build()
@@ -81,7 +81,7 @@ class PushNotificationService(): Service(){
      * @param channelName channel name
      * @param channelDescription provide a description of your channel's purpose
      * @param channelId unique channel id
-     */
+    */
     private fun registerChannel(channelName: String, channelDescription: String, channelId: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = channelName
@@ -106,18 +106,20 @@ class PushNotificationService(): Service(){
         val restartServiceIntent = Intent(applicationContext, PushNotificationService::class.java).also {
             it.setPackage(packageName)
         }
-        val restartServicePendingIntent: PendingIntent = PendingIntent.getService(this, 1, restartServiceIntent, PendingIntent.FLAG_ONE_SHOT);
-        applicationContext.getSystemService(Context.ALARM_SERVICE);
-        val alarmService: AlarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager;
-        alarmService.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000, restartServicePendingIntent);
+        val restartServicePendingIntent: PendingIntent = PendingIntent.getService(this, 1, restartServiceIntent, PendingIntent.FLAG_ONE_SHOT)
+        applicationContext.getSystemService(Context.ALARM_SERVICE)
+        val alarmService: AlarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmService.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000, restartServicePendingIntent)
     }
 
     fun initSchedule() {
-        notificationSchedule.add(NotificationSchedule(1, Calendar.SATURDAY, 18, 35, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
-        notificationSchedule.add(NotificationSchedule(1, Calendar.SATURDAY, 18, 45, NotificationStatus.CANCEL))
-        notificationSchedule.add(NotificationSchedule(2, Calendar.SATURDAY, 18, 50, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
-        notificationSchedule.add(NotificationSchedule(2, Calendar.SATURDAY, 18, 55, NotificationStatus.CANCEL))
-        notificationSchedule.add(NotificationSchedule(3, Calendar.SATURDAY, 19, 5, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+        var calendar = Calendar.getInstance()
+        notificationSchedule.add(NotificationSchedule(1, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 1, NotificationStatus.DISPLAY, "1", getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationSchedule(1, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 2, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationSchedule(2, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 3, NotificationStatus.DISPLAY, "2", getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationSchedule(2, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 4, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationSchedule(3, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 5, NotificationStatus.DISPLAY, "3", getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationSchedule(3, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE) + 6, NotificationStatus.CANCEL))
 
 
         /*        notificationSchedule.add(NotificationSchedule(1, Calendar.FRIDAY, 12, 3, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))

@@ -52,4 +52,12 @@ object AppModule {
     ): ActivitiesService {
         return DefaultActivitiesService(database.activitiesDao())
     }
+
+    @Singleton
+    @Provides
+    fun provideNotificationService(
+        database: AppDatabase
+    ): NotificationService {
+        return DefaultNotificationService(database.notificationDao())
+    }
 }

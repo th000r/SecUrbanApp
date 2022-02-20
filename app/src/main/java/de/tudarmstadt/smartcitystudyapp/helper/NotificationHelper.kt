@@ -6,7 +6,6 @@ import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.util.Log
 import de.tudarmstadt.smartcitystudyapp.model.NotificationStatus
@@ -18,6 +17,7 @@ import java.util.*
  * Schedules Push Notifications
  */
 object NotificationHelper {
+
     var ALARM_TYPE_RTC = 100
     private var alarmManagerRTC: AlarmManager? = null
     private var alarmIntentRTC: PendingIntent? = null
@@ -66,6 +66,8 @@ object NotificationHelper {
             AlarmManager.RTC,
             calendar.timeInMillis, alarmIntentRTC
         )
+
+
     }
 
     fun cancelNotification(context: Context, id: Int, dayOfWeek: Int, hour: Int, min: Int) {
@@ -98,6 +100,8 @@ object NotificationHelper {
             AlarmManager.RTC,
             calendar.timeInMillis, alarmIntentRTC
         )
+
+        Log.d("Cancel Scheduled", "Now")
     }
 
     fun cancelAlarmRTC() {
@@ -142,24 +146,26 @@ object NotificationHelper {
      */
     fun scheduleNextRTCNotification(context: Context) {
         val calendar = Calendar.getInstance()
-        calendar.timeInMillis = System.currentTimeMillis()
 
         for (schedule in PushNotificationService.notificationSchedule) {
+            Log.d("Schedule all", schedule.id.toString() + " " + schedule.status.toString())
+
+            Log.d(calendar.get(Calendar.DAY_OF_WEEK).toString() + " == " + schedule.dayOfWeek.toString(), ((calendar.get(Calendar.HOUR_OF_DAY) * 60) + calendar.get(Calendar.MINUTE)).toString() + " <= " +  ((schedule.hour * 60) + schedule.min).toString())
             // execute the next scheduled notification
-            if ((calendar.get(Calendar.DAY_OF_WEEK) < schedule.dayOfWeek) || (calendar.get(Calendar.DAY_OF_WEEK) == schedule.dayOfWeek && calendar.get(Calendar.HOUR_OF_DAY) <= schedule.hour && calendar.get(Calendar.MINUTE) <= schedule.min)) {
+            if (calendar.get(Calendar.DAY_OF_WEEK) == schedule.dayOfWeek && (calendar.get(Calendar.HOUR_OF_DAY) * 60) + calendar.get(Calendar.MINUTE) <= (schedule.hour * 60) + schedule.min) {
                 when (schedule.status) {
                     NotificationStatus.DISPLAY -> {
+                        Log.d("Schedule display", schedule.id.toString() + " " + schedule.status.toString())
                         scheduleRTCNotification(context, schedule.id, schedule.dayOfWeek, schedule.hour, schedule.min, schedule.title, schedule.message)
+                        return
                     }
                     NotificationStatus.CANCEL -> {
+                        Log.d("Schedule cancel", schedule.id.toString() + " " + schedule.status.toString())
                         cancelNotification(context, schedule.id, schedule.dayOfWeek, schedule.hour, schedule.min)
+                        return
                     }
                 }
-                return
             }
         }
-        // schedule the first notification again if no notifications are left for this week
-        val schedule = PushNotificationService.notificationSchedule[0]
-        scheduleRTCNotification(context, schedule.id, schedule.dayOfWeek, schedule.hour, schedule.min, schedule.title, schedule.message)
     }
 }

@@ -1,14 +1,12 @@
 package de.tudarmstadt.smartcitystudyapp
 
+import android.app.*
 import android.content.*
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import android.view.ContextThemeWrapper
 import android.view.Menu
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -23,25 +21,32 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.hilt.android.AndroidEntryPoint
+import de.tudarmstadt.smartcitystudyapp.database.AppDatabase
 import de.tudarmstadt.smartcitystudyapp.helper.ConnectionType
 import de.tudarmstadt.smartcitystudyapp.helper.NetworkMonitor
-import de.tudarmstadt.smartcitystudyapp.helper.SharedPref
-import de.tudarmstadt.smartcitystudyapp.services.PushNotificationService
-import de.tudarmstadt.smartcitystudyapp.services.UserService
-import kotlinx.coroutines.launch
+import de.tudarmstadt.smartcitystudyapp.services.*
+import kotlinx.coroutines.*
+import java.util.*
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
+class MainActivity() : AppCompatActivity() {
+    private val mainViewModel by viewModels<MainActivityViewModel>()
+
     @Inject
     lateinit var userService: UserService
+    private var count = 0
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val networkMonitor = NetworkMonitor(this)
+
     companion object {
         var networkAvailable = true
     }
 
+    private var wasStarted = false
+
+    // private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -54,8 +59,6 @@ class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreference
                 startActivity(intent)
             }
         }
-
-        SharedPref.registerSharedPrefChangeListener(applicationContext, this)
 
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -111,21 +114,13 @@ class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreference
 
         // workaround: start service to keep push notifications alive, because android os will
         // shut down alarm manager to reduce energy consumption
+
         val fgsIntent = Intent(this, PushNotificationService::class.java)
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(fgsIntent)
         } else {
             startService(fgsIntent)
         }
-
-//        val handler = Handler(Looper.getMainLooper())
-//        handler.postDelayed(object : Runnable {
-//            override fun run() {
-//                invalidateOptionsMenu()
-//                Log.d("invalidate shared pref", SharedPref.getNotificationStatus(this@MainActivity.applicationContext).toString())
-//                handler.postDelayed(this, 10000)
-//            }
-//        }, 10000)
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -135,44 +130,79 @@ class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreference
 
     override fun onResume() {
         super.onResume()
+        Log.d("MainActivity", "onResume")
         // register network monitor for broadcasts
         networkMonitor.register()
         // navigate to report fragment if notification was tapped
-        val fromNotification = getIntent().getStringExtra("fragment")
-        if (fromNotification != null) {
-            // ToDo: shared pref value does not change after edit (it's only updated after app restart)
-            val notificationStatus = SharedPref.getNotificationStatus(this)
-            if (notificationStatus > 0) {
-                this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_incident_submit_notification)
+        CoroutineScope(Dispatchers.IO).launch{ // launches coroutine in main thread
+            getUnreadNotificationCount()
+        }
+
+        if (wasStarted) {
+            Log.d("MainActivity", "Unread Count: " + count.toString())
+            if (count > 0) {
+                this.findNavController(R.id.nav_host_fragment)
+                    .navigate(R.id.nav_incident_submit_notification)
+                CoroutineScope(Dispatchers.IO).launch {
+                    deleteAllNotifications()
+                }
             } else {
                 this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_incidents)
             }
         }
+
+        wasStarted = true
     }
 
     override fun onStop() {
         super.onStop()
         networkMonitor.unregister()
-        SharedPref.unregisterSharedPrefChangeListener(applicationContext, this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        Log.d("MainActivity", "onCreateOptionsMenu")
+
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
 
-        setNotificationIconTheme(menu)
+        CoroutineScope(Dispatchers.IO).launch{ // launches coroutine in main thread
+            getUnreadNotificationCount()
+        }
+        Log.d("MainActivity", "Unread Count: " + count.toString())
+        if (count > 0) {
+            menu?.findItem(R.id.incidents_toolbar)?.isVisible = false
+            menu?.findItem(R.id.incidents_new_toolbar)?.isVisible = true
+        } else {
+            menu?.findItem(R.id.incidents_toolbar)?.isVisible = true
+            menu?.findItem(R.id.incidents_new_toolbar)?.isVisible = false
+        }
 
-        menu.getItem(0)?.setOnMenuItemClickListener {
-            //get shared preferences to remember if a notification was already scheduled and executed
-            val notificationStatus = SharedPref.getNotificationStatus(this)
-            Log.d("Shared Pref", notificationStatus.toString())
-            if (notificationStatus > 0) {
-                this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_incident_submit_notification)
-            } else {
-                this.findNavController(R.id.nav_host_fragment).navigate(R.id.nav_incidents)
-            }
+
+
+        // setNotificationIconTheme(menu)
+
+        menu.findItem(R.id.incidents_toolbar).setOnMenuItemClickListener {
+            this.findNavController(R.id.nav_host_fragment)
+                .navigate(R.id.nav_incidents)
             return@setOnMenuItemClickListener true
         }
+
+        menu.findItem(R.id.incidents_new_toolbar).setOnMenuItemClickListener {
+            this.findNavController(R.id.nav_host_fragment)
+                .navigate(R.id.nav_incident_submit_notification)
+
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.cancelAll()
+
+            CoroutineScope(Dispatchers.IO).launch{ // launches coroutine in main thread
+               deleteAllNotifications()
+            }
+
+            return@setOnMenuItemClickListener true
+        }
+
+        super.onCreateOptionsMenu(menu)
+
         return true
     }
 
@@ -182,26 +212,42 @@ class MainActivity() : AppCompatActivity(), SharedPreferences.OnSharedPreference
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        setNotificationIconTheme(menu)
-        return super.onPrepareOptionsMenu(menu)
-    }
+        Log.d("MainActivity", "onPrepareOptionsMenu")
 
-    fun setNotificationIconTheme(menu: Menu?) {
-        //get shared preferences to remember if a notification was already scheduled and executed
-        //val notificationStatus = sharedPref!!.getInt(NOTIFICATION_KEY_STATUS, 0)
-        val notificationStatus = SharedPref.getNotificationStatus(this)
-        //Log.d("Notification Status", notificationStatus.toString())
-
-        val wrapper: ContextThemeWrapper
-        if (notificationStatus > 0) {
-            wrapper = ContextThemeWrapper(this, R.style.IconNewNotifications)
-        } else{
-            wrapper = ContextThemeWrapper(this, R.style.IconNoNotifications)
+        CoroutineScope(Dispatchers.IO).launch{ // launches coroutine in main thread
+            getUnreadNotificationCount()
         }
-        menu?.getItem(0)?.icon?.mutate()?.applyTheme(wrapper.theme)
+        Log.d("MainActivity", "Unread Count: " + count.toString())
+        if (count > 0) {
+            menu?.findItem(R.id.incidents_toolbar)?.isVisible = false
+            menu?.findItem(R.id.incidents_new_toolbar)?.isVisible = true
+        } else {
+            menu?.findItem(R.id.incidents_toolbar)?.isVisible = true
+            menu?.findItem(R.id.incidents_new_toolbar)?.isVisible = false
+        }
+
+        super.onPrepareOptionsMenu(menu)
+
+        return true
     }
 
-    override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
-        Log.d("Shared Preferences", "Change")
+    private suspend fun getUnreadNotificationCount() {
+        val value = CoroutineScope(Dispatchers.IO).async {
+            withContext(Dispatchers.IO) {
+                count = AppDatabase.getDatabase(applicationContext).notificationDao()
+                    .loadUnreadNotificationCount()
+            }
+        }
+        value.await()
+    }
+
+    private suspend fun deleteAllNotifications() {
+        val value = CoroutineScope(Dispatchers.IO).async {
+            withContext(Dispatchers.IO) {
+                AppDatabase.getDatabase(applicationContext).notificationDao()
+                    .deleteAll()
+            }
+        }
+        value.await()
     }
 }
