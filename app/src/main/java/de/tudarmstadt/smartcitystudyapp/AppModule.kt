@@ -8,7 +8,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import de.tudarmstadt.smartcitystudyapp.database.AppDatabase
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.*
 import de.tudarmstadt.smartcitystudyapp.services.*
+import de.tudarmstadt.smartcitystudyapp.services.DummyUserWebservice
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserWebservice
 import javax.inject.Singleton
 
 @Module

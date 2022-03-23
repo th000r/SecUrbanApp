@@ -1,13 +1,11 @@
 package de.tudarmstadt.smartcitystudyapp.ui.profile
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.viewModelScope
-import de.tudarmstadt.smartcitystudyapp.model.User
-import de.tudarmstadt.smartcitystudyapp.services.UserService
-import de.tudarmstadt.smartcitystudyapp.services.UsersAndTeamService
+import de.tudarmstadt.smartcitystudyapp.models.User
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

@@ -12,10 +12,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.model.Report
-import de.tudarmstadt.smartcitystudyapp.model.SOURCE_OTHER
-import de.tudarmstadt.smartcitystudyapp.services.ReportService
-import de.tudarmstadt.smartcitystudyapp.services.UserService
+import de.tudarmstadt.smartcitystudyapp.models.Report
+import de.tudarmstadt.smartcitystudyapp.models.SOURCE_OTHER
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.ReportService
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

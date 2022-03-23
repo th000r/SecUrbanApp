@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import de.tudarmstadt.smartcitystudyapp.model.Notification
+import de.tudarmstadt.smartcitystudyapp.models.Notification
 
 @Dao
 interface NotificationDao {

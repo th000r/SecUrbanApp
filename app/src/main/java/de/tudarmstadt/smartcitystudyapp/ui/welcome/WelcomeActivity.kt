@@ -1,4 +1,4 @@
-package de.tudarmstadt.smartcitystudyapp
+package de.tudarmstadt.smartcitystudyapp.ui.welcome
 
 import android.content.Intent
 import android.graphics.Color
@@ -16,11 +16,13 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import dagger.hilt.android.AndroidEntryPoint
-import de.tudarmstadt.smartcitystudyapp.model.Team
-import de.tudarmstadt.smartcitystudyapp.model.User
-import de.tudarmstadt.smartcitystudyapp.services.TeamService
-import de.tudarmstadt.smartcitystudyapp.services.UserService
-import de.tudarmstadt.smartcitystudyapp.services.UsersAndTeamService
+import de.tudarmstadt.smartcitystudyapp.MainActivity
+import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.models.Team
+import de.tudarmstadt.smartcitystudyapp.models.User
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.TeamService
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.UsersAndTeamService
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

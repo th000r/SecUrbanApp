@@ -1,4 +1,4 @@
-package de.tudarmstadt.smartcitystudyapp.services
+package de.tudarmstadt.smartcitystudyapp.interfaces.services
 
 interface LocationService {
     fun getLocation(): Pair<Double, Double>

@@ -1,6 +1,7 @@
 package de.tudarmstadt.smartcitystudyapp.services
 
-import de.tudarmstadt.smartcitystudyapp.model.Report
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.ReportService
+import de.tudarmstadt.smartcitystudyapp.models.Report
 import kotlinx.coroutines.delay
 
 private const val SERVICE_LATENCY_IN_MILLIS = 2000L

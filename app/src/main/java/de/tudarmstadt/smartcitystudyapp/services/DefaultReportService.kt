@@ -1,6 +1,7 @@
 package de.tudarmstadt.smartcitystudyapp.services
 
-import de.tudarmstadt.smartcitystudyapp.model.Report
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.ReportService
+import de.tudarmstadt.smartcitystudyapp.models.Report
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request

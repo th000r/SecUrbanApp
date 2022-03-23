@@ -1,4 +1,4 @@
-package de.tudarmstadt.smartcitystudyapp.helper
+package de.tudarmstadt.smartcitystudyapp.notification
 
 import android.app.Notification
 import android.app.PendingIntent
@@ -10,7 +10,7 @@ import androidx.core.app.NotificationCompat
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.database.AppDatabase
-import de.tudarmstadt.smartcitystudyapp.services.NotificationService
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.NotificationService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -75,7 +75,7 @@ class AlarmReceiver() : BroadcastReceiver() {
     }
 
     suspend fun updateNotificationStatus(context: Context, id: String, status: Int) {
-        AppDatabase.getDatabase(context).notificationDao().save(de.tudarmstadt.smartcitystudyapp.model.Notification(id.toString(), status))
+        AppDatabase.getDatabase(context).notificationDao().save(de.tudarmstadt.smartcitystudyapp.models.Notification(id.toString(), status))
     }
 
     fun buildLocalNotification(

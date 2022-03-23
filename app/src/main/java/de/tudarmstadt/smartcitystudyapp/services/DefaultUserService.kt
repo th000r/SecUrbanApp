@@ -1,12 +1,12 @@
 package de.tudarmstadt.smartcitystudyapp.services
 
 import androidx.annotation.WorkerThread
-import androidx.lifecycle.LiveData
 import de.tudarmstadt.smartcitystudyapp.database.UserDao
-import de.tudarmstadt.smartcitystudyapp.model.User
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserWebservice
+import de.tudarmstadt.smartcitystudyapp.models.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 

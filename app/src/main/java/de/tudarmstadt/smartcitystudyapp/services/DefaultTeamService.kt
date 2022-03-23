@@ -1,7 +1,8 @@
 package de.tudarmstadt.smartcitystudyapp.services
 
 import de.tudarmstadt.smartcitystudyapp.database.TeamDao
-import de.tudarmstadt.smartcitystudyapp.model.Team
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.TeamService
+import de.tudarmstadt.smartcitystudyapp.models.Team
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
