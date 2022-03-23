@@ -2,11 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.tudarmstadt.smartcitystudyapp">
 
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-feature android:name="android.hardware.camera"
-        android:required="false" />
+
+    <!-- Needed for Local Push Notifications -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!-- end -->
+
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application
         android:name=".SmartCityStudyApplication"
@@ -17,19 +24,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCityStudyApp">
+
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.SmartCityStudyApp.NoActionBar">
+            android:theme="@style/Theme.SmartCityStudyApp.NoActionBar"
+            android:configChanges="uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".WelcomeActivity"
             android:theme="@style/Theme.SmartCityStudyApp.NoActionBar">
         </activity>
 
-    </application>
+        <!-- Needed for Local Push Notifications -->
+        <receiver android:name=".helper.AlarmReceiver"
+            android:process=":remote">
+        </receiver>
 
+        <receiver android:name=".helper.AlarmBootReceiver"
+            android:enabled="false"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".services.PushNotificationService"
+            android:enabled="true"
+            android:exported="false"
+            android:stopWithTask="false">
+        </service>
+    </application>
 </manifest>

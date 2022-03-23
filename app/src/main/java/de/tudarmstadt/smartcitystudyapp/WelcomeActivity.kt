@@ -16,8 +16,11 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import dagger.hilt.android.AndroidEntryPoint
+import de.tudarmstadt.smartcitystudyapp.model.Team
 import de.tudarmstadt.smartcitystudyapp.model.User
+import de.tudarmstadt.smartcitystudyapp.services.TeamService
 import de.tudarmstadt.smartcitystudyapp.services.UserService
+import de.tudarmstadt.smartcitystudyapp.services.UsersAndTeamService
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,6 +31,10 @@ import javax.inject.Inject
 class WelcomeActivity : AppCompatActivity() {
     @Inject
     lateinit var userService: UserService
+    @Inject
+    lateinit var teamService: TeamService
+    @Inject
+    lateinit var usersAndTeamService: UsersAndTeamService
     private var viewPager: ViewPager? = null
     private var myViewPagerAdapter: MyViewPagerAdapter? = null
     private var dotsLayout: LinearLayout? = null
@@ -35,6 +42,8 @@ class WelcomeActivity : AppCompatActivity() {
     private lateinit var layouts: IntArray
     private var btnNext: Button? = null
     private var userId: String? = null
+    private var userName: String? = null
+    private var userCity: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +59,8 @@ class WelcomeActivity : AppCompatActivity() {
         btnNext = findViewById<View>(R.id.btn_next) as Button
         layouts = intArrayOf(
             R.layout.tutorial_slide_1,
-            R.layout.tutorial_slide_2
+            R.layout.tutorial_slide_2,
+            R.layout.tutorial_slide_3
         )
         addBottomDots(0)
         changeStatusBarColor()
@@ -63,6 +73,10 @@ class WelcomeActivity : AppCompatActivity() {
             if (current == layouts.size) {
                 val userIdEntryField = findViewById<EditText>(R.id.user_id_entry_field)
                 userId = userIdEntryField.text.toString()
+                val userNameEntryField = findViewById<EditText>(R.id.user_name_entry_field)
+                userName = userNameEntryField.text.toString()
+                val userCityEntryField = findViewById<EditText>(R.id.city_entry_field)
+                userCity = userCityEntryField.text.toString()
                 launchHomeScreen()
             } else if (current < layouts.size) {
                 viewPager!!.currentItem = current
@@ -90,12 +104,20 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun launchHomeScreen() {
-        if (userId == null || userId!!.isEmpty()) {
+        if (userId == null || userId!!.isEmpty() || userId!!.length != 6) {
             val toast = Toast.makeText(this, R.string.user_id_not_set_toast, Toast.LENGTH_SHORT)
+            toast.show()
+        } else if(userName == null || userName!!.isEmpty()) {
+                val toast = Toast.makeText(this, R.string.user_name_not_set_toast, Toast.LENGTH_SHORT)
+                toast.show()
+        } else if(userCity == null || userCity!!.isEmpty()) {
+            val toast = Toast.makeText(this, R.string.user_city_not_set_toast, Toast.LENGTH_SHORT)
             toast.show()
         } else {
             this.lifecycleScope.launch {
-                userService.setUser(User(userId!!, userId!!))
+                usersAndTeamService.addTeam(Team(userCity!!.toLowerCase(), userCity!!.toLowerCase(), 0))
+                usersAndTeamService.addUser(User(userId!!, userName!!, userCity!!, 0, userCity!!.toLowerCase()))
+                //userService.setUser(User(userId!!, userName!!, 0, userCity!!.toLowerCase()))
             }
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP

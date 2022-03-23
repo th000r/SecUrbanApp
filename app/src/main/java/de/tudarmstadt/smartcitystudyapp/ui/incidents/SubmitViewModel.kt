@@ -26,7 +26,7 @@ class SubmitViewModel @ViewModelInject constructor(
 ) : ViewModel() {
     var source: String = SOURCE_OTHER
 
-    fun sendReport(view: View) {
+    fun sendReport(view: View, finalActionId: Int) {
         val context = view.context
 
         if(MainActivity.networkAvailable) {
@@ -52,11 +52,13 @@ class SubmitViewModel @ViewModelInject constructor(
                 }
 
                 withContext(Dispatchers.Main) {
-                    if (!returnVal.contains("Post failed with code")) {
-                        Toast.makeText(context, R.string.report_sent_success_toast, Toast.LENGTH_LONG).show()
-                        view.findNavController().navigate(R.id.action_global_home)
-                    } else {
+                    if (returnVal.contains("Post failed with code")) {
                         Toast.makeText(context, R.string.report_sent_error_toast, Toast.LENGTH_LONG).show()
+                    } else if (returnVal.contains("exception")) {
+                        Toast.makeText(context, R.string.report_sent_error_toast, Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(context, R.string.report_sent_success_toast, Toast.LENGTH_LONG).show()
+                        view.findNavController().navigate(finalActionId)
                     }
                 }
             }

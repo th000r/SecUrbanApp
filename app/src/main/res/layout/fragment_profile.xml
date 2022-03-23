@@ -1,34 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_profile"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="@color/material_on_background_emphasis_medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/help_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/pin" />
+
+        <TextView
+            android:id="@+id/vp_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_toRightOf="@+id/help_icon"
+            android:text="@string/profile_header"
+            android:textColor="@color/black"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/vp_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vp_name"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/help_icon"
+            android:text="@string/profile_subheader"
+            android:textColor="@color/grey"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/main_blue" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_margin="5dp"
+            android:text="@string/profile_points_init"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="5dp"
+            android:layout_toEndOf="@+id/points"
+            android:text="@string/profile_points_label"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/main_blue" />
 
     <Button
-        android:id="@+id/test_button"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test Network Communication"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_profile" />
+        android:layout_gravity="right"
+        android:layout_margin="10dp"
+        android:text="@string/profile_button" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginStart="40dp"
+            android:text="@string/profile_incidents_before" />
+
+        <TextView
+            android:id="@+id/number_incidents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/number"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:text="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/number_incidents_two"
+            android:layout_below="@+id/number_incidents"
+            android:layout_marginStart="40dp"
+            android:textStyle="bold"
+            android:text="@string/profile_incidents_after" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/crone_hint"
+            android:layout_marginStart="40dp"
+            android:text="@string/crone_hint"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/number_incidents_two"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/black" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/logo_inapp" />
+
+        <ImageView
+            android:id="@+id/profile_pic"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/profile_one" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
+

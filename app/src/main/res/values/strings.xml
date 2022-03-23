@@ -3,6 +3,7 @@
     <string name="profile">Profil</string>
     <string name="results">Ergebnisse</string>
     <string name="activities">Aktivitäten</string>
+    <string name="team_activities">Teamaktivitäten</string>
     <string name="help">Hilfe</string>
     <string name="site_notice">Impressum</string>
     <string name="menu_heading">Menü</string>
@@ -25,8 +26,8 @@
     <string name="forward_button_text">Weiter</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="reports">Meldungen</string>
-    <string name="incidents">Ereignisse</string>
+    <!--string name="reports">Meldungen</string-->
+    <string name="incidents">Meldungen</string>
 
     <!-- Tutorial -->
     <string name="next">weiter</string>
@@ -43,7 +44,8 @@
     <string name="slide_3_title">Anleitung zum \n Menü:</string>
     <string name="slide_3_description">Die wichtigsten Funktionen der App kurz erklärt:</string>
     <string name="slide_3_description_two">Im Reiter Ereignisse kannst du Meldungen über Probleme und Auffälligkeiten in deiner Umgebung machen. Dazu hast du die Möglichkeit deine GPS-Daten durchzugeben, einen kurzen Text anzugeben oder/und ein Foto hochzuladen. Falls keine konkreten Ereignisse in der Umgebung auftreten, kannst du dir auch erstmal die Vorschläge anschauen, die am häufigsten in anderen Städten gemeldet wurden.</string>
-
+    <string name="slide_2_name_hint">Namen eingeben</string>
+    <string name="slide_2_city_hint">Wohnort eingeben</string>
 
     <!-- Help -->
     <string name="help_heading">Fragen zur App?</string>
@@ -94,6 +96,8 @@
     <string name="incidents_streets">👁 Straßen</string>
     <string name="incidents_animals">👁 Tiere</string>
     <string name="incidents_polution">👁 Verschmutzung</string>
+    <string name="incidents_privacy">👁 Datenschutz</string>
+    <string name="incidents_security">👁 Sicherheit</string>
     <string name="incidents_other">👁 Sonstiges</string>
 
     <string name="water_heading">Abwasser und Wasser</string>
@@ -113,6 +117,16 @@
     <array name="trees_array">
         <item>Bäume/Äste sind in schlechtem Zustand?</item>
         <item>Bäume bzw. Äste können gefährlich werden? (z.B. Wurzeln ragen über die Straße)</item>
+    </array>
+
+    <string name="security_heading">Sicherheit</string>
+    <array name="security_array">
+        <item>Sicherheit gefährdet?</item>
+    </array>
+
+    <string name="privacy_heading">Datenschutz</string>
+    <array name="privacy_array">
+        <item>Privatssphäre gefährdet?</item>
     </array>
 
     <string name="electronic_heading">Elektronik?</string>
@@ -141,11 +155,7 @@
 
     <array name="buildings_array">
         <item>Gefahr durch Gebäudestruktur? (z.B. einstürzendes Haus)</item>
-        <item>Nicht konform? (z.B. illegale Umwandlung von Wohngebäude/Flächen)</item>
-        <item>Gebäude ist in schlechtem Zustand? (z.B. Putz bröckelt ab)</item>
         <item>Gebäude ist Gefahren ausgesetzt? (z.B. nicht abgesperrt)</item>
-        <item>Arbeiten am Gebäude sind problematisch? (z.B. Eingänge versperrt)</item>
-        <item>Elemente des Gebäudes sind defekt? (z.B. Tür, Fenster, Treppen,  etc.)</item>
     </array>
 
     <string name="path_heading">Geh- und Radwege</string>
@@ -162,8 +172,6 @@
     <string name="devices_four">Notwendige Geräte fehlen? (z.B. Rauchmelder)</string>
 
     <array name="devices_array">
-        <item>Rolltreppe/Fahrstuhl defekt?</item>
-        <item>Probleme mit der Heizung? (z.B. in öffentlichen Einrichtungen)</item>
         <item>Geräte in öffentlichem Gebäude defekt? (z.B. Herd, Boiler)</item>
         <item>Notwendige Geräte fehlen? (z.B. Rauchmelder)</item>
     </array>
@@ -199,7 +207,6 @@
     <array name="garbage_array">
         <item>Unsachgemäße Entsorgung von Müll festgestellt?</item>
         <item>Sperr-/ Elektromüll wurde nicht abgeholt?</item>
-        <item>Mülleimer ist überfüllt?</item>
     </array>
 
     <string name="parking_heading">Parken</string>
@@ -234,10 +241,7 @@
 
     <array name="streets_array">
         <item>Straßen sind beschädigt oder blockiert? (z.B. Schlagloch, Auffahrt)</item>
-        <item>Beleuchtung ist defekt?</item>
         <item>Schilder defekt/ fehlend oder beklebt?</item>
-        <item>Defekte Ampeln?</item>
-        <item>Vereiste Flächen?</item>
     </array>
 
     <string name="animals_heading">Tiere</string>
@@ -248,7 +252,6 @@
     <array name="animals_array">
         <item>Tierkadaver gesehen? (z.B. tote Katze)</item>
         <item>Anhäufung von Nagetieren, Insekten oder Schädlingen?</item>
-        <item>Unsachgemäße Tierhaltung? (z.B. Tiermisshandlung)</item>
     </array>
 
     <string name="pollution_heading">Verschmutzung</string>
@@ -257,7 +260,6 @@
     <string name="pollution_three">Räumlichkeiten verschmutzt?</string>
 
     <array name="pollution_array">
-        <item>Illegale Anbringung von Postern?</item>
         <item>Graffiti melden?</item>
         <item>Räumlichkeiten verschmutzt?</item>
     </array>
@@ -276,6 +278,8 @@
     <string name="incidents_submit_connectivity_toast">Sie benötigen eine aktive Internetverbindung, um die Daten abzusenden</string>
     <string name="incidents_gallery_button">Gallery</string>
     <string name="incidents_camera_button">Kamera</string>
+    <string name="incidents_show_all_button">Alle Aktivitäten anzeigen</string>
+    <string name="incidents_hide_all_button">Alle Aktivitäten ausblenden</string>
 
 
     <!-- Side Notice -->
@@ -298,5 +302,169 @@
     <string name="report_sent_error_toast">Die Meldung konnte im Moment nicht verschickt werden. Bitte versuchen sie es später noch einmal.</string>
     <string name="report_prepare_toast">Meldung wird verschickt...</string>
     <string name="user_id_not_set_toast">Gebe bitte deinen Personencode ein</string>
+    <string name="user_name_not_set_toast">Gebe bitte deinen Namen ein</string>
+    <string name="user_city_not_set_toast">Gebe bitte deine Stadt ein</string>
     <string name="location_permission_missing_toast">Standortberechtigung fehlt!</string>
+
+    <string name="main_cooperation"><u>In Kooperation mit:</u></string>
+
+    <!-- Activities -->
+    <string name="activities_header">Neue Aktivitäten in</string>
+    <string name="activities_subheader">deiner Umgebung</string>
+
+    <array name="individual_activities_array">
+        <item>Miriam S. aus Kassel hat Abwasser &amp; Wasser Probleme in der Gegend gemeldet!</item>
+        <item>Phil_01 aus Frankfurt hat beschädigte Straßen in der Gegend gemeldet!</item>
+        <item>Jasper L. aus Ober-Ramstadt hat gefährlich werdende Bäume in der Umgebung gemeldet!
+        </item>
+        <item>Phil_01 aus Frankfurt hat beschädigte Straßen in der Gegend gemeldet!</item>
+        <item>Luddi A. aus Frankfurt hat Verschmutzung von Räumlichkeiten in der Umgebung
+            gemeldet!
+        </item>
+        <item>Luise013 aus Roßdorf hat Straßen Probleme gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Anna K. aus Ober-Ramstadt hat blockierte Straßen in der Umgebung gemeldet!</item>
+        <item>Maren A. aus Ober-Ramstadt hat illegale Poster in der Umgebung gemeldet!</item>
+        <item>BetAQQ_222 aus Darmstadt hat Schimmel an öffentlichen Plätzen gemeldet!</item>
+        <item>JürgPer aus Groß-Gerau hat Graffiti gemeldet!</item>
+        <item>Hans123 aus Groß-Gerau hat Verschmutzungen an/ in öffentlichen Plätzen gemeldet!
+        </item>
+        <item>Madelen_331 aus Riedstadt hat Probleme mit Geräten an/ in öffentlichen Plätzen
+            gemeldet!
+        </item>
+        <item>Karen Fuchs aus Niederstetten hat problematische Luftqualität in der Gegend
+            gemeldet!
+        </item>
+        <item>FurtBer aus Heidelberg hat Rauch in der Umgebung gemeldet!</item>
+        <item>Hannes5 aus Darmstadt hat Lärm in der Gegend gemeldet!</item>
+        <item>Peter T. aus Modautal hat einen Tierkadaver gemeldet.</item>
+        <item>P.Torterich hat Geh- &amp; Radweg Probleme in seiner Umgebung gemeldet!</item>
+        <item>Q223Fer aus Brensbach hat Gebäude Probleme gemeldet!</item>
+        <item>Magnus R. aus Kranichstein hat Probleme mit Geräten an/ in öffentlichen Plätzen
+            gemeldet!
+        </item>
+        <item>FururL. hat Probleme mit Geräten an/ in öffentlichen Plätzen gemeldet!</item>
+        <item>Mina3 aus Roßdorf hat andere Probleme (Sonstiges) in der Umgebung gemeldet!</item>
+        <item>WbbTr0 aus Heppenheim hat defektes Gerät gemeldet!</item>
+        <item>M.F. aus Arnsheim hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Phil_Tt23 aus Marburg hat Abwasser &amp; Wasser Probleme in der Gegend gemeldet!</item>
+        <item>Anna_T aus Bensheim hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Maro aus Stuttgart hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Votan012 aus Mainz hat Probleme durch andere Parkende gemeldet!</item>
+        <item>Pippa111 aus Bickenbach hat Straßen Probleme gemeldet!</item>
+        <item>Felix P. aus Groß-Gerau hat blockierte Straßen in der Umgebung gemeldet!</item>
+        <item>MoMaX aus Vogelsberg hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Jule P. aus Darmstadt hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>FATBlo1233 aus Pfungstadt hat defekte Sanitäre Anlagen gemeldet!</item>
+        <item>MarGh aus Riedstadt hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>JOnA_23 aus Darmstadt hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>Master_MCX aus Bad Mergentheim hat problematische Luftqualität in der Gegend
+            gemeldet!
+        </item>
+        <item>Maria_93 aus Weinheim hat Gebäude in schlechtem Zustand gemeldet!</item>
+        <item>Maria_93 aus Weinheim hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>1337 aus Bickenbach hat Straßen Probleme gemeldet!</item>
+        <item>1337 aus Bickenbach hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>Voltaire aus Kranichstein hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Pippa111 aus Frankfurt hat Straßen Probleme gemeldet!</item>
+        <item>1234 aus Münster hat Straßen Probleme gemeldet!</item>
+        <item>Trasse aus Darmstadt hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>RamBam aus Roßdorf hat Straßen Probleme gemeldet!</item>
+        <item>littleLu aus Darmstadt hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>littleLu aus Darmstadt hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat Gebäude in schlechtem Zustand gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat lautstärkebedingte Probleme in der Umgebung gemeldet!
+        </item>
+        <item>Robert_K aus Stuttgart hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat Gebäude in schlechtem Zustand gemeldet!</item>
+        <item>1337 aus Bickenbach hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Miriam S. aus Kassel hat Gefahrstoffe gemeldet!</item>
+        <item>Phil_01 aus Frankfurt hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Jasper L. aus Ober-Ramstadt hat Straßen Probleme gemeldet!</item>
+        <item>Phil_01 aus Frankfurt hat defekte sanitäre Anlagen gemeldet!</item>
+        <item>Luddi A. aus Frankfurt hat Verschmutzungen an/ in öffentlichen Plätzen gemeldet!
+        </item>
+        <item>Luise013 aus Roßdorf hat beschädigte Straßen in der Gegend gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Anna K. aus Ober-Ramstadt hat Geh- &amp; Radweg Probleme in der Umgebung gemeldet!</item>
+        <item>Maren A. aus Ober-Ramstadt hat Rauchbildung in der Umgebung gemeldet!</item>
+        <item>BetAQQ_222 aus Darmstadt hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>JürgPer aus Groß-Gerau hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Madelen_331 aus Riedstadt hat defekte Ampel gemeldet!</item>
+        <item>Karen Fuchs aus Niederstetten hat Straßen Probleme gemeldet!</item>
+        <item>FurtBer aus Heidelberg hat Rauchbildung in der Umgebung gemeldet!</item>
+        <item>Hannes5 aus Darmstadt hat Lärm in der Gegend gemeldet!</item>
+        <item>Peter T. aus Modautal hat einen Tierkadaver gemeldet.</item>
+        <item>P.Torterich hat Geh- &amp; Radweg Probleme in seiner Umgebung gemeldet!</item>
+        <item>Q223Fer aus Brensbach hat Gebäude Probleme gemeldet!</item>
+        <item>Magnus R. hat blockierte Straßen in der Umgebung gemeldet!</item>
+        <item>FururL. hat Probleme mit Geräten an/ in öffentlichen Plätzen gemeldet!</item>
+        <item>Mina3 aus Roßdorf hat andere Probleme (Sonstiges) in der Umgebung gemeldet!</item>
+        <item>WbbTr0 aus Heppenheim hat blockierte Straßen in der Umgebung gemeldet!</item>
+        <item>M.F. aus Arnsheim hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Phil_Tt23 aus Marburg hat Abwasser &amp; Wasser Probleme in der Gegend gemeldet!</item>
+        <item>Anna_T aus Bensheim hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Maro aus Stuttgart hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Votan012 aus Mainz hat defekte Elektronik gemeldet!</item>
+        <item>Pippa111 aus Bickenbach hat Abwasser &amp; Wasser Probleme in der Gegend gemeldet!</item>
+        <item>Felix P. aus Groß-Gerau hat defekte Elektronik gemeldet!</item>
+        <item>MoMaX aus Vogelsberg hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Jule P. aus Darmstadt hat Tierkadaver gemeldet!</item>
+        <item>FATBlo1233 aus Pfungstadt hat defekte Sanitäre Anlagen gemeldet!</item>
+        <item>MarGh aus Riedstadt hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>JOnA_23 aus Darmstadt hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Master_MCX aus Bad Mergentheim hat problematische Luftqualität in der Gegend
+            gemeldet!
+        </item>
+        <item>Maria_93 aus Weinheim hat Gebäude in schlechtem Zustand gemeldet!</item>
+        <item>Maria_93 aus Weinheim hat Geh- &amp; Radweg Probleme in der Umgebung gemeldet!</item>
+        <item>1337 aus Bickenbach hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>Voltaire aus Kranichstein hat andere Probleme (Sonstiges) gemeldet!</item>
+        <item>Voltaire aus Kranichstein hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Pippa111 aus Frankfurt hat Gebäude in schlechtem Zustand gemeldet!</item>
+        <item>1234 aus Münster hat illegale Poster gemeldet!</item>
+        <item>Trasse aus Darmstadt hat lautstärkebedingte Probleme in der Umgebung gemeldet!</item>
+        <item>RamBam aus Roßdorf hat Straßen Probleme gemeldet!</item>
+        <item>littleLu aus Darmstadt hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>littleLu aus Darmstadt hat Probleme mit parkendem Fahrzeug gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat Schimmel an öffentlichen Plätzen gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat lautstärkebedingte Probleme in der Umgebung gemeldet!
+        </item>
+        <item>Robert_K aus Stuttgart hat unsachgemäße Entsorgung von Müll gemeldet!</item>
+        <item>Robert_K aus Stuttgart hat andere Probleme (Sonstiges) gemeldet!</item>
+    </array>
+
+    <!-- Profile -->
+    <string name="profile_header">VP-Name</string>
+    <string name="profile_subheader">VP-Stadt</string>
+    <string name="profile_button">+ Mach mehr Punkte</string>
+    <string name="profile_points_init">0</string>
+    <string name="profile_points_label">Punkte</string>
+    <string name="profile_incidents_before">Du hast bereits </string>
+    <string name="profile_incidents_after">Meldungen gemacht!</string>
+    <string name="crone_hint">Ab 1500 Punkten bekommst du eine Krone!</string>
+
+    <!-- Notification Incidents -->
+    <string name="notification_incidents_header">Es ist etwas passiert!</string>
+    <string name="notification_incidents_subheader">In deiner Umgebung!</string>
+    <string name="notification_incidents_description">Bitte hilf uns bei der Erkennung von Problemen, indem du prüfst, ob in deiner Umgebung etwas untypisch ist.</string>
+    <string name="notification_incidents_nothing">Hier ist nichts auffälliges!</string>
+    <string name="notification_incidents_fgs_header">Ereignis-Service</string>
+    <string name="notification_incidents_fgs_subheader">Warten auf Ereignisse</string>
+
+    <!-- Reports -->
+    <string name="reports_no_incidents_header">Gerade liegt keine aktuelle Meldung vor</string>
+    <string name="reports_no_incidents_subheader">Du kannst uns trotzdem helfen bei der Meldung von generellen Problemen in deiner Umgebung!</string>
+    <string name="reports_no_incidents_suggestions">Hier kannst du dir Vorschläge anschauen was du melden könntest!</string>
+    <!-- Thank you -->
+    <string name="thank_you_header">Vielen Dank</string>
+    <string name="thank_you_subheader">für dein Mitwirken!</string>
+    <string name="thank_you_description">Durch deine Mithilfe können Anomalien früher erkannt und Schwierigkeiten behoben werden!</string>
+    <string name="thank_you_points">Du hast zusätzliche 320 Punkte verdient! Weiter so!</string>
+    <string name="thank_you_points_team">Auch dein Team hat 300 Punkte mehr bekommen!</string>
+    <string name="thank_you_points_team_before">Dein Bezirk (WB_01) hat bereits </string>
+    <string name="thank_you_points_team_after">Punkte gemacht! Deine Teammates sind fleißig am melden! Weiter so!</string>
+    <string name="thank_you_close_button">Schließen</string>
+    <string name="heading_incident_thankyou">Vielen Dank</string>
+
 </resources>

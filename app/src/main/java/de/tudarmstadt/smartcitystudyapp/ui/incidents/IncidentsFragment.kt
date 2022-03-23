@@ -29,6 +29,8 @@ val suggestionNavigationSettings = listOf(
     Triple(R.id.incidents_button_streets, R.string.streets_heading, R.array.streets_array),
     Triple(R.id.incidents_button_animals, R.string.animals_heading, R.array.animals_array),
     Triple(R.id.incidents_button_pollution, R.string.pollution_heading, R.array.pollution_array),
+    Triple(R.id.incidents_button_privacy, R.string.privacy_heading, R.array.privacy_array),
+    Triple(R.id.incidents_button_security, R.string.security_heading, R.array.security_array),
     Triple(R.id.incidents_button_other, R.string.other_heading, R.array.other_array)
 )
 
@@ -39,6 +41,7 @@ class IncidentsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.invalidateOptionsMenu()
         return inflater.inflate(R.layout.fragment_incidents, container, false)
     }
 
@@ -53,5 +56,10 @@ class IncidentsFragment : Fragment() {
                 )
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.invalidateOptionsMenu()
     }
 }

@@ -17,11 +17,23 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="colorIconNotification">@color/white</item>
+        <item name="alphaIconNotification">100</item>
     </style>
 
     <style name="Theme.SmartCityStudyApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="IconNewNotifications" parent="Theme.SmartCityStudyApp">
+        <item name="colorIconNotification">@color/yellow</item>
+        <item name="alphaIconNotification">1</item>
+    </style>
+
+    <style name="IconNoNotifications" parent="Theme.SmartCityStudyApp">
+        <item name="colorIconNotification">@color/white</item>
+        <item name="alphaIconNotification">100</item>
     </style>
 
     <style name="Theme.SmartCityStudyApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

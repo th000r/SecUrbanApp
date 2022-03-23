@@ -12,13 +12,13 @@
         android:layout_marginTop="20dp">
 
         <ImageView
-            android:id="@+id/help_icon"
+            android:id="@+id/icon_no_notifications"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/exclamation_thick" />
+            android:src="@drawable/ic_social_notifications_none" />
 
         <TextView
             android:id="@+id/heading"
@@ -26,8 +26,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/help_icon"
-            android:text="@string/incidents_header"
+            android:layout_toRightOf="@id/icon_no_notifications"
+            android:text="@string/reports_no_incidents_header"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -39,8 +39,8 @@
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/help_icon"
-            android:text="@string/incidents_subheader"
+            android:layout_toRightOf="@id/icon_no_notifications"
+            android:text="@string/reports_no_incidents_subheader"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -93,6 +93,15 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:text="@string/incidents_tree"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_privacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_privacy"
                 android:textAllCaps="false"
                 android:textColor="@color/main_blue" />
 
@@ -201,6 +210,15 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:text="@string/incidents_wc"
+                android:textAllCaps="false"
+                android:textColor="@color/main_blue" />
+
+            <Button
+                android:id="@+id/incidents_button_security"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@string/incidents_security"
                 android:textAllCaps="false"
                 android:textColor="@color/main_blue" />
 

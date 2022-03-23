@@ -18,6 +18,7 @@ class HelpFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.invalidateOptionsMenu()
         return inflater.inflate(R.layout.fragment_help, container, false)
     }
 
@@ -34,6 +35,11 @@ class HelpFragment : Fragment() {
         view.findViewById<Button>(R.id.help_button_4).setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_to_help_slide_4)
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.invalidateOptionsMenu()
     }
 
 }

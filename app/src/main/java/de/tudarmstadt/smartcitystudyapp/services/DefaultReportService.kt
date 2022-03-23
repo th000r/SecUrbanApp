@@ -27,12 +27,16 @@ object DefaultReportService : ReportService {
         val request =
             Request.Builder().url(url).post(postBody.toRequestBody(jsonMediaType)).build()
 
-        client.newCall(request).execute().use { response ->
-            return if (!response.isSuccessful) {
-                "Post failed with code ${response.code}."
-            } else {
-                response.body?.string() ?: "Response had no body."
+        try {
+            client.newCall(request).execute().use { response ->
+                return if (!response.isSuccessful) {
+                    "Post failed with code ${response.code}."
+                } else {
+                    response.body?.string() ?: "Response had no body."
+                }
             }
+        } catch (ex: Exception) {
+            return "exception"
         }
     }
 
