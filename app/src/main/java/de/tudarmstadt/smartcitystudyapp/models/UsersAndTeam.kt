@@ -1,4 +1,4 @@
-package de.tudarmstadt.smartcitystudyapp.model
+package de.tudarmstadt.smartcitystudyapp.models
 
 import androidx.room.Embedded
 import androidx.room.Relation

@@ -24,7 +24,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.database.AppDatabase
 import de.tudarmstadt.smartcitystudyapp.helper.ConnectionType
 import de.tudarmstadt.smartcitystudyapp.helper.NetworkMonitor
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
+import de.tudarmstadt.smartcitystudyapp.notification.PushNotificationService
 import de.tudarmstadt.smartcitystudyapp.services.*
+import de.tudarmstadt.smartcitystudyapp.ui.welcome.WelcomeActivity
 import kotlinx.coroutines.*
 import java.util.*
 import javax.inject.Inject

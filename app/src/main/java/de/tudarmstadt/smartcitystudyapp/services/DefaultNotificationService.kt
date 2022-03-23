@@ -1,7 +1,8 @@
 package de.tudarmstadt.smartcitystudyapp.services
 
 import de.tudarmstadt.smartcitystudyapp.database.NotificationDao
-import de.tudarmstadt.smartcitystudyapp.model.Notification
+import de.tudarmstadt.smartcitystudyapp.interfaces.services.NotificationService
+import de.tudarmstadt.smartcitystudyapp.models.Notification
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

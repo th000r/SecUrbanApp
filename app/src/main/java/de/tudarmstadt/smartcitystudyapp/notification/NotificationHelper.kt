@@ -1,4 +1,4 @@
-package de.tudarmstadt.smartcitystudyapp.helper
+package de.tudarmstadt.smartcitystudyapp.notification
 
 import android.app.AlarmManager
 import android.app.NotificationManager
@@ -8,8 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.util.Log
-import de.tudarmstadt.smartcitystudyapp.model.NotificationStatus
-import de.tudarmstadt.smartcitystudyapp.services.PushNotificationService
+import de.tudarmstadt.smartcitystudyapp.notification.NotificationStatus.*
 import java.util.*
 
 /**
@@ -154,12 +153,12 @@ object NotificationHelper {
             // execute the next scheduled notification
             if (calendar.get(Calendar.DAY_OF_WEEK) == schedule.dayOfWeek && (calendar.get(Calendar.HOUR_OF_DAY) * 60) + calendar.get(Calendar.MINUTE) <= (schedule.hour * 60) + schedule.min) {
                 when (schedule.status) {
-                    NotificationStatus.DISPLAY -> {
+                    DISPLAY -> {
                         Log.d("Schedule display", schedule.id.toString() + " " + schedule.status.toString())
                         scheduleRTCNotification(context, schedule.id, schedule.dayOfWeek, schedule.hour, schedule.min, schedule.title, schedule.message)
                         return
                     }
-                    NotificationStatus.CANCEL -> {
+                    CANCEL -> {
                         Log.d("Schedule cancel", schedule.id.toString() + " " + schedule.status.toString())
                         cancelNotification(context, schedule.id, schedule.dayOfWeek, schedule.hour, schedule.min)
                         return

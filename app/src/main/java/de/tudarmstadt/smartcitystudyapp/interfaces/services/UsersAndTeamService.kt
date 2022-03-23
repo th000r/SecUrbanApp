@@ -1,8 +1,8 @@
-package de.tudarmstadt.smartcitystudyapp.services
+package de.tudarmstadt.smartcitystudyapp.interfaces.services
 
-import de.tudarmstadt.smartcitystudyapp.model.Team
-import de.tudarmstadt.smartcitystudyapp.model.User
-import de.tudarmstadt.smartcitystudyapp.model.UsersAndTeam
+import de.tudarmstadt.smartcitystudyapp.models.Team
+import de.tudarmstadt.smartcitystudyapp.models.User
+import de.tudarmstadt.smartcitystudyapp.models.UsersAndTeam
 import kotlinx.coroutines.flow.Flow
 
 interface UsersAndTeamService {

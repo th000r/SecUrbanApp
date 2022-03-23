@@ -1,6 +1,6 @@
-package de.tudarmstadt.smartcitystudyapp.services
+package de.tudarmstadt.smartcitystudyapp.interfaces.services
 
-import de.tudarmstadt.smartcitystudyapp.model.Notification
+import de.tudarmstadt.smartcitystudyapp.models.Notification
 
 interface NotificationService {
     suspend fun addNotification(notification: Notification)

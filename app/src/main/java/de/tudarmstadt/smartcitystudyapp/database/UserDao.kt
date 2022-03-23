@@ -1,11 +1,10 @@
 package de.tudarmstadt.smartcitystudyapp.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import de.tudarmstadt.smartcitystudyapp.model.User
+import de.tudarmstadt.smartcitystudyapp.models.User
 import kotlinx.coroutines.flow.Flow
 
 @Dao

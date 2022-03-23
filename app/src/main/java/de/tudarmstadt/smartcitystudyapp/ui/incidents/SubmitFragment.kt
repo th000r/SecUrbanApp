@@ -20,7 +20,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.model.SOURCE_OTHER
+import de.tudarmstadt.smartcitystudyapp.models.SOURCE_OTHER
 
 
 @AndroidEntryPoint

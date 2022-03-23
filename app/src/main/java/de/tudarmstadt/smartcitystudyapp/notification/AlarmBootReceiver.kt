@@ -1,10 +1,9 @@
-package de.tudarmstadt.smartcitystudyapp.helper
+package de.tudarmstadt.smartcitystudyapp.notification
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import de.tudarmstadt.smartcitystudyapp.services.PushNotificationService
 
 /**
  * Local Push Notification Helper

@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.model.ActivityEntry
+import de.tudarmstadt.smartcitystudyapp.models.Activity
 
 @AndroidEntryPoint
 class ActivitiesFragment : Fragment() {
@@ -86,13 +86,13 @@ class ActivitiesFragment : Fragment() {
                 if (limit <= 0) {
                     adapter.addAll(
                         it.map(
-                            ActivityEntry::text
+                            Activity::text
                         ).toMutableList().reversed()
                     )
                 } else {
                     adapter.addAll(
                         it.map(
-                            ActivityEntry::text
+                            Activity::text
                         ).toMutableList().reversed().take(limit)
                     )
                 }

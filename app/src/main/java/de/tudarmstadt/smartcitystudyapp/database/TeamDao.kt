@@ -4,8 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import de.tudarmstadt.smartcitystudyapp.model.Team
-import de.tudarmstadt.smartcitystudyapp.model.User
+import de.tudarmstadt.smartcitystudyapp.models.Team
 
 @Dao
 interface TeamDao {

@@ -1,7 +1,6 @@
-package de.tudarmstadt.smartcitystudyapp.services
+package de.tudarmstadt.smartcitystudyapp.interfaces.services
 
-import androidx.lifecycle.LiveData
-import de.tudarmstadt.smartcitystudyapp.model.User
+import de.tudarmstadt.smartcitystudyapp.models.User
 import kotlinx.coroutines.flow.Flow
 
 interface UserService {

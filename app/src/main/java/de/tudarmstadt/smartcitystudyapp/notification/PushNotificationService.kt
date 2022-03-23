@@ -1,4 +1,4 @@
-package de.tudarmstadt.smartcitystudyapp.services
+package de.tudarmstadt.smartcitystudyapp.notification
 
 import android.app.*
 import android.content.Context
@@ -7,9 +7,6 @@ import android.os.*
 import androidx.core.app.NotificationCompat
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.helper.NotificationHelper
-import de.tudarmstadt.smartcitystudyapp.model.NotificationSchedule
-import de.tudarmstadt.smartcitystudyapp.model.NotificationStatus
 import java.util.*
 
 class PushNotificationService(): Service(){

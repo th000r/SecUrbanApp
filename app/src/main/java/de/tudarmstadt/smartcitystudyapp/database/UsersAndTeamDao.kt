@@ -4,9 +4,9 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
-import de.tudarmstadt.smartcitystudyapp.model.Team
-import de.tudarmstadt.smartcitystudyapp.model.User
-import de.tudarmstadt.smartcitystudyapp.model.UsersAndTeam
+import de.tudarmstadt.smartcitystudyapp.models.Team
+import de.tudarmstadt.smartcitystudyapp.models.User
+import de.tudarmstadt.smartcitystudyapp.models.UsersAndTeam
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.OnConflictStrategy.IGNORE
 import kotlinx.coroutines.flow.Flow

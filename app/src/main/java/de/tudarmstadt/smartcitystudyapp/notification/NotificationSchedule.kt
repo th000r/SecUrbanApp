@@ -1,4 +1,4 @@
-package de.tudarmstadt.smartcitystudyapp.model
+package de.tudarmstadt.smartcitystudyapp.notification
 
 enum class NotificationStatus {
     DISPLAY,
