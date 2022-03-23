@@ -27,6 +27,19 @@ android {
         }
     }
 
+    flavorDimensions "prod"
+    productFlavors {
+        appA {
+            dimension "prod"
+            applicationIdSuffix ".appA"
+        }
+
+        appB {
+            dimension "prod"
+            applicationIdSuffix ".appB"
+        }
+    }
+
     buildFeatures {
         viewBinding true
     }
