@@ -31,6 +31,11 @@ import de.tudarmstadt.smartcitystudyapp.ui.welcome.WelcomeActivity
 import kotlinx.coroutines.*
 import java.util.*
 import javax.inject.Inject
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import de.tudarmstadt.smartcitystudyapp.featuremanager.FeatureManager
+import de.tudarmstadt.smartcitystudyapp.featuremanager.Features
+import de.tudarmstadt.smartcitystudyapp.utils.getJsonDataFromAsset
 
 
 @AndroidEntryPoint

@@ -18,6 +18,7 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.featuremanager.FeatureManager
 import de.tudarmstadt.smartcitystudyapp.models.Team
 import de.tudarmstadt.smartcitystudyapp.models.User
 import de.tudarmstadt.smartcitystudyapp.interfaces.services.TeamService
@@ -64,6 +65,13 @@ class WelcomeActivity : AppCompatActivity() {
             R.layout.tutorial_slide_2,
             R.layout.tutorial_slide_3
         )
+
+        if (FeatureManager.readFeatures(applicationContext).preinvestigation == true) {
+            val array = layouts.copyOf(layouts.size + 1)
+            array[layouts.size] = R.layout.preinvestigation
+            layouts = array
+        }
+
         addBottomDots(0)
         changeStatusBarColor()
         myViewPagerAdapter = MyViewPagerAdapter()

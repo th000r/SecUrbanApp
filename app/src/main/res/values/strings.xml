@@ -36,7 +36,6 @@
     <string name="slide_1_title">Vielen Dank,</string>
     <string name="slide_1_heading">dass du bei unserer Studie mitmachst!</string>
     <string name="slide_1_description">Hier hast du die Möglichkeit deinen individuellen Personencode einzugeben:</string>
-
     <string name="slide_2_title">Hier eine kurze \n Anleitung:</string>
     <string name="slide_2_description">Im Rahmen des SMARTer City - Projekts haben sich die Technische Universität Darmstadt und das Fraunhofer IGD dafür entschieden, eine digitale Plattform aufzubauen, um die direkte Umgebung von städtischen Bewohnern und Städtern sicherer und angenehmer zu gestalten.
     Einwohner von ganz Deutschland können in der SMARTer City - App angeben, wo Missstände im Straßenverkehr und sonstige Probleme im Stadtalltag und auf öffentlichen Plätzen auftauchen.</string>
@@ -47,6 +46,9 @@
     <string name="slide_2_name_hint">Namen eingeben</string>
     <string name="slide_2_city_hint">Wohnort eingeben</string>
 
+    <!-- Preinvestigation -->
+    <string name="pre_heading">Vorab möchten ich dir ein paar Fragen stellen</string>
+    <string name="q01_hint">Was ist deine Lieblingsfarbe?</string>
     <!-- Help -->
     <string name="help_heading">Fragen zur App?</string>
     <string name="help_subheading">Wir helfen dir weiter!</string>
