@@ -1,7 +1,7 @@
 package de.tudarmstadt.smartcitystudyapp.services
 
 import de.tudarmstadt.smartcitystudyapp.interfaces.services.ReportService
-import de.tudarmstadt.smartcitystudyapp.models.Report
+import de.tudarmstadt.smartcitystudyapp.models.ReportModel
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -11,7 +11,7 @@ import java.util.Calendar.*
 const val targetUrl = "smartercity.tk.informatik.tu-darmstadt.de"
 
 object DefaultReportService : ReportService {
-    override suspend fun sendReport(report: Report): String {
+    override suspend fun sendReport(report: ReportModel): String {
         val client = OkHttpClient()
         val url = "http://$targetUrl:8080/report"
         val postBody = "{" +

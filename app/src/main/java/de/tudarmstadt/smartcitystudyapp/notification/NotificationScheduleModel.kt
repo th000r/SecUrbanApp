@@ -1,16 +1,11 @@
 package de.tudarmstadt.smartcitystudyapp.notification
 
-enum class NotificationStatus {
-    DISPLAY,
-    CANCEL
-}
-
-data class NotificationSchedule(
+data class NotificationScheduleModel(
     val id: Int,
     val dayOfWeek: Int,
     val hour: Int,
     val min: Int,
-    val status: NotificationStatus,
+    val status: NotificationStatusEnum,
     val title: String? = "",
     val message: String? = ""
 )

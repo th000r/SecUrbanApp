@@ -1,8 +1,8 @@
 package de.tudarmstadt.smartcitystudyapp.interfaces.services
 
-import de.tudarmstadt.smartcitystudyapp.models.Team
-import de.tudarmstadt.smartcitystudyapp.models.User
-import de.tudarmstadt.smartcitystudyapp.models.UsersAndTeam
+import de.tudarmstadt.smartcitystudyapp.models.TeamModel
+import de.tudarmstadt.smartcitystudyapp.models.UserModel
+import de.tudarmstadt.smartcitystudyapp.models.UserAndTeamModel
 import kotlinx.coroutines.flow.Flow
 
 interface UsersAndTeamService {
@@ -10,11 +10,11 @@ interface UsersAndTeamService {
     suspend fun getUsers() : List<UsersAndTeam>
      */
 
-    fun getByTeamId(teamId: String): Flow<UsersAndTeam>
+    fun getByTeamId(teamId: String): Flow<UserAndTeamModel>
 
-    suspend fun addUser(user: User)
+    suspend fun addUser(user: UserModel)
 
-    suspend fun addTeam(team: Team)
+    suspend fun addTeam(team: TeamModel)
 
 
 }

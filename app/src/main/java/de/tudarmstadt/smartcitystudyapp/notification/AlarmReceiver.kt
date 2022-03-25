@@ -16,7 +16,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 /**
  * Local Push Notification Helper
  * handles the broadcast messages and generates local push notifications
@@ -25,10 +24,6 @@ class AlarmReceiver() : BroadcastReceiver() {
     @Inject
     lateinit var notificationService: NotificationService
     private val NOTIFICATION_ID = 9876
-    private val NOTIFICATION_STATUS_ACTIVE = 1
-    private val NOTIFICATION_STATUS_INACTIVE = -1
-    private val NOTIFICATION_KEY_STATUS = "notification_report_status"
-    private val NOTIFICATION_KEY_ID = "notification_report_id"
 
     override fun onReceive(context: Context, intent: Intent) {
         val action = intent.getStringExtra("action")
@@ -75,7 +70,7 @@ class AlarmReceiver() : BroadcastReceiver() {
     }
 
     suspend fun updateNotificationStatus(context: Context, id: String, status: Int) {
-        AppDatabase.getDatabase(context).notificationDao().save(de.tudarmstadt.smartcitystudyapp.models.Notification(id.toString(), status))
+        AppDatabase.getDatabase(context).notificationDao().save(de.tudarmstadt.smartcitystudyapp.models.NotificationModel(id.toString(), status))
     }
 
     fun buildLocalNotification(

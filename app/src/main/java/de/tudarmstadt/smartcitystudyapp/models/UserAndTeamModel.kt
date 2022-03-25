@@ -3,12 +3,12 @@ package de.tudarmstadt.smartcitystudyapp.models
 import androidx.room.Embedded
 import androidx.room.Relation
 
-data class UsersAndTeam(
+data class UserAndTeamModel(
     @Embedded
-    val team: Team,
+    val team: TeamModel,
     @Relation(
         parentColumn = "teamId",
         entityColumn = "teamId"
     )
-    val users: List<User>? = null
+    val users: List<UserModel>? = null
 )

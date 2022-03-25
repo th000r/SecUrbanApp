@@ -1,11 +1,11 @@
 package de.tudarmstadt.smartcitystudyapp.interfaces.services
 
-import de.tudarmstadt.smartcitystudyapp.models.Notification
+import de.tudarmstadt.smartcitystudyapp.models.NotificationModel
 
 interface NotificationService {
-    suspend fun addNotification(notification: Notification)
+    suspend fun addNotification(notification: NotificationModel)
 
-    suspend fun loadNotification(notificationId: String): Notification?
+    suspend fun loadNotification(notificationId: String): NotificationModel?
 
     fun getUnreadNotificationCount(): Int
 

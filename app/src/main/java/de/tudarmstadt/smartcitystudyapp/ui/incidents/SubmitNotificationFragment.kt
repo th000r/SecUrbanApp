@@ -1,21 +1,26 @@
 package de.tudarmstadt.smartcitystudyapp.ui.incidents
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.content.*
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
@@ -24,11 +29,13 @@ import de.tudarmstadt.smartcitystudyapp.R
 @AndroidEntryPoint
 class SubmitNotificationFragment : Fragment() {
     private val submitViewModel: SubmitViewModel by viewModels()
-    private val REQUEST_IMAGE_CAPTURE = 1
+    private val REQUEST_IMAGE_CAPTURE = 1000
+    private val REQUEST_CODE_LOCATION = 2000
     private val button_active_color = R.color.main_blue
     private val button_disabled_color = R.color.grey
     private var br: BroadcastReceiver? = null
     private var filter: IntentFilter? = null
+    private lateinit  var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +51,8 @@ class SubmitNotificationFragment : Fragment() {
         val sendPhotoSwitch = root.findViewById<SwitchCompat>(R.id.switch_send_photo)
         val nothingToReportSwitch = root.findViewById<SwitchCompat>(R.id.switch_send_nothing)
         var submitButton = root.findViewById<Button>(R.id.incidents_button_submit)
+        val locationSwitch = root.findViewById<SwitchCompat>(R.id.switch_send_location)
+
 
         val incidentDescriptionElements = listOf(
             root.findViewById<TextView>(R.id.text_location),
@@ -77,14 +86,50 @@ class SubmitNotificationFragment : Fragment() {
             }
         }
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+        locationSwitch.setOnClickListener {
+            when (locationSwitch.isChecked) {
+                true -> {
+                    updateLocation()
+                }
+                false -> {
+                    submitViewModel.longitude = -1.0
+                    submitViewModel.latitude = -1.0
+                }
+            }
+        }
+
         sendPhotoSwitch.setOnClickListener {
             when (sendPhotoSwitch.isChecked) {
                 true -> {
+                    var mParams = galleryButton.layoutParams
+                    mParams.apply {
+                        height = LinearLayout.LayoutParams.WRAP_CONTENT
+                    }
+                    galleryButton.layoutParams = mParams
                     galleryButton.visibility = View.VISIBLE
+
+                    mParams = cameraButton.layoutParams
+                    mParams.apply {
+                        height = LinearLayout.LayoutParams.WRAP_CONTENT
+                    }
+                    cameraButton.layoutParams = mParams
                     cameraButton.visibility = View.VISIBLE
                 }
                 false -> {
+                    var mParams = galleryButton.layoutParams
+                    mParams.apply {
+                        height = 0
+                    }
+                    galleryButton.layoutParams = mParams
                     galleryButton.visibility = View.INVISIBLE
+
+                    mParams = cameraButton.layoutParams
+                    mParams.apply {
+                        height = 0
+                    }
+                    cameraButton.layoutParams = mParams
                     cameraButton.visibility = View.INVISIBLE
                 }
             }
@@ -163,6 +208,57 @@ class SubmitNotificationFragment : Fragment() {
         } else {
             button.setBackgroundColor(resources.getColor(color))
             button.invalidate()
+        }
+    }
+
+    fun updateLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                REQUEST_CODE_LOCATION
+            )
+        } else {
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(requireActivity()) { location ->
+                if (location != null) {
+                    submitViewModel.latitude = location.getLatitude()
+                    submitViewModel.longitude = location.getLongitude()
+                }
+            }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CODE_LOCATION -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.size > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    fusedLocationProviderClient.getLastLocation().addOnSuccessListener(requireActivity()) { location ->
+                        if (location != null) {
+                            submitViewModel.latitude = location.getLatitude()
+                            submitViewModel.longitude = location.getLongitude()
+                        }
+                    }
+                }
+            }
         }
     }
 }

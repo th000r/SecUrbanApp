@@ -12,7 +12,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.models.Report
+import de.tudarmstadt.smartcitystudyapp.models.ReportModel
 import de.tudarmstadt.smartcitystudyapp.models.SOURCE_OTHER
 import de.tudarmstadt.smartcitystudyapp.interfaces.services.ReportService
 import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
@@ -22,8 +22,10 @@ import kotlinx.coroutines.withContext
 
 class SubmitViewModel @ViewModelInject constructor(
     private val reportService: ReportService,
-    private val userService: UserService
+    private val userService: UserService,
 ) : ViewModel() {
+    var latitude: Double = -1.0
+    var longitude: Double = -1.0
     var source: String = SOURCE_OTHER
 
     fun sendReport(view: View, finalActionId: Int) {
@@ -38,11 +40,13 @@ class SubmitViewModel @ViewModelInject constructor(
             viewModelScope.launch() {
                 Looper.myLooper() ?: Looper.prepare()
 
-                val report = Report(
+                val report = ReportModel(
                     userId = userService.getUserId() ?: "???",
                     message = view.findViewById<EditText>(R.id.report_text).text.toString(),
                     picture = view.findViewById<SwitchCompat>(R.id.switch_send_photo).isChecked,
                     location = view.findViewById<SwitchCompat>(R.id.switch_send_location).isChecked,
+                    latitude = latitude,
+                    longitude = longitude,
                     source = source
                 )
 

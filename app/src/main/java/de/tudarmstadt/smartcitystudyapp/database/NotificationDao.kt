@@ -4,15 +4,15 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import de.tudarmstadt.smartcitystudyapp.models.Notification
+import de.tudarmstadt.smartcitystudyapp.models.NotificationModel
 
 @Dao
 interface NotificationDao {
     @Insert(onConflict = REPLACE)
-    fun save(notification: Notification)
+    fun save(notification: NotificationModel)
 
     @Query("SELECT * FROM notifications WHERE notificationId = :notificationId")
-    fun load(notificationId: String): Notification?
+    fun load(notificationId: String): NotificationModel?
 
     @Query("SELECT COUNT(notificationId) FROM notifications WHERE status = 1")
     fun loadUnreadNotificationCount(): Int

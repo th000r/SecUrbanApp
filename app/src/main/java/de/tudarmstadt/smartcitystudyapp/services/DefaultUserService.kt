@@ -4,7 +4,7 @@ import androidx.annotation.WorkerThread
 import de.tudarmstadt.smartcitystudyapp.database.UserDao
 import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
 import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserWebservice
-import de.tudarmstadt.smartcitystudyapp.models.User
+import de.tudarmstadt.smartcitystudyapp.models.UserModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -30,15 +30,15 @@ class DefaultUserService @Inject constructor(
     }
 
     @WorkerThread
-    override suspend fun getUser(userId: String): Flow<User?> {
+    override suspend fun getUser(userId: String): Flow<UserModel?> {
         return userDao.load(userId)
     }
 
-    override suspend fun setUser(user: User) = withContext(Dispatchers.IO){
+    override suspend fun setUser(user: UserModel) = withContext(Dispatchers.IO){
         userDao.save(user)
     }
 
-    override suspend fun addPoints(user: User, points: Int) {
-        userDao.save(User(user.userId, user.userName, user.city, user.points+points, user.teamId))
+    override suspend fun addPoints(user: UserModel, points: Int) {
+        userDao.save(UserModel(user.userId, user.userName, user.city, user.points+points, user.teamId))
     }
 }

@@ -7,7 +7,6 @@ import de.tudarmstadt.smartcitystudyapp.utils.getJsonDataFromAsset
 
 class FeatureManager {
     companion object {
-
         // read list of available features from json config
         fun readFeatures(applicationContext: Context): Features {
             val jsonFileString = getJsonDataFromAsset(applicationContext, "feature-config.json")

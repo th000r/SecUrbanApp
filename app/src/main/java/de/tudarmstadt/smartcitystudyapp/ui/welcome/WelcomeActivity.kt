@@ -19,8 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.featuremanager.FeatureManager
-import de.tudarmstadt.smartcitystudyapp.models.Team
-import de.tudarmstadt.smartcitystudyapp.models.User
+import de.tudarmstadt.smartcitystudyapp.models.TeamModel
+import de.tudarmstadt.smartcitystudyapp.models.UserModel
 import de.tudarmstadt.smartcitystudyapp.interfaces.services.TeamService
 import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
 import de.tudarmstadt.smartcitystudyapp.interfaces.services.UsersAndTeamService
@@ -125,8 +125,8 @@ class WelcomeActivity : AppCompatActivity() {
             toast.show()
         } else {
             this.lifecycleScope.launch {
-                usersAndTeamService.addTeam(Team(userCity!!.toLowerCase(), userCity!!.toLowerCase(), 0))
-                usersAndTeamService.addUser(User(userId!!, userName!!, userCity!!, 0, userCity!!.toLowerCase()))
+                usersAndTeamService.addTeam(TeamModel(userCity!!.toLowerCase(), userCity!!.toLowerCase(), 0))
+                usersAndTeamService.addUser(UserModel(userId!!, userName!!, userCity!!, 0, userCity!!.toLowerCase()))
                 //userService.setUser(User(userId!!, userName!!, 0, userCity!!.toLowerCase()))
             }
             val intent = Intent(this, MainActivity::class.java)
