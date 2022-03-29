@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.*
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -13,9 +12,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
@@ -41,48 +38,61 @@ import java.util.*
 
 @AndroidEntryPoint
 class SubmitFragment : Fragment() {
-    private val submitViewModel: SubmitViewModel by viewModels()
-    private val REQUEST_IMAGE_CAPTURE = 1000
-    private val REQUEST_IMAGE_GALLERY = 1100
-    private val REQUEST_CODE_LOCATION = 2000
-    private val button_active_color = R.color.main_blue
-    private val button_disabled_color = R.color.grey
-    private var photoFile: File? = null
-    private var br: BroadcastReceiver? = null
-    private var filter: IntentFilter? = null
-    private lateinit  var fusedLocationProviderClient: FusedLocationProviderClient
+    private val submitViewModel: SubmitViewModel by viewModels() // viewmodel
+    private val REQUEST_IMAGE_CAPTURE = 1000 // camera image capture request code
+    private val REQUEST_IMAGE_GALLERY = 1100 // gallery image selection request code
+    private val REQUEST_CODE_LOCATION = 2000 // gps location request code
+    private val button_active_color = R.color.main_blue // active color for submit button
+    private val button_disabled_color = R.color.grey // inactive color for submit button
+    private var imageId = 1 // id for created image views (preview image)
+    private var selected_image_id = 0 // id of currently selected image view
+    private lateinit var photoFile: File // placeholder for captured image
+    private lateinit var br: BroadcastReceiver
+    private lateinit var filter: IntentFilter // filter for current network status
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var imagesPreviewLinearLayout: LinearLayout
 
+    /******************************
+    ////////// LIFECYCLE //////////
+    ******************************/
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        /** INIT **/
         val root = inflater.inflate(R.layout.fragment_submitincidents, container, false)
         val suggestion: String = arguments?.getString("suggestion") ?: ""
         submitViewModel.source = arguments?.getString("source") ?: SOURCE_OTHER
 
+        // init views
         val galleryButton = root.findViewById<Button>(R.id.incidents_button_gallery)
         val cameraButton = root.findViewById<Button>(R.id.incidents_button_camera)
         val sendPhotoSwitch = root.findViewById<SwitchCompat>(R.id.switch_send_photo)
         val submitButton =  root.findViewById<Button>(R.id.incidents_button_submit)
         val locationSwitch = root.findViewById<SwitchCompat>(R.id.switch_send_location)
         val imagesScrollView = root.findViewById<HorizontalScrollView>(R.id.images_scroll_view)
-        imagesPreviewLinearLayout = root.findViewById<LinearLayout>(R.id.images_preview)
+        imagesPreviewLinearLayout = root.findViewById(R.id.images_preview)
 
+        // init network status
         filter = IntentFilter(getString(R.string.broadcast_network_status)).apply{
             addAction(R.string.broadcast_network_status.toString())
         }
 
+        // init text suggestions
         root.findViewById<EditText>(R.id.report_text).setText(suggestion)
 
+        //init gps location service
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+        /** CLICK LISTENER **/
+        // submit button
         submitButton.setOnClickListener {
             submitViewModel.sendReport(root, R.id.action_submit_to_thankyou)
         }
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
-
+        // gps switch
         locationSwitch.setOnClickListener {
             when (locationSwitch.isChecked) {
                 true -> {
@@ -95,6 +105,7 @@ class SubmitFragment : Fragment() {
             }
         }
 
+        // image upload switch
         sendPhotoSwitch.setOnClickListener {
             when (sendPhotoSwitch.isChecked) {
                 true -> {
@@ -144,12 +155,14 @@ class SubmitFragment : Fragment() {
             }
         }
 
+        // select image from gallery
         galleryButton.setOnClickListener {
             val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             galleryIntent.type = "image/*"
             startActivityForResult(Intent.createChooser(galleryIntent, "Select File"), REQUEST_IMAGE_GALLERY)
         }
 
+        // select image from camera
         cameraButton.setOnClickListener {
             try {
                 photoFile = createImageFile()
@@ -162,7 +175,6 @@ class SubmitFragment : Fragment() {
                     )
                     val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
-
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
                 }
@@ -173,28 +185,10 @@ class SubmitFragment : Fragment() {
         return root
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            val myBitmap = BitmapFactory.decodeFile(photoFile!!.absolutePath)
-            var imageView = ImageView(requireContext())
-            imageView.adjustViewBounds = true
-            imageView.setImageBitmap(myBitmap)
-            imageView.setPadding(Dimensions.dpToPx(requireActivity().resources.displayMetrics, 10), 0, 0, 0)
-            imagesPreviewLinearLayout.addView(imageView)
-        }
-
-        if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == Activity.RESULT_OK) {
-            val imageBitmap = data?.data
-            val imageView = ImageView(requireContext())
-            imageView.adjustViewBounds = true
-            imageView.setImageURI(imageBitmap)
-            imageView.setPadding(5, 0, 0, 0)
-            imagesPreviewLinearLayout.addView(imageView)
-        }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         // listen for network connectivity changes and set the background color of the submit button
@@ -218,10 +212,7 @@ class SubmitFragment : Fragment() {
             }
         }
 
-        // hacky approach to get the network status when the view is created
-        /* ToDo: is there another possibility to get the network status on creation?
-        *  Because the network manager broadcasts the status only on network status changes
-        */
+        // get network status when view is created
         if(MainActivity.networkAvailable) {
             setButtonColor(view, button_active_color)
         } else {
@@ -231,14 +222,94 @@ class SubmitFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        // register network listener
         LocalBroadcastManager.getInstance(super.requireContext()).registerReceiver(br!!, filter!!)
     }
 
     override fun onStop() {
         super.onStop()
+        // unregister network listener
         LocalBroadcastManager.getInstance(super.requireContext()).unregisterReceiver(br!!)
     }
 
+
+
+    /*********************************
+    ////////// CONTEXT MENU //////////
+    *********************************/
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu,
+        v: View,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        val inflater: MenuInflater = MenuInflater(requireContext())
+        inflater.inflate(R.menu.image_upload_context_menu, menu)
+
+        // save id of selected image for further actions
+        selected_image_id = v.id
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            // remove image from preview
+            R.id.context_menu_delete_image -> {
+                imagesPreviewLinearLayout.removeView(imagesPreviewLinearLayout.findViewById(selected_image_id))
+                return true
+            }
+            else -> {
+                return super.onContextItemSelected(item)
+            }
+        }
+    }
+
+
+
+    /************************************
+    ////////// ACTIVITY RESULT //////////
+     ***********************************/
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_IMAGE_CAPTURE) {
+                val myBitmap = BitmapFactory.decodeFile(photoFile!!.absolutePath)
+                val imageView = ImageView(requireContext())
+                imageView.adjustViewBounds = true
+                imageView.setImageBitmap(myBitmap)
+                imageView.setPadding(Dimensions.dpToPx(requireActivity().resources.displayMetrics, 10), 0, 0, 0)
+                imageView.id = imageId
+                imageId++
+                registerForContextMenu(imageView)
+                imagesPreviewLinearLayout.addView(imageView)
+            }
+
+            if (requestCode == REQUEST_IMAGE_GALLERY) {
+                val imageBitmap = data?.data
+                val imageView = ImageView(requireContext())
+                imageView.adjustViewBounds = true
+                imageView.setImageURI(imageBitmap)
+                imageView.setPadding(5, 0, 0, 0)
+                imageView.id = imageId
+                imageId++
+                registerForContextMenu(imageView)
+                imagesPreviewLinearLayout.addView(imageView)
+            }
+        }
+    }
+
+
+
+    /****************************
+    ////////// METHODS //////////
+     ****************************/
+
+    /**
+     * changes the submit button color
+     * @param view view that contains the submit button
+     * @param color Color resource in R.color
+     */
     @Suppress("DEPRECATION")
     fun setButtonColor(view: View, color: Int) {
         var button =  view.findViewById<Button>(R.id.incidents_button_submit)
@@ -254,6 +325,10 @@ class SubmitFragment : Fragment() {
         }
     }
 
+    /**
+     * Requires GPS permission if none is granted
+     * Updates the current gps location (latitude, longitude)
+     */
     fun updateLocation() {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -281,6 +356,9 @@ class SubmitFragment : Fragment() {
         }
     }
 
+    /**
+     * Updates the current gps location if permission was just granted
+     */
     @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -305,10 +383,13 @@ class SubmitFragment : Fragment() {
         }
     }
 
+    /**
+     * Creates an image placeholder file in the app directory to save images taken by the camera
+     */
     @Throws(IOException::class)
     private fun createImageFile(): File {
         // Create an image file name
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.GERMANY).format(Date())
         val imageFileName = "JPEG_" + timeStamp + "_"
         val storageDir = ContextCompat.getExternalFilesDirs(requireContext(), Environment.DIRECTORY_PICTURES)
         val image = File.createTempFile(
