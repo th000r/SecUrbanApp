@@ -1,5 +1,7 @@
 package de.tudarmstadt.smartcitystudyapp.ui.incidents
 
+import android.app.Activity
+import android.net.Uri
 import android.os.Looper
 import android.util.Log
 import android.view.View
@@ -24,9 +26,10 @@ class SubmitViewModel @ViewModelInject constructor(
     private val reportService: ReportService,
     private val userService: UserService,
 ) : ViewModel() {
-    var latitude: Double = -1.0
-    var longitude: Double = -1.0
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
     var source: String = SOURCE_OTHER
+    var imageFilePaths: MutableList<String> = mutableListOf<String>()
 
     fun sendReport(view: View, finalActionId: Int) {
         val context = view.context
@@ -51,14 +54,14 @@ class SubmitViewModel @ViewModelInject constructor(
                 )
 
                 withContext(Dispatchers.IO) {
-                    returnVal = reportService.sendReport(report)
+                    returnVal = reportService.postReport(report, imageFilePaths)
                     Log.i("sendReport Result", returnVal)
                 }
 
                 withContext(Dispatchers.Main) {
-                    if (returnVal.contains("Post failed with code")) {
+                    if (returnVal.contains("Post failed")) {
                         Toast.makeText(context, R.string.report_sent_error_toast, Toast.LENGTH_LONG).show()
-                    } else if (returnVal.contains("exception")) {
+                    } else if (returnVal.contains("Exception")) {
                         Toast.makeText(context, R.string.report_sent_error_toast, Toast.LENGTH_LONG).show()
                     } else {
                         Toast.makeText(context, R.string.report_sent_success_toast, Toast.LENGTH_LONG).show()
@@ -70,4 +73,20 @@ class SubmitViewModel @ViewModelInject constructor(
             Toast.makeText(context, context.getText(R.string.incidents_submit_connectivity_toast), Toast.LENGTH_LONG).show()
         }
     }
+
+    /*
+    fun uploadImages(activity: Activity, sourceFilePaths: MutableList<String>) {
+        var returnVal = ""
+
+        viewModelScope.launch() {
+            Looper.myLooper() ?: Looper.prepare()
+
+            withContext(Dispatchers.IO) {
+                reportService.uploadImages(activity, sourceFilePaths)
+                Log.i("sendReport Result", returnVal)
+            }
+        }
+    }
+
+     */
 }

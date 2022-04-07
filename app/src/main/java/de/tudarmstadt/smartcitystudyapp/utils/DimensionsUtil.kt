@@ -2,7 +2,7 @@ package de.tudarmstadt.smartcitystudyapp.utils
 
 import android.util.DisplayMetrics
 
-class Dimensions {
+class DimensionsUtil {
     companion object {
         fun dpToPx(displayMetrics: DisplayMetrics, dp: Int): Int {
             val density: Float = displayMetrics.density

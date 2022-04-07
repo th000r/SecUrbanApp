@@ -29,7 +29,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.models.SOURCE_OTHER
-import de.tudarmstadt.smartcitystudyapp.utils.Dimensions
+import de.tudarmstadt.smartcitystudyapp.utils.DimensionsUtil
+import de.tudarmstadt.smartcitystudyapp.utils.URIPathUtil
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -99,8 +100,8 @@ class SubmitFragment : Fragment() {
                     updateLocation()
                 }
                 false -> {
-                    submitViewModel.longitude = -1.0
-                    submitViewModel.latitude = -1.0
+                    submitViewModel.longitude = 0.0
+                    submitViewModel.latitude = 0.0
                 }
             }
         }
@@ -125,7 +126,7 @@ class SubmitFragment : Fragment() {
 
                     mParams = imagesScrollView.layoutParams
                     mParams.apply {
-                        height = Dimensions.dpToPx(requireActivity().resources.displayMetrics, 100)
+                        height = DimensionsUtil.dpToPx(requireActivity().resources.displayMetrics, 100)
                     }
                     imagesScrollView.layoutParams = mParams
                     imagesScrollView.visibility = View.VISIBLE
@@ -173,6 +174,7 @@ class SubmitFragment : Fragment() {
                         "de.tudarmstadt.smartcitystudyapp.captureimage.fileprovider",
                         photoFile!!
                     )
+
                     val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
@@ -275,10 +277,16 @@ class SubmitFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_IMAGE_CAPTURE) {
                 val myBitmap = BitmapFactory.decodeFile(photoFile!!.absolutePath)
+                val selectedImageUri = FileProvider.getUriForFile(
+                    requireContext(),
+                    "de.tudarmstadt.smartcitystudyapp.captureimage.fileprovider",
+                    photoFile!!
+                )
+                submitViewModel.imageFilePaths.add(photoFile!!.absolutePath)
                 val imageView = ImageView(requireContext())
                 imageView.adjustViewBounds = true
                 imageView.setImageBitmap(myBitmap)
-                imageView.setPadding(Dimensions.dpToPx(requireActivity().resources.displayMetrics, 10), 0, 0, 0)
+                imageView.setPadding(DimensionsUtil.dpToPx(requireActivity().resources.displayMetrics, 10), 0, 0, 0)
                 imageView.id = imageId
                 imageId++
                 registerForContextMenu(imageView)
@@ -287,6 +295,9 @@ class SubmitFragment : Fragment() {
 
             if (requestCode == REQUEST_IMAGE_GALLERY) {
                 val imageBitmap = data?.data
+                val selectedImageUri = data!!.data!!
+                val selectedImagePath = URIPathUtil().getRealPathFromURI(requireContext(), selectedImageUri)
+                submitViewModel.imageFilePaths.add(selectedImagePath!!)
                 val imageView = ImageView(requireContext())
                 imageView.adjustViewBounds = true
                 imageView.setImageURI(imageBitmap)
@@ -401,5 +412,12 @@ class SubmitFragment : Fragment() {
         // Save a file: path for use with ACTION_VIEW intents
         // mCurrentPhotoPath = image.absolutePath
         return image
+    }
+
+    private fun getCapturedImagePath(file: File): String {
+        val storageDir = ContextCompat.getExternalFilesDirs(requireContext(), Environment.DIRECTORY_PICTURES).toString()
+        val fileName = file.name
+
+        return storageDir[0].plus(fileName)
     }
 }
