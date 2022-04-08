@@ -21,9 +21,9 @@ import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.featuremanager.FeatureManager
 import de.tudarmstadt.smartcitystudyapp.models.TeamModel
 import de.tudarmstadt.smartcitystudyapp.models.UserModel
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.TeamService
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.UsersAndTeamService
+import de.tudarmstadt.smartcitystudyapp.interfaces.TeamServiceInterface
+import de.tudarmstadt.smartcitystudyapp.interfaces.UserServiceInterface
+import de.tudarmstadt.smartcitystudyapp.interfaces.UsersAndTeamServiceInterface
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,11 +33,11 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class WelcomeActivity : AppCompatActivity() {
     @Inject
-    lateinit var userService: UserService
+    lateinit var userServiceInterface: UserServiceInterface
     @Inject
-    lateinit var teamService: TeamService
+    lateinit var teamServiceInterface: TeamServiceInterface
     @Inject
-    lateinit var usersAndTeamService: UsersAndTeamService
+    lateinit var usersAndTeamServiceInterface: UsersAndTeamServiceInterface
     private var viewPager: ViewPager? = null
     private var myViewPagerAdapter: MyViewPagerAdapter? = null
     private var dotsLayout: LinearLayout? = null
@@ -125,8 +125,8 @@ class WelcomeActivity : AppCompatActivity() {
             toast.show()
         } else {
             this.lifecycleScope.launch {
-                usersAndTeamService.addTeam(TeamModel(userCity!!.toLowerCase(), userCity!!.toLowerCase(), 0))
-                usersAndTeamService.addUser(UserModel(userId!!, userName!!, userCity!!, 0, userCity!!.toLowerCase()))
+                usersAndTeamServiceInterface.addTeam(TeamModel(userCity!!.toLowerCase(), userCity!!.toLowerCase(), 0))
+                usersAndTeamServiceInterface.addUser(UserModel(userId!!, userName!!, userCity!!, 0, userCity!!.toLowerCase()))
                 //userService.setUser(User(userId!!, userName!!, 0, userCity!!.toLowerCase()))
             }
             val intent = Intent(this, MainActivity::class.java)

@@ -1,11 +1,11 @@
-package de.tudarmstadt.smartcitystudyapp.interfaces.services
+package de.tudarmstadt.smartcitystudyapp.interfaces
 
 import de.tudarmstadt.smartcitystudyapp.models.TeamModel
 import de.tudarmstadt.smartcitystudyapp.models.UserModel
 import de.tudarmstadt.smartcitystudyapp.models.UserAndTeamModel
 import kotlinx.coroutines.flow.Flow
 
-interface UsersAndTeamService {
+interface UsersAndTeamServiceInterface {
     /*
     suspend fun getUsers() : List<UsersAndTeam>
      */

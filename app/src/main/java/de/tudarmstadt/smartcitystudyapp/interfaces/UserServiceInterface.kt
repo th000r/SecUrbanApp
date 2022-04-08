@@ -1,9 +1,9 @@
-package de.tudarmstadt.smartcitystudyapp.interfaces.services
+package de.tudarmstadt.smartcitystudyapp.interfaces
 
 import de.tudarmstadt.smartcitystudyapp.models.UserModel
 import kotlinx.coroutines.flow.Flow
 
-interface UserService {
+interface UserServiceInterface {
     suspend fun getUserId() : String?
 
     suspend fun getUser(userId: String): Flow<UserModel?>

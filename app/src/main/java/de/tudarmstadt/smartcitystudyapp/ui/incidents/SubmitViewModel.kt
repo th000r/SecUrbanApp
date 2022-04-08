@@ -1,6 +1,5 @@
 package de.tudarmstadt.smartcitystudyapp.ui.incidents
 
-import android.app.Activity
 import android.net.Uri
 import android.os.Looper
 import android.util.Log
@@ -16,23 +15,32 @@ import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.models.ReportModel
 import de.tudarmstadt.smartcitystudyapp.models.SOURCE_OTHER
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.ReportService
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
+import de.tudarmstadt.smartcitystudyapp.interfaces.ReportServiceInterface
+import de.tudarmstadt.smartcitystudyapp.interfaces.UserServiceInterface
+import de.tudarmstadt.smartcitystudyapp.models.SelectedImageModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SubmitViewModel @ViewModelInject constructor(
-    private val reportService: ReportService,
-    private val userService: UserService,
+    private val reportServiceInterface: ReportServiceInterface,
+    private val userServiceInterface: UserServiceInterface,
 ) : ViewModel() {
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
     var source: String = SOURCE_OTHER
-    var imageFilePaths: MutableList<String> = mutableListOf<String>()
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
+    private var selected_images: MutableList<SelectedImageModel> = mutableListOf()
+    private var image_id = 1 // id for created image views (preview image)
 
     fun sendReport(view: View, finalActionId: Int) {
         val context = view.context
+
+        // extract image paths
+        var imageFilePaths: MutableList<String> = mutableListOf<String>()
+
+        for (image in selected_images) {
+            image.path?.let { imageFilePaths.add(it) }
+        }
 
         if(MainActivity.networkAvailable) {
             println("Sending report") //TODO: Remove debug reports
@@ -44,7 +52,7 @@ class SubmitViewModel @ViewModelInject constructor(
                 Looper.myLooper() ?: Looper.prepare()
 
                 val report = ReportModel(
-                    userId = userService.getUserId() ?: "???",
+                    userId = userServiceInterface.getUserId() ?: "???",
                     message = view.findViewById<EditText>(R.id.report_text).text.toString(),
                     picture = view.findViewById<SwitchCompat>(R.id.switch_send_photo).isChecked,
                     location = view.findViewById<SwitchCompat>(R.id.switch_send_location).isChecked,
@@ -54,7 +62,7 @@ class SubmitViewModel @ViewModelInject constructor(
                 )
 
                 withContext(Dispatchers.IO) {
-                    returnVal = reportService.postReport(report, imageFilePaths)
+                    returnVal = reportServiceInterface.postReport(report, imageFilePaths)
                     Log.i("sendReport Result", returnVal)
                 }
 
@@ -74,19 +82,22 @@ class SubmitViewModel @ViewModelInject constructor(
         }
     }
 
-    /*
-    fun uploadImages(activity: Activity, sourceFilePaths: MutableList<String>) {
-        var returnVal = ""
+    fun addSelectedImage(path: String?, uri: Uri?): Int {
+        selected_images.add(SelectedImageModel(image_id, path, uri))
+        return image_id++
+    }
 
-        viewModelScope.launch() {
-            Looper.myLooper() ?: Looper.prepare()
-
-            withContext(Dispatchers.IO) {
-                reportService.uploadImages(activity, sourceFilePaths)
-                Log.i("sendReport Result", returnVal)
+    fun removeSelectedImage(id: Int) {
+        for (i in 0..selected_images.size) {
+            if(selected_images.get(i).id == id) {
+                selected_images.removeAt(i)
+                return
             }
         }
     }
 
-     */
+    fun setLocation(lat: Double, long: Double) {
+        latitude = lat
+        longitude = long
+    }
 }

@@ -1,8 +1,8 @@
 package de.tudarmstadt.smartcitystudyapp.services
 
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.LocationService
+import de.tudarmstadt.smartcitystudyapp.interfaces.LocationServiceInterface
 
-class DefaultLocationService: LocationService {
+class LocationService: LocationServiceInterface {
     override fun getLocation(): Pair<Double, Double> {
         //TODO
         return Pair(0.0, 0.0)

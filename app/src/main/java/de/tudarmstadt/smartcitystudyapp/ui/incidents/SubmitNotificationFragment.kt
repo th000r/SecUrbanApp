@@ -94,8 +94,7 @@ class SubmitNotificationFragment : Fragment() {
                     updateLocation()
                 }
                 false -> {
-                    submitViewModel.longitude = -1.0
-                    submitViewModel.latitude = -1.0
+                    submitViewModel.setLocation(0.0, 0.0)
                 }
             }
         }
@@ -231,8 +230,7 @@ class SubmitNotificationFragment : Fragment() {
         } else {
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(requireActivity()) { location ->
                 if (location != null) {
-                    submitViewModel.latitude = location.getLatitude()
-                    submitViewModel.longitude = location.getLongitude()
+                    submitViewModel.setLocation(location.latitude, location.longitude)
                 }
             }
         }
@@ -253,8 +251,7 @@ class SubmitNotificationFragment : Fragment() {
                 ) {
                     fusedLocationProviderClient.getLastLocation().addOnSuccessListener(requireActivity()) { location ->
                         if (location != null) {
-                            submitViewModel.latitude = location.getLatitude()
-                            submitViewModel.longitude = location.getLongitude()
+                            submitViewModel.setLocation(location.latitude, location.longitude)
                         }
                     }
                 }

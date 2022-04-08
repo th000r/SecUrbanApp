@@ -1,15 +1,15 @@
 package de.tudarmstadt.smartcitystudyapp.services
 
 import de.tudarmstadt.smartcitystudyapp.database.TeamDao
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.TeamService
+import de.tudarmstadt.smartcitystudyapp.interfaces.TeamServiceInterface
 import de.tudarmstadt.smartcitystudyapp.models.TeamModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class DefaultTeamService @Inject constructor(
+class TeamService @Inject constructor(
     private val teamDao: TeamDao
-) : TeamService {
+) : TeamServiceInterface {
     override suspend fun getTeamId(): String? = withContext(Dispatchers.IO){
         teamDao.loadAll().let {
             if (it.isEmpty()) {

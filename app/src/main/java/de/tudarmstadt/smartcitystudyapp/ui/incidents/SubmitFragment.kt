@@ -29,6 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.models.SOURCE_OTHER
+import de.tudarmstadt.smartcitystudyapp.models.SelectedImageModel
 import de.tudarmstadt.smartcitystudyapp.utils.DimensionsUtil
 import de.tudarmstadt.smartcitystudyapp.utils.URIPathUtil
 import java.io.File
@@ -45,7 +46,6 @@ class SubmitFragment : Fragment() {
     private val REQUEST_CODE_LOCATION = 2000 // gps location request code
     private val button_active_color = R.color.main_blue // active color for submit button
     private val button_disabled_color = R.color.grey // inactive color for submit button
-    private var imageId = 1 // id for created image views (preview image)
     private var selected_image_id = 0 // id of currently selected image view
     private lateinit var photoFile: File // placeholder for captured image
     private lateinit var br: BroadcastReceiver
@@ -100,8 +100,7 @@ class SubmitFragment : Fragment() {
                     updateLocation()
                 }
                 false -> {
-                    submitViewModel.longitude = 0.0
-                    submitViewModel.latitude = 0.0
+                    submitViewModel.setLocation(0.0, 0.0)
                 }
             }
         }
@@ -258,6 +257,7 @@ class SubmitFragment : Fragment() {
             // remove image from preview
             R.id.context_menu_delete_image -> {
                 imagesPreviewLinearLayout.removeView(imagesPreviewLinearLayout.findViewById(selected_image_id))
+                submitViewModel.removeSelectedImage(selected_image_id)
                 return true
             }
             else -> {
@@ -282,13 +282,11 @@ class SubmitFragment : Fragment() {
                     "de.tudarmstadt.smartcitystudyapp.captureimage.fileprovider",
                     photoFile!!
                 )
-                submitViewModel.imageFilePaths.add(photoFile!!.absolutePath)
                 val imageView = ImageView(requireContext())
                 imageView.adjustViewBounds = true
                 imageView.setImageBitmap(myBitmap)
                 imageView.setPadding(DimensionsUtil.dpToPx(requireActivity().resources.displayMetrics, 10), 0, 0, 0)
-                imageView.id = imageId
-                imageId++
+                imageView.id = submitViewModel.addSelectedImage(photoFile!!.absolutePath, selectedImageUri)
                 registerForContextMenu(imageView)
                 imagesPreviewLinearLayout.addView(imageView)
             }
@@ -297,13 +295,11 @@ class SubmitFragment : Fragment() {
                 val imageBitmap = data?.data
                 val selectedImageUri = data!!.data!!
                 val selectedImagePath = URIPathUtil().getRealPathFromURI(requireContext(), selectedImageUri)
-                submitViewModel.imageFilePaths.add(selectedImagePath!!)
                 val imageView = ImageView(requireContext())
                 imageView.adjustViewBounds = true
                 imageView.setImageURI(imageBitmap)
                 imageView.setPadding(5, 0, 0, 0)
-                imageView.id = imageId
-                imageId++
+                imageView.id = submitViewModel.addSelectedImage(selectedImagePath, selectedImageUri)
                 registerForContextMenu(imageView)
                 imagesPreviewLinearLayout.addView(imageView)
             }
@@ -360,8 +356,7 @@ class SubmitFragment : Fragment() {
         } else {
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(requireActivity()) { location ->
                 if (location != null) {
-                    submitViewModel.latitude = location.getLatitude()
-                    submitViewModel.longitude = location.getLongitude()
+                    submitViewModel.setLocation(location.latitude, location.longitude)
                 }
             }
         }
@@ -385,8 +380,7 @@ class SubmitFragment : Fragment() {
                 ) {
                     fusedLocationProviderClient.getLastLocation().addOnSuccessListener(requireActivity()) { location ->
                         if (location != null) {
-                            submitViewModel.latitude = location.getLatitude()
-                            submitViewModel.longitude = location.getLongitude()
+                            submitViewModel.setLocation(location.latitude, location.longitude)
                         }
                     }
                 }

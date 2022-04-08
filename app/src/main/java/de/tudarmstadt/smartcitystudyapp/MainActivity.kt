@@ -24,18 +24,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.database.AppDatabase
 import de.tudarmstadt.smartcitystudyapp.helper.ConnectionType
 import de.tudarmstadt.smartcitystudyapp.helper.NetworkMonitor
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
+import de.tudarmstadt.smartcitystudyapp.interfaces.UserServiceInterface
 import de.tudarmstadt.smartcitystudyapp.notification.PushNotificationService
 import de.tudarmstadt.smartcitystudyapp.services.*
 import de.tudarmstadt.smartcitystudyapp.ui.welcome.WelcomeActivity
 import kotlinx.coroutines.*
 import java.util.*
 import javax.inject.Inject
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import de.tudarmstadt.smartcitystudyapp.featuremanager.FeatureManager
-import de.tudarmstadt.smartcitystudyapp.featuremanager.Features
-import de.tudarmstadt.smartcitystudyapp.utils.getJsonDataFromAsset
 
 
 @AndroidEntryPoint
@@ -43,7 +38,7 @@ class MainActivity() : AppCompatActivity() {
     private val mainViewModel by viewModels<MainActivityViewModel>()
 
     @Inject
-    lateinit var userService: UserService
+    lateinit var userServiceInterface: UserServiceInterface
     private var count = 0
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val networkMonitor = NetworkMonitor(this)
@@ -62,7 +57,7 @@ class MainActivity() : AppCompatActivity() {
 
         val intent = Intent(this, WelcomeActivity::class.java)
         this.lifecycleScope.launch {
-            userService.getUserId() ?: run {
+            userServiceInterface.getUserId() ?: run {
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
             }
@@ -85,7 +80,8 @@ class MainActivity() : AppCompatActivity() {
                 R.id.nav_activities,
                 R.id.nav_team_activities,
                 R.id.nav_help,
-                R.id.nav_site_notice
+                R.id.nav_site_notice,
+                R.id.nav_thankyou
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

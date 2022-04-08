@@ -8,10 +8,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import de.tudarmstadt.smartcitystudyapp.database.AppDatabase
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.*
+import de.tudarmstadt.smartcitystudyapp.interfaces.*
 import de.tudarmstadt.smartcitystudyapp.services.*
 import de.tudarmstadt.smartcitystudyapp.services.DummyUserWebservice
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserWebservice
 import javax.inject.Singleton
 
 @Module
@@ -19,13 +18,13 @@ import javax.inject.Singleton
 object AppModule {
     @Singleton
     @Provides
-    fun provideReportService(): ReportService {
-        return DefaultReportService
+    fun provideReportService(): ReportServiceInterface {
+        return ReportService
     }
 
     @Singleton
     @Provides
-    fun provideUserWebservice(): UserWebservice {
+    fun provideUserWebservice(): UserWebserviceInterface {
         return DummyUserWebservice
     }
 
@@ -42,34 +41,34 @@ object AppModule {
     @Singleton
     @Provides
     fun provideUserService(
-        webservice: UserWebservice,
+        webserviceInterface: UserWebserviceInterface,
         database: AppDatabase
-    ): UserService {
-        return DefaultUserService(webservice, database.userDao())
+    ): UserServiceInterface {
+        return UserService(webserviceInterface, database.userDao())
     }
 
     @Singleton
     @Provides
     fun provideActivitiesService(
         database: AppDatabase
-    ): ActivitiesService {
-        return DefaultActivitiesService(database.activitiesDao())
+    ): ActivitiesServiceInterface {
+        return ActivitiesService(database.activitiesDao())
     }
 
     @Singleton
     @Provides
     fun provideNotificationService(
         database: AppDatabase
-    ): NotificationService {
-        return DefaultNotificationService(database.notificationDao())
+    ): NotificationServiceInterface {
+        return NotificationService(database.notificationDao())
     }
 
     @Singleton
     @Provides
     fun provideTeamService(
         database: AppDatabase
-    ): TeamService {
-        return DefaultTeamService(database.teamDao())
+    ): TeamServiceInterface {
+        return TeamService(database.teamDao())
     }
 
 
@@ -77,7 +76,7 @@ object AppModule {
     @Provides
     fun provideUsersAndTeamService(
         database: AppDatabase
-    ): UsersAndTeamService {
-        return DefaultUsersAndTeamService(database.usersAndTeamDao())
+    ): UsersAndTeamServiceInterface {
+        return UsersAndTeamService(database.usersAndTeamDao())
     }
 }

@@ -2,18 +2,18 @@ package de.tudarmstadt.smartcitystudyapp.services
 
 import androidx.annotation.WorkerThread
 import de.tudarmstadt.smartcitystudyapp.database.UserDao
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserWebservice
+import de.tudarmstadt.smartcitystudyapp.interfaces.UserServiceInterface
+import de.tudarmstadt.smartcitystudyapp.interfaces.UserWebserviceInterface
 import de.tudarmstadt.smartcitystudyapp.models.UserModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class DefaultUserService @Inject constructor(
-    private val webservice: UserWebservice,
+class UserService @Inject constructor(
+    private val webserviceInterface: UserWebserviceInterface,
     private val userDao: UserDao
-) : UserService {
+) : UserServiceInterface {
     override suspend fun getUserId(): String? = withContext(Dispatchers.IO){
         userDao.loadAll().let {
             if (it.isEmpty()) {

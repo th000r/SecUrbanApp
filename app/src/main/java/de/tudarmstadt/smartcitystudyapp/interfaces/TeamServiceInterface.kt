@@ -1,8 +1,8 @@
-package de.tudarmstadt.smartcitystudyapp.interfaces.services
+package de.tudarmstadt.smartcitystudyapp.interfaces
 
 import de.tudarmstadt.smartcitystudyapp.models.TeamModel
 
-interface TeamService {
+interface TeamServiceInterface {
     suspend fun getTeamId() : String?
 
     suspend fun setTeam(team: TeamModel)

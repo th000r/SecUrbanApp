@@ -114,7 +114,9 @@
         tools:layout="@layout/fragment_submitincidents">
         <action
             android:id="@+id/action_submit_to_thankyou"
-            app:destination="@id/nav_thankyou"/>
+            app:destination="@id/nav_thankyou"
+            app:popUpTo="@id/nav_main"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
@@ -124,7 +126,9 @@
         tools:layout="@layout/fragment_submitincidents_notification">
         <action
             android:id="@+id/action_submit_notification_to_thankyou"
-            app:destination="@id/nav_thankyou"/>
+            app:destination="@id/nav_thankyou"
+            app:popUpTo="@id/nav_main"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment

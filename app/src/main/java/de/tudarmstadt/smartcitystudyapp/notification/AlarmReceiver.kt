@@ -10,7 +10,7 @@ import androidx.core.app.NotificationCompat
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.database.AppDatabase
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.NotificationService
+import de.tudarmstadt.smartcitystudyapp.interfaces.NotificationServiceInterface
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ import javax.inject.Inject
  */
 class AlarmReceiver() : BroadcastReceiver() {
     @Inject
-    lateinit var notificationService: NotificationService
+    lateinit var notificationServiceInterface: NotificationServiceInterface
     private val NOTIFICATION_ID = 9876
 
     override fun onReceive(context: Context, intent: Intent) {
