@@ -18,11 +18,12 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.models.Team
-import de.tudarmstadt.smartcitystudyapp.models.User
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.TeamService
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.UserService
-import de.tudarmstadt.smartcitystudyapp.interfaces.services.UsersAndTeamService
+import de.tudarmstadt.smartcitystudyapp.featuremanager.FeatureManager
+import de.tudarmstadt.smartcitystudyapp.models.TeamModel
+import de.tudarmstadt.smartcitystudyapp.models.UserModel
+import de.tudarmstadt.smartcitystudyapp.interfaces.TeamServiceInterface
+import de.tudarmstadt.smartcitystudyapp.interfaces.UserServiceInterface
+import de.tudarmstadt.smartcitystudyapp.interfaces.UsersAndTeamServiceInterface
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,11 +33,11 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class WelcomeActivity : AppCompatActivity() {
     @Inject
-    lateinit var userService: UserService
+    lateinit var userServiceInterface: UserServiceInterface
     @Inject
-    lateinit var teamService: TeamService
+    lateinit var teamServiceInterface: TeamServiceInterface
     @Inject
-    lateinit var usersAndTeamService: UsersAndTeamService
+    lateinit var usersAndTeamServiceInterface: UsersAndTeamServiceInterface
     private var viewPager: ViewPager? = null
     private var myViewPagerAdapter: MyViewPagerAdapter? = null
     private var dotsLayout: LinearLayout? = null
@@ -64,6 +65,13 @@ class WelcomeActivity : AppCompatActivity() {
             R.layout.tutorial_slide_2,
             R.layout.tutorial_slide_3
         )
+
+        if (FeatureManager.readFeatures(applicationContext).preinvestigation == true) {
+            val array = layouts.copyOf(layouts.size + 1)
+            array[layouts.size] = R.layout.preinvestigation
+            layouts = array
+        }
+
         addBottomDots(0)
         changeStatusBarColor()
         myViewPagerAdapter = MyViewPagerAdapter()
@@ -117,8 +125,8 @@ class WelcomeActivity : AppCompatActivity() {
             toast.show()
         } else {
             this.lifecycleScope.launch {
-                usersAndTeamService.addTeam(Team(userCity!!.toLowerCase(), userCity!!.toLowerCase(), 0))
-                usersAndTeamService.addUser(User(userId!!, userName!!, userCity!!, 0, userCity!!.toLowerCase()))
+                usersAndTeamServiceInterface.addTeam(TeamModel(userCity!!.toLowerCase(), userCity!!.toLowerCase(), 0))
+                usersAndTeamServiceInterface.addUser(UserModel(userId!!, userName!!, userCity!!, 0, userCity!!.toLowerCase()))
                 //userService.setUser(User(userId!!, userName!!, 0, userCity!!.toLowerCase()))
             }
             val intent = Intent(this, MainActivity::class.java)

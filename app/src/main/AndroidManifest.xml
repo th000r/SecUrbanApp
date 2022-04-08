@@ -2,18 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.tudarmstadt.smartcitystudyapp">
 
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <!-- Network Status Access -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- GPS Access -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <!-- Needed for Local Push Notifications -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <!-- end -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
+    <!-- Camera Access -->
     <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:name=".SmartCityStudyApplication"
@@ -23,6 +30,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.SmartCityStudyApp">
 
         <activity
@@ -45,6 +53,7 @@
             android:process=":remote">
         </receiver>
 
+        <!-- Needed for Local Push Notifications -->
         <receiver android:name=".notification.AlarmBootReceiver"
             android:enabled="false"
             android:process=":remote">
@@ -53,11 +62,22 @@
             </intent-filter>
         </receiver>
 
+        <!-- Needed for Local Push Notifications -->
         <service
             android:name=".notification.PushNotificationService"
             android:enabled="true"
             android:exported="false"
             android:stopWithTask="false">
         </service>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="de.tudarmstadt.smartcitystudyapp.captureimage.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
     </application>
 </manifest>

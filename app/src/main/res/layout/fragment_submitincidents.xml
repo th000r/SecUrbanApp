@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -116,11 +115,11 @@
                 android:gravity="top|start"
                 android:inputType="textMultiLine"
                 android:lines="8"
-                android:padding="0dp"
-                android:textSize="12sp"
                 android:minLines="5"
+                android:padding="0dp"
                 android:scrollbars="vertical"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="12sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,7 +147,7 @@
             <Button
                 android:id="@+id/incidents_button_gallery"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0px"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="#00000000"
@@ -159,7 +158,7 @@
             <Button
                 android:id="@+id/incidents_button_camera"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0px"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:background="#00000000"
@@ -167,6 +166,24 @@
                 android:textColor="@color/main_blue"
                 android:visibility="invisible" />
         </LinearLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/images_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:id="@+id/images_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:orientation="horizontal"></LinearLayout>
+        </HorizontalScrollView>
+
 
         <Button
             android:id="@+id/incidents_button_submit"

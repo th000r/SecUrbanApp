@@ -12,7 +12,7 @@ import java.util.*
 class PushNotificationService(): Service(){
     private var wakeLock: PowerManager.WakeLock? = null
     companion object {
-        var notificationSchedule: MutableList<NotificationSchedule> = ArrayList()
+        var notificationSchedule: MutableList<NotificationScheduleModel> = ArrayList()
     }
 
     //ToDo: change to 60 minutes
@@ -111,12 +111,12 @@ class PushNotificationService(): Service(){
 
     fun initSchedule() {
         var calendar = Calendar.getInstance()
-        notificationSchedule.add(NotificationSchedule(1, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 1, NotificationStatus.DISPLAY, "1", getString(R.string.notification_incidents_subheader)))
-        notificationSchedule.add(NotificationSchedule(1, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 2, NotificationStatus.CANCEL))
-        notificationSchedule.add(NotificationSchedule(2, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 3, NotificationStatus.DISPLAY, "2", getString(R.string.notification_incidents_subheader)))
-        notificationSchedule.add(NotificationSchedule(2, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 4, NotificationStatus.CANCEL))
-        notificationSchedule.add(NotificationSchedule(3, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 5, NotificationStatus.DISPLAY, "3", getString(R.string.notification_incidents_subheader)))
-        notificationSchedule.add(NotificationSchedule(3, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE) + 6, NotificationStatus.CANCEL))
+        notificationSchedule.add(NotificationScheduleModel(1, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 1, NotificationStatusEnum.DISPLAY, "1", getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationScheduleModel(1, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 2, NotificationStatusEnum.CANCEL))
+        notificationSchedule.add(NotificationScheduleModel(2, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 3, NotificationStatusEnum.DISPLAY, "2", getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationScheduleModel(2, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 4, NotificationStatusEnum.CANCEL))
+        notificationSchedule.add(NotificationScheduleModel(3, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 5, NotificationStatusEnum.DISPLAY, "3", getString(R.string.notification_incidents_subheader)))
+        notificationSchedule.add(NotificationScheduleModel(3, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE) + 6, NotificationStatusEnum.CANCEL))
 
 
         /*        notificationSchedule.add(NotificationSchedule(1, Calendar.FRIDAY, 12, 3, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))

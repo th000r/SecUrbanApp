@@ -8,7 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.util.Log
-import de.tudarmstadt.smartcitystudyapp.notification.NotificationStatus.*
+import de.tudarmstadt.smartcitystudyapp.notification.NotificationStatusEnum.*
 import java.util.*
 
 /**

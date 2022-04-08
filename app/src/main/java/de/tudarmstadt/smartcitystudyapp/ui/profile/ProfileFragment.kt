@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.models.User
+import de.tudarmstadt.smartcitystudyapp.models.UserModel
 
 
 @AndroidEntryPoint
@@ -30,7 +30,7 @@ class ProfileFragment : Fragment() {
             }
         })
 
-        profileViewModel.user.observe(viewLifecycleOwner, { user: User ->
+        profileViewModel.user.observe(viewLifecycleOwner, { user: UserModel ->
             if (user != null) {
                 root.findViewById<TextView>(R.id.vp_name).setText(user.userName)
                 root.findViewById<TextView>(R.id.vp_city).setText(user.city)
