@@ -31,6 +31,7 @@ class SubmitViewModel @ViewModelInject constructor(
     private var longitude: Double = 0.0
     private var selected_images: MutableList<SelectedImageModel> = mutableListOf()
     private var image_id = 1 // id for created image views (preview image)
+    val MAX_UPLOAD_SIZE = 10
 
     fun sendReport(view: View, finalActionId: Int) {
         val context = view.context
@@ -71,6 +72,8 @@ class SubmitViewModel @ViewModelInject constructor(
                         Toast.makeText(context, R.string.report_sent_error_toast, Toast.LENGTH_LONG).show()
                     } else if (returnVal.contains("Exception")) {
                         Toast.makeText(context, R.string.report_sent_error_toast, Toast.LENGTH_LONG).show()
+                    } else if (returnVal.contains("Exceeded max upload size")) {
+                        Toast.makeText(context, R.string.exceeded_max_upload_size, Toast.LENGTH_LONG).show()
                     } else {
                         Toast.makeText(context, R.string.report_sent_success_toast, Toast.LENGTH_LONG).show()
                         view.findNavController().navigate(finalActionId)
@@ -82,8 +85,8 @@ class SubmitViewModel @ViewModelInject constructor(
         }
     }
 
-    fun addSelectedImage(path: String?, uri: Uri?): Int {
-        selected_images.add(SelectedImageModel(image_id, path, uri))
+    fun addSelectedImage(path: String?, uri: Uri?, byte_size: Long?): Int {
+        selected_images.add(SelectedImageModel(image_id, path, uri, byte_size))
         return image_id++
     }
 
@@ -99,5 +102,19 @@ class SubmitViewModel @ViewModelInject constructor(
     fun setLocation(lat: Double, long: Double) {
         latitude = lat
         longitude = long
+    }
+
+    fun getCurrentUploadSize(): Double {
+        var size: Double = 0.0
+        val byteToMB: Double = 0.0000009537
+
+        for (img in selected_images) {
+            if (img.byte_size != null) {
+                size += img.byte_size.toDouble()
+            }
+        }
+        size *= byteToMB
+
+        return String.format("%.2f", size).toDouble()
     }
 }

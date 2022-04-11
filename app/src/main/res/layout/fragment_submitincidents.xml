@@ -130,14 +130,43 @@
             android:layout_marginBottom="5dp"
             android:background="@color/main_blue" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_send_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:text="Ich möchte ein Foto übermitteln"
-            android:textColor="@color/black" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_send_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:text="Ich möchte ein Foto übermitteln"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/current_upload_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/switch_send_photo"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/green"
+                android:visibility="invisible"
+                android:text="0">
+            </TextView>
+
+            <TextView
+                android:id="@+id/max_upload_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/current_upload_size"
+                android:layout_centerVertical="true"
+                android:textColor="@color/green"
+                android:visibility="invisible"
+                android:text=" / 10 MB">
+            </TextView>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
