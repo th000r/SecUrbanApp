@@ -30,9 +30,13 @@ import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.SmartCityStudyApplication
 import de.tudarmstadt.smartcitystudyapp.models.SOURCE_OTHER
 import de.tudarmstadt.smartcitystudyapp.utils.DimensionsUtil
 import de.tudarmstadt.smartcitystudyapp.utils.URIPathUtil
+import org.matomo.sdk.Tracker
+import org.matomo.sdk.extra.MatomoApplication
+import org.matomo.sdk.extra.TrackHelper
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -55,6 +59,7 @@ class SubmitFragment : Fragment() {
     private lateinit var imagesPreviewLinearLayout: LinearLayout
     private lateinit var currentUploadSizeTextView: TextView
     private lateinit var maxUploadSizeTextView: TextView
+    lateinit var tracker: Tracker
 
     /******************************
     ////////// LIFECYCLE //////////
@@ -69,7 +74,7 @@ class SubmitFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_submitincidents, container, false)
         val suggestion: String = arguments?.getString("suggestion") ?: ""
         submitViewModel.source = arguments?.getString("source") ?: SOURCE_OTHER
-
+        tracker = (activity?.application as SmartCityStudyApplication).tracker!!
         // init views
         val galleryButton = root.findViewById<Button>(R.id.incidents_button_gallery)
         val cameraButton = root.findViewById<Button>(R.id.incidents_button_camera)
@@ -95,6 +100,7 @@ class SubmitFragment : Fragment() {
         /** CLICK LISTENER **/
         // submit button
         submitButton.setOnClickListener {
+            TrackHelper.track().event("Navigation","Button").name("SnackBar").value(1F).with(tracker);
             submitViewModel.sendReport(root, R.id.action_submit_to_thankyou)
         }
 

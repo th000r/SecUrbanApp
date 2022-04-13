@@ -4,6 +4,7 @@ buildscript {
     ext.hiltVersion = "2.28-alpha"
     ext.navigationVersion = '2.2.0-rc02'
     ext.retrofitVersion = "2.9.0"
+    ext.matomoVersion ="4.1.4"
 
     repositories {
         google()
@@ -23,6 +24,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
