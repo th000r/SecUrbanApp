@@ -13,6 +13,7 @@ import java.io.File
 import java.util.Calendar.*
 
 object ReportService : ReportServiceInterface {
+    private const val MAX_BYTE_UPLOAD_SIZE: Long = 10490000 // max upload size of 10 MB
 
     /**
      * POST Report and captured images
@@ -38,6 +39,11 @@ object ReportService : ReportServiceInterface {
         for (path in imagePaths) {
             val file = File(path)
             val mimeType = uploadUtil.getMimeType(file)
+            val upload_permitted = uploadUtil.checkUploadSize(file, MAX_BYTE_UPLOAD_SIZE)
+
+            if (!upload_permitted) {
+                return "Exceeded max upload size"
+            }
 
             if (mimeType == null) {
                 Log.e("file error", "Not able to get mime type")

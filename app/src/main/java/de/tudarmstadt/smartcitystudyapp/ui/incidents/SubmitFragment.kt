@@ -5,8 +5,10 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.*
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -29,7 +31,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.models.SOURCE_OTHER
-import de.tudarmstadt.smartcitystudyapp.models.SelectedImageModel
 import de.tudarmstadt.smartcitystudyapp.utils.DimensionsUtil
 import de.tudarmstadt.smartcitystudyapp.utils.URIPathUtil
 import java.io.File
@@ -52,6 +53,8 @@ class SubmitFragment : Fragment() {
     private lateinit var filter: IntentFilter // filter for current network status
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var imagesPreviewLinearLayout: LinearLayout
+    private lateinit var currentUploadSizeTextView: TextView
+    private lateinit var maxUploadSizeTextView: TextView
 
     /******************************
     ////////// LIFECYCLE //////////
@@ -74,6 +77,8 @@ class SubmitFragment : Fragment() {
         val submitButton =  root.findViewById<Button>(R.id.incidents_button_submit)
         val locationSwitch = root.findViewById<SwitchCompat>(R.id.switch_send_location)
         val imagesScrollView = root.findViewById<HorizontalScrollView>(R.id.images_scroll_view)
+        currentUploadSizeTextView = root.findViewById<TextView>(R.id.current_upload_size)
+        maxUploadSizeTextView = root.findViewById<TextView>(R.id.max_upload_size)
         imagesPreviewLinearLayout = root.findViewById(R.id.images_preview)
 
         // init network status
@@ -109,6 +114,8 @@ class SubmitFragment : Fragment() {
         sendPhotoSwitch.setOnClickListener {
             when (sendPhotoSwitch.isChecked) {
                 true -> {
+
+                    // gallery button
                     var mParams = galleryButton.layoutParams
                     mParams.apply {
                         height = LinearLayout.LayoutParams.WRAP_CONTENT
@@ -116,6 +123,7 @@ class SubmitFragment : Fragment() {
                     galleryButton.layoutParams = mParams
                     galleryButton.visibility = View.VISIBLE
 
+                    // camera button
                     mParams = cameraButton.layoutParams
                     mParams.apply {
                         height = LinearLayout.LayoutParams.WRAP_CONTENT
@@ -123,14 +131,22 @@ class SubmitFragment : Fragment() {
                     cameraButton.layoutParams = mParams
                     cameraButton.visibility = View.VISIBLE
 
+                    // preview image scrollview
                     mParams = imagesScrollView.layoutParams
                     mParams.apply {
                         height = DimensionsUtil.dpToPx(requireActivity().resources.displayMetrics, 100)
                     }
                     imagesScrollView.layoutParams = mParams
                     imagesScrollView.visibility = View.VISIBLE
+
+                    // current upload size
+                    currentUploadSizeTextView.visibility = View.VISIBLE
+
+                    // max upload size
+                    maxUploadSizeTextView.visibility = View.VISIBLE
                 }
                 false -> {
+                    // gallery button
                     var mParams = galleryButton.layoutParams
                     mParams.apply {
                         height = 0
@@ -138,6 +154,7 @@ class SubmitFragment : Fragment() {
                     galleryButton.layoutParams = mParams
                     galleryButton.visibility = View.INVISIBLE
 
+                    // camera button
                     mParams = cameraButton.layoutParams
                     mParams.apply {
                         height = 0
@@ -145,12 +162,19 @@ class SubmitFragment : Fragment() {
                     cameraButton.layoutParams = mParams
                     cameraButton.visibility = View.INVISIBLE
 
+                    // preview image scrollview
                     mParams = imagesScrollView.layoutParams
                     mParams.apply {
                         height = 0
                     }
                     imagesScrollView.layoutParams = mParams
                     imagesScrollView.visibility = View.INVISIBLE
+
+                    // current upload size
+                    currentUploadSizeTextView.visibility = View.INVISIBLE
+
+                    // max upload size
+                    maxUploadSizeTextView.visibility = View.INVISIBLE
                 }
             }
         }
@@ -258,6 +282,14 @@ class SubmitFragment : Fragment() {
             R.id.context_menu_delete_image -> {
                 imagesPreviewLinearLayout.removeView(imagesPreviewLinearLayout.findViewById(selected_image_id))
                 submitViewModel.removeSelectedImage(selected_image_id)
+
+                val current_upload_size = submitViewModel.getCurrentUploadSize()
+                currentUploadSizeTextView.text = current_upload_size.toString()
+
+                if (current_upload_size <= submitViewModel.MAX_UPLOAD_SIZE) {
+                    currentUploadSizeTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+                    maxUploadSizeTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.green))
+                }
                 return true
             }
             else -> {
@@ -286,22 +318,43 @@ class SubmitFragment : Fragment() {
                 imageView.adjustViewBounds = true
                 imageView.setImageBitmap(myBitmap)
                 imageView.setPadding(DimensionsUtil.dpToPx(requireActivity().resources.displayMetrics, 10), 0, 0, 0)
-                imageView.id = submitViewModel.addSelectedImage(photoFile!!.absolutePath, selectedImageUri)
+                imageView.id = submitViewModel.addSelectedImage(photoFile!!.absolutePath, selectedImageUri, photoFile.length())
                 registerForContextMenu(imageView)
                 imagesPreviewLinearLayout.addView(imageView)
+                val current_upload_size = submitViewModel.getCurrentUploadSize()
+                currentUploadSizeTextView.text = current_upload_size.toString()
+
+                if (current_upload_size > submitViewModel.MAX_UPLOAD_SIZE) {
+                    currentUploadSizeTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                    maxUploadSizeTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                }
             }
 
             if (requestCode == REQUEST_IMAGE_GALLERY) {
-                val imageBitmap = data?.data
-                val selectedImageUri = data!!.data!!
-                val selectedImagePath = URIPathUtil().getRealPathFromURI(requireContext(), selectedImageUri)
+                // val imageBitmap = data?.data
+                val selectedImageUri = data!!.data
+                val selectedImagePath = URIPathUtil().getRealPathFromURI_API19(requireContext(), selectedImageUri!!)
                 val imageView = ImageView(requireContext())
+                val file = File(selectedImagePath)
                 imageView.adjustViewBounds = true
-                imageView.setImageURI(imageBitmap)
+
+                // set preview from bitmap
+                // setting from uri will cause an error
+                val bmOptions = BitmapFactory.Options()
+                var bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), bmOptions)
+                imageView.setImageBitmap(bitmap)
+
                 imageView.setPadding(5, 0, 0, 0)
-                imageView.id = submitViewModel.addSelectedImage(selectedImagePath, selectedImageUri)
+                imageView.id = submitViewModel.addSelectedImage(selectedImagePath, selectedImageUri, file.length())
                 registerForContextMenu(imageView)
                 imagesPreviewLinearLayout.addView(imageView)
+                val current_upload_size = submitViewModel.getCurrentUploadSize()
+                currentUploadSizeTextView.text = current_upload_size.toString()
+
+                if (current_upload_size > submitViewModel.MAX_UPLOAD_SIZE) {
+                    currentUploadSizeTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                    maxUploadSizeTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                }
             }
         }
     }

@@ -302,6 +302,7 @@
     <string name="suggestion_heading">Was genau ist passiert?</string>
     <string name="report_sent_success_toast">Meldung verschickt. Danke!</string>
     <string name="report_sent_error_toast">Die Meldung konnte im Moment nicht verschickt werden. Bitte versuchen sie es später noch einmal.</string>
+    <string name="exceeded_max_upload_size">Die maximal zulässige Upload-Größe von 10 MB wurde überschritten.</string>
     <string name="report_prepare_toast">Meldung wird verschickt...</string>
     <string name="user_id_not_set_toast">Gebe bitte deinen Personencode ein</string>
     <string name="user_name_not_set_toast">Gebe bitte deinen Namen ein</string>
