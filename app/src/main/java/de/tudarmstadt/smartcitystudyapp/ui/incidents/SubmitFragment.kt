@@ -57,6 +57,7 @@ class SubmitFragment : Fragment() {
     private lateinit var filter: IntentFilter // filter for current network status
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var imagesPreviewLinearLayout: LinearLayout
+    private lateinit var imagesPreviewTextView: TextView
     private lateinit var currentUploadSizeTextView: TextView
     private lateinit var maxUploadSizeTextView: TextView
     lateinit var tracker: Tracker
@@ -85,6 +86,7 @@ class SubmitFragment : Fragment() {
         currentUploadSizeTextView = root.findViewById<TextView>(R.id.current_upload_size)
         maxUploadSizeTextView = root.findViewById<TextView>(R.id.max_upload_size)
         imagesPreviewLinearLayout = root.findViewById(R.id.images_preview)
+        imagesPreviewTextView = root.findViewById(R.id.textview_image_preview)
 
         // init network status
         filter = IntentFilter(getString(R.string.broadcast_network_status)).apply{
@@ -150,6 +152,9 @@ class SubmitFragment : Fragment() {
 
                     // max upload size
                     maxUploadSizeTextView.visibility = View.VISIBLE
+
+                    // image preview textview
+                    imagesPreviewTextView.visibility = View.VISIBLE
                 }
                 false -> {
                     // gallery button
@@ -181,6 +186,9 @@ class SubmitFragment : Fragment() {
 
                     // max upload size
                     maxUploadSizeTextView.visibility = View.INVISIBLE
+
+                    // images preview textview
+                    imagesPreviewTextView.visibility = View.INVISIBLE
                 }
             }
         }
@@ -323,7 +331,7 @@ class SubmitFragment : Fragment() {
                 val imageView = ImageView(requireContext())
                 imageView.adjustViewBounds = true
                 imageView.setImageBitmap(myBitmap)
-                imageView.setPadding(DimensionsUtil.dpToPx(requireActivity().resources.displayMetrics, 10), 0, 0, 0)
+                imageView.setPadding(DimensionsUtil.dpToPx(requireActivity().resources.displayMetrics, 15), 0, 0, 0)
                 imageView.id = submitViewModel.addSelectedImage(photoFile!!.absolutePath, selectedImageUri, photoFile.length())
                 registerForContextMenu(imageView)
                 imagesPreviewLinearLayout.addView(imageView)
@@ -350,7 +358,7 @@ class SubmitFragment : Fragment() {
                 var bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), bmOptions)
                 imageView.setImageBitmap(bitmap)
 
-                imageView.setPadding(5, 0, 0, 0)
+                imageView.setPadding(DimensionsUtil.dpToPx(requireActivity().resources.displayMetrics, 15), 0, 0, 0)
                 imageView.id = submitViewModel.addSelectedImage(selectedImagePath, selectedImageUri, file.length())
                 registerForContextMenu(imageView)
                 imagesPreviewLinearLayout.addView(imageView)

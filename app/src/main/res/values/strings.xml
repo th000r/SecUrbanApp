@@ -282,7 +282,7 @@
     <string name="incidents_camera_button">Kamera</string>
     <string name="incidents_show_all_button">Alle Aktivitäten anzeigen</string>
     <string name="incidents_hide_all_button">Alle Aktivitäten ausblenden</string>
-
+    <string name="incidents_image_preview">Bildervorschau</string>
 
     <!-- Side Notice -->
     <string name="side_notice_heading">Herausgeber</string>

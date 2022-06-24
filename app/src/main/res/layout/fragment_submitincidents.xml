@@ -196,6 +196,19 @@
                 android:visibility="invisible" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textview_image_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/incidents_image_preview"
+            android:textColor="@color/black"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/images_scroll_view" />
+
         <HorizontalScrollView
             android:id="@+id/images_scroll_view"
             android:layout_width="match_parent"
@@ -203,6 +216,9 @@
             android:layout_gravity="center"
             android:orientation="horizontal"
             android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="10dp"
             android:visibility="invisible">
 
             <LinearLayout
@@ -212,6 +228,13 @@
                 android:layout_gravity="start"
                 android:orientation="horizontal"></LinearLayout>
         </HorizontalScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/main_blue" />
 
 
         <Button
