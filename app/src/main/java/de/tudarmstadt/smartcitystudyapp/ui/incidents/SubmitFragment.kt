@@ -30,9 +30,13 @@ import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.SmartCityStudyApplication
 import de.tudarmstadt.smartcitystudyapp.models.SOURCE_OTHER
 import de.tudarmstadt.smartcitystudyapp.utils.DimensionsUtil
 import de.tudarmstadt.smartcitystudyapp.utils.URIPathUtil
+import org.matomo.sdk.Tracker
+import org.matomo.sdk.extra.MatomoApplication
+import org.matomo.sdk.extra.TrackHelper
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -53,8 +57,10 @@ class SubmitFragment : Fragment() {
     private lateinit var filter: IntentFilter // filter for current network status
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var imagesPreviewLinearLayout: LinearLayout
+    private lateinit var imagesPreviewTextView: TextView
     private lateinit var currentUploadSizeTextView: TextView
     private lateinit var maxUploadSizeTextView: TextView
+    lateinit var tracker: Tracker
 
     /******************************
     ////////// LIFECYCLE //////////
@@ -69,7 +75,7 @@ class SubmitFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_submitincidents, container, false)
         val suggestion: String = arguments?.getString("suggestion") ?: ""
         submitViewModel.source = arguments?.getString("source") ?: SOURCE_OTHER
-
+        tracker = (activity?.application as SmartCityStudyApplication).tracker!!
         // init views
         val galleryButton = root.findViewById<Button>(R.id.incidents_button_gallery)
         val cameraButton = root.findViewById<Button>(R.id.incidents_button_camera)
@@ -80,6 +86,7 @@ class SubmitFragment : Fragment() {
         currentUploadSizeTextView = root.findViewById<TextView>(R.id.current_upload_size)
         maxUploadSizeTextView = root.findViewById<TextView>(R.id.max_upload_size)
         imagesPreviewLinearLayout = root.findViewById(R.id.images_preview)
+        imagesPreviewTextView = root.findViewById(R.id.textview_image_preview)
 
         // init network status
         filter = IntentFilter(getString(R.string.broadcast_network_status)).apply{
@@ -95,6 +102,7 @@ class SubmitFragment : Fragment() {
         /** CLICK LISTENER **/
         // submit button
         submitButton.setOnClickListener {
+            TrackHelper.track().event("Navigation","Button").name("SnackBar").value(1F).with(tracker);
             submitViewModel.sendReport(root, R.id.action_submit_to_thankyou)
         }
 
@@ -144,6 +152,9 @@ class SubmitFragment : Fragment() {
 
                     // max upload size
                     maxUploadSizeTextView.visibility = View.VISIBLE
+
+                    // image preview textview
+                    imagesPreviewTextView.visibility = View.VISIBLE
                 }
                 false -> {
                     // gallery button
@@ -175,6 +186,9 @@ class SubmitFragment : Fragment() {
 
                     // max upload size
                     maxUploadSizeTextView.visibility = View.INVISIBLE
+
+                    // images preview textview
+                    imagesPreviewTextView.visibility = View.INVISIBLE
                 }
             }
         }
@@ -317,7 +331,7 @@ class SubmitFragment : Fragment() {
                 val imageView = ImageView(requireContext())
                 imageView.adjustViewBounds = true
                 imageView.setImageBitmap(myBitmap)
-                imageView.setPadding(DimensionsUtil.dpToPx(requireActivity().resources.displayMetrics, 10), 0, 0, 0)
+                imageView.setPadding(DimensionsUtil.dpToPx(requireActivity().resources.displayMetrics, 15), 0, 0, 0)
                 imageView.id = submitViewModel.addSelectedImage(photoFile!!.absolutePath, selectedImageUri, photoFile.length())
                 registerForContextMenu(imageView)
                 imagesPreviewLinearLayout.addView(imageView)
@@ -344,7 +358,7 @@ class SubmitFragment : Fragment() {
                 var bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), bmOptions)
                 imageView.setImageBitmap(bitmap)
 
-                imageView.setPadding(5, 0, 0, 0)
+                imageView.setPadding(DimensionsUtil.dpToPx(requireActivity().resources.displayMetrics, 15), 0, 0, 0)
                 imageView.id = submitViewModel.addSelectedImage(selectedImagePath, selectedImageUri, file.length())
                 registerForContextMenu(imageView)
                 imagesPreviewLinearLayout.addView(imageView)

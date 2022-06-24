@@ -29,6 +29,9 @@ import de.tudarmstadt.smartcitystudyapp.notification.PushNotificationService
 import de.tudarmstadt.smartcitystudyapp.services.*
 import de.tudarmstadt.smartcitystudyapp.ui.welcome.WelcomeActivity
 import kotlinx.coroutines.*
+import org.matomo.sdk.Tracker
+import org.matomo.sdk.extra.MatomoApplication
+import org.matomo.sdk.extra.TrackHelper
 import java.util.*
 import javax.inject.Inject
 
@@ -41,6 +44,7 @@ class MainActivity() : AppCompatActivity() {
     lateinit var userServiceInterface: UserServiceInterface
     private var count = 0
     private lateinit var appBarConfiguration: AppBarConfiguration
+    lateinit var tracker: Tracker
     private val networkMonitor = NetworkMonitor(this)
 
     companion object {
@@ -54,6 +58,12 @@ class MainActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         AndroidThreeTen.init(this)
+
+        // The `Tracker` instance from the previous step
+        tracker = (application as SmartCityStudyApplication).tracker!!
+        // Track a screen view
+        TrackHelper.track().screen(this).title("MainActivity")
+            .with(tracker)
 
         val intent = Intent(this, WelcomeActivity::class.java)
         this.lifecycleScope.launch {
