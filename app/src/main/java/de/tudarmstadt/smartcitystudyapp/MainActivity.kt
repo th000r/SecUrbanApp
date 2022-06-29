@@ -58,12 +58,13 @@ class MainActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         AndroidThreeTen.init(this)
-
         // The `Tracker` instance from the previous step
         tracker = (application as SmartCityStudyApplication).tracker!!
         // Track a screen view
         TrackHelper.track().screen(this).title("MainActivity")
             .with(tracker)
+
+        TrackHelper.track().event("navigation", "main activity" )
 
         val intent = Intent(this, WelcomeActivity::class.java)
         this.lifecycleScope.launch {
