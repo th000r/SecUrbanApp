@@ -23,7 +23,7 @@ interface ApiInterface {
     ): Response<Void>
 
     companion object {
-        var BASE_URL = BuildConfig.SERVER_URL
+        var BASE_URL = BuildConfig.BACKEND_API_URL
 
         fun create() : ApiInterface {
 

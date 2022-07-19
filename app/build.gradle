@@ -52,12 +52,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             // configured in gradle.properties
-            buildConfigField "String", "SERVER_URL", RELEASE_SERVER_URL
+            buildConfigField "String", "BACKEND_API_URL", RELEASE_BACKEND_API_URL
+            buildConfigField "String", "MATOMO_URL", RELEASE_MATOMO_URL
         }
 
         debug {
             // configured in gradle.properties
-            buildConfigField "String", "SERVER_URL", DEBUG_SERVER_URL
+            buildConfigField "String", "BACKEND_API_URL", DEBUG_BACKEND_API_URL
+            buildConfigField "String", "MATOMO_URL", DEBUG_MATOMO_URL
         }
     }
     compileOptions {
