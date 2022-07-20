@@ -64,7 +64,7 @@ class MainActivity() : AppCompatActivity() {
         TrackHelper.track().screen(this).title("MainActivity")
             .with(tracker)
 
-        TrackHelper.track().event("navigation", "main activity" )
+        TrackHelper.track().event("Navigation", "Init").name("MainActivity").path("/MainActivity").with(tracker)
 
         val intent = Intent(this, WelcomeActivity::class.java)
         this.lifecycleScope.launch {
