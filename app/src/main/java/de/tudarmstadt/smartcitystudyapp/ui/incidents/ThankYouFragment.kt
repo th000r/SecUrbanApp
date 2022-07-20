@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import dagger.hilt.android.scopes.FragmentScoped
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoCategory
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoTracker
 
 
 @FragmentScoped
@@ -24,6 +26,10 @@ class ThankYouFragment : Fragment() {
         root.findViewById<Button>(R.id.thankyou_button_close).setOnClickListener {
             root.findNavController().navigate(R.id.action_global_home)
         }
+
+        //Matomo
+        MatomoTracker.setParams(MatomoCategory.INCIDENTS, "/incidents/thank-you")
+        MatomoTracker.initFragment()
 
         return root
     }

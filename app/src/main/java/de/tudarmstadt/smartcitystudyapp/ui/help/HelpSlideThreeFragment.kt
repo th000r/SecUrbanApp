@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.scopes.FragmentScoped
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoCategory
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoTracker
 
 @FragmentScoped
 class HelpSlideThreeFragment : Fragment() {
@@ -15,6 +17,10 @@ class HelpSlideThreeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //Matomo
+        MatomoTracker.setParams(MatomoCategory.HELP, "/help/slideThree")
+        MatomoTracker.initFragment()
+
         return inflater.inflate(R.layout.help_slide_3, container, false)
     }
 }

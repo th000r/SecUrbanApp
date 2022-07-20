@@ -7,16 +7,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.SmartCityStudyApplication
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoCategory
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoTracker
 import de.tudarmstadt.smartcitystudyapp.models.UserModel
 import org.matomo.sdk.Tracker
-import org.matomo.sdk.extra.TrackHelper
 
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
     private val profileViewModel by viewModels<ProfileViewModel>()
     lateinit var tracker: Tracker
+    lateinit var mTracker: MatomoTracker
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,6 +25,11 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        //Matomo
+        MatomoTracker.setParams(MatomoCategory.PROFILE, "/profile")
+        MatomoTracker.initFragment()
+
         activity?.invalidateOptionsMenu()
 
         profileViewModel.getUserId()
@@ -40,13 +46,6 @@ class ProfileFragment : Fragment() {
                 root.findViewById<TextView>(R.id.vp_city).setText(user.city)
             }
         })
-
-        // The `Tracker` instance from the previous step
-        tracker = (requireActivity().application as SmartCityStudyApplication).tracker!!
-        // Track a screen view
-        TrackHelper.track().screen(requireActivity()).title("ProfileFragment")
-            .with(tracker)
-
 
         return root
     }

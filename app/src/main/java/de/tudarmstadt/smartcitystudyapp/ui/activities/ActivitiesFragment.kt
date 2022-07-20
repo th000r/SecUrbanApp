@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoCategory
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoTracker
 import de.tudarmstadt.smartcitystudyapp.models.ActivityModel
 
 @AndroidEntryPoint
@@ -28,6 +30,11 @@ class ActivitiesFragment : Fragment() {
     ): View? {
         activity?.invalidateOptionsMenu()
         val root = inflater.inflate(R.layout.fragment_activities, container, false)
+
+        //Matomo
+        MatomoTracker.setParams(MatomoCategory.ACTIVITIES, "/activities")
+        MatomoTracker.initFragment()
+
         adapter = ArrayAdapter(
             this.requireContext(), android.R.layout.simple_list_item_1, emptyList<String>().toMutableList()
         )

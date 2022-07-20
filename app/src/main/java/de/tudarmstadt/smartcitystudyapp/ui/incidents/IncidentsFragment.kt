@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import dagger.hilt.android.scopes.FragmentScoped
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoCategory
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoTracker
 
 val suggestionNavigationSettings = listOf(
     Triple(R.id.incidents_button_water, R.string.water_heading, R.array.water_array),
@@ -42,6 +44,11 @@ class IncidentsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         activity?.invalidateOptionsMenu()
+
+        //Matomo
+        MatomoTracker.setParams(MatomoCategory.INCIDENTS, "/incidents")
+        MatomoTracker.initFragment()
+
         return inflater.inflate(R.layout.fragment_incidents, container, false)
     }
 

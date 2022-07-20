@@ -10,6 +10,8 @@ import androidx.navigation.Navigation
 import dagger.hilt.android.scopes.FragmentScoped
 
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoCategory
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoTracker
 
 @FragmentScoped
 class HelpFragment : Fragment() {
@@ -19,6 +21,11 @@ class HelpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         activity?.invalidateOptionsMenu()
+
+        //Matomo
+        MatomoTracker.setParams(MatomoCategory.HELP, "/help")
+        MatomoTracker.initFragment()
+
         return inflater.inflate(R.layout.fragment_help, container, false)
     }
 

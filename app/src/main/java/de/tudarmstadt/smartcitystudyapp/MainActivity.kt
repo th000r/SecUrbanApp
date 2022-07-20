@@ -6,11 +6,14 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.DrawerListener
 import androidx.lifecycle.lifecycleScope
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.findNavController
@@ -25,13 +28,13 @@ import de.tudarmstadt.smartcitystudyapp.database.AppDatabase
 import de.tudarmstadt.smartcitystudyapp.helper.ConnectionType
 import de.tudarmstadt.smartcitystudyapp.helper.NetworkMonitor
 import de.tudarmstadt.smartcitystudyapp.interfaces.UserServiceInterface
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoCategory
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoTracker
 import de.tudarmstadt.smartcitystudyapp.notification.PushNotificationService
 import de.tudarmstadt.smartcitystudyapp.services.*
 import de.tudarmstadt.smartcitystudyapp.ui.welcome.WelcomeActivity
 import kotlinx.coroutines.*
 import org.matomo.sdk.Tracker
-import org.matomo.sdk.extra.MatomoApplication
-import org.matomo.sdk.extra.TrackHelper
 import java.util.*
 import javax.inject.Inject
 
@@ -46,25 +49,21 @@ class MainActivity() : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var tracker: Tracker
     private val networkMonitor = NetworkMonitor(this)
-
+    private var wasStarted = false
     companion object {
         var networkAvailable = true
     }
-
-    private var wasStarted = false
 
     // private lateinit var binding : ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         AndroidThreeTen.init(this)
-        // The `Tracker` instance from the previous step
+        // Matomo
         tracker = (application as SmartCityStudyApplication).tracker!!
-        // Track a screen view
-        TrackHelper.track().screen(this).title("MainActivity")
-            .with(tracker)
-
-        TrackHelper.track().event("Navigation", "Init").name("MainActivity").path("/MainActivity").with(tracker)
+        MatomoTracker.initTracker(tracker)
+        MatomoTracker.setParams(MatomoCategory.MAIN_ACTIVITY, "/main")
+        MatomoTracker.initFragment()
 
         val intent = Intent(this, WelcomeActivity::class.java)
         this.lifecycleScope.launch {
@@ -97,7 +96,51 @@ class MainActivity() : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        drawerLayout.openDrawer(GravityCompat.START)
+        navView.setNavigationItemSelectedListener(object : NavigationView.OnNavigationItemSelectedListener {
+            override fun onNavigationItemSelected(item: MenuItem): Boolean {
+                val id = item.itemId
+
+                if (id == R.id.nav_profile) {
+                    MatomoTracker.pressNavigationItem("profile")
+                } else if (id == R.id.nav_incidents) {
+                    MatomoTracker.pressNavigationItem("incidents")
+                } else if (id == R.id.nav_activities) {
+                    MatomoTracker.pressNavigationItem("activities")
+                } else if (id == R.id.nav_team_activities) {
+                    MatomoTracker.pressNavigationItem("team activities")
+                } else if (id == R.id.nav_help) {
+                    MatomoTracker.pressNavigationItem("help")
+                } else if (id == R.id.nav_site_notice) {
+                    MatomoTracker.pressNavigationItem("imprint")
+                }
+
+                val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
+                drawer.closeDrawer(GravityCompat.START)
+                findNavController(R.id.nav_host_fragment)
+                    .navigate(id)
+                return true
+            }
+
+        })
+        //drawerLayout.openDrawer(GravityCompat.START)
+        drawerLayout.addDrawerListener(object : DrawerListener {
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                // Do Nothing
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+                MatomoTracker.toggleNavigationMenu(true)
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                MatomoTracker.toggleNavigationMenu(false)
+            }
+
+            override fun onDrawerStateChanged(newState: Int) {
+                // Do Nothing
+            }
+        })
+
 
         // listen for wifi/mobile connectivity changes
         networkMonitor.result = { isAvailable, type ->

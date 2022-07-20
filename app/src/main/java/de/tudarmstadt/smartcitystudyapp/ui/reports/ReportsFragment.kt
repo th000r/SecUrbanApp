@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoCategory
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoTracker
 
 @AndroidEntryPoint
 class ReportsFragment : Fragment() {
@@ -24,5 +26,9 @@ class ReportsFragment : Fragment() {
         if (notificationStatus > 0) {
             findNavController().navigate(R.id.nav_incident_submit_notification)
         }
+
+        //Matomo
+        MatomoTracker.setParams(MatomoCategory.REPORTS, "/reports")
+        MatomoTracker.initFragment()
     }
 }

@@ -24,6 +24,8 @@ import de.tudarmstadt.smartcitystudyapp.models.UserModel
 import de.tudarmstadt.smartcitystudyapp.interfaces.TeamServiceInterface
 import de.tudarmstadt.smartcitystudyapp.interfaces.UserServiceInterface
 import de.tudarmstadt.smartcitystudyapp.interfaces.UsersAndTeamServiceInterface
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoCategory
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoTracker
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -57,6 +59,11 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_welcome)
+
+        //Matomo
+        MatomoTracker.setParams(MatomoCategory.WELCOME, "/welcome")
+        MatomoTracker.initFragment()
+
         viewPager = findViewById<View>(R.id.view_pager) as ViewPager
         dotsLayout = findViewById<View>(R.id.layoutDots) as LinearLayout
         btnNext = findViewById<View>(R.id.btn_next) as Button

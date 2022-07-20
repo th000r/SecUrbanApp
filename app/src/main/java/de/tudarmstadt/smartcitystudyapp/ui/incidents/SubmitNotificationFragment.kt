@@ -25,6 +25,8 @@ import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoCategory
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoTracker
 
 @AndroidEntryPoint
 class SubmitNotificationFragment : Fragment() {
@@ -64,6 +66,10 @@ class SubmitNotificationFragment : Fragment() {
             root.findViewById(R.id.horizontal_line_view),
             sendPhotoSwitch
         )
+
+        //Matomo
+        MatomoTracker.setParams(MatomoCategory.INCIDENTS, "/incidents/submitNotification")
+        MatomoTracker.initFragment()
 
         filter = IntentFilter(getString(R.string.broadcast_network_status)).apply {
             addAction(R.string.broadcast_network_status.toString())

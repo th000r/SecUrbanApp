@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.scopes.FragmentScoped
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.helper.SuggestionsAdapter
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoCategory
+import de.tudarmstadt.smartcitystudyapp.matomo.MatomoTracker
 
 
 @FragmentScoped
@@ -28,6 +30,10 @@ class SuggestionFragment : Fragment() {
         val categoryArrayId = arguments?.getInt("categoryStringId") ?: R.array.water_array
         val headingView = root.findViewById<TextView>(R.id.suggestion_heading)
         val recyclerview = root.findViewById<RecyclerView>(R.id.recycler_view)
+
+        //Matomo
+        MatomoTracker.setParams(MatomoCategory.INCIDENTS, "/incidents/suggestions")
+        MatomoTracker.initFragment()
 
         adapter = SuggestionsAdapter(resources.getStringArray(categoryArrayId).toMutableList())
         recyclerview.adapter = adapter
