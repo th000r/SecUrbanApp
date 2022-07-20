@@ -12,9 +12,9 @@ data class ReportModel constructor(
     @SerializedName("location")
     val location: Boolean = false,
     @SerializedName("latitude")
-    val latitude: Double = -1.0,
+    val latitude: Double = 0.0,
     @SerializedName("longitude")
-    val longitude: Double = -1.0,
+    val longitude: Double = 0.0,
     @SerializedName("picture")
     val picture: Boolean = false,
     @SerializedName("source")
