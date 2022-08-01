@@ -21,6 +21,7 @@
     ###############################################################################################
     -->
     <string name="profile">Profile</string>
+    <string name="preparedness">Disaster Preparation</string>
     <string name="incidents">Incidents</string>
     <string name="activities">Activities</string>
     <string name="team_activities">Team Activities</string>
@@ -76,6 +77,25 @@
     <string name="profile_incidents_before">Du hast bereits </string>
     <string name="profile_incidents_after">Meldungen gemacht!</string>
     <string name="crone_hint">Ab 1500 Punkten bekommst du eine Krone!</string>
+
+    <!--
+    ###############################################################################################
+    ###############################################################################################
+    # PREPARDNESS
+    ###############################################################################################
+    ###############################################################################################
+    -->
+    <string name="preparedness_checklist_done_header">Done</string>
+    <string name="preparedness_checklist_todo_header">To do</string>
+
+    <!-- SUGGESTIONS LIST -->
+
+    <string-array name="preparedness_checklist_item_names">
+        <item>Buy Fire Extinguisher</item>
+        <item>Buy Flashlight</item>
+        <item>Buy Solar-Charged Batteryr</item>
+    </string-array>
+
 
 
     <!--

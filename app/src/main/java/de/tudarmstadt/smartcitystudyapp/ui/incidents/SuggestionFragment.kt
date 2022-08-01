@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.scopes.FragmentScoped
 import de.tudarmstadt.smartcitystudyapp.R
-import de.tudarmstadt.smartcitystudyapp.helper.SuggestionsAdapter
+import de.tudarmstadt.smartcitystudyapp.adapter.SuggestionsAdapter
 
 
 @FragmentScoped
@@ -29,7 +29,9 @@ class SuggestionFragment : Fragment() {
         val headingView = root.findViewById<TextView>(R.id.suggestion_heading)
         val recyclerview = root.findViewById<RecyclerView>(R.id.recycler_view)
 
-        adapter = SuggestionsAdapter(resources.getStringArray(categoryArrayId).toMutableList())
+        adapter = SuggestionsAdapter(
+            resources.getStringArray(categoryArrayId).toMutableList()
+        )
         recyclerview.adapter = adapter
 
         recyclerview.layoutManager = LinearLayoutManager(activity)

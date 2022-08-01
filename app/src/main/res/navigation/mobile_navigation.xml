@@ -13,11 +13,10 @@
         android:name="de.tudarmstadt.smartcitystudyapp.ui.main.MainFragment"
         tools:layout="@layout/fragment_main"/>
 
-    <fragment
+    <!--fragment
         android:id="@+id/nav_profile"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.profile.ProfileFragment"
-        android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" />
+        android:label="@string/profile" /-->
 
     <fragment
         android:id="@+id/nav_incidents"
@@ -136,4 +135,10 @@
         android:name="de.tudarmstadt.smartcitystudyapp.ui.incidents.ThankYouFragment"
         android:label="@string/heading_incident_thankyou"
         tools:layout="@layout/fragment_thankyou" />
+
+    <fragment
+        android:id="@+id/nav_preparedness"
+        android:name="de.tudarmstadt.smartcitystudyapp.ui.preparedness.PreparednessChecklistFragment"
+        android:label="@string/preparedness"
+        tools:layout="@layout/fragment_preparedness_checklist" />
 </navigation>

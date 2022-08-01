@@ -1,4 +1,4 @@
-package de.tudarmstadt.smartcitystudyapp.helper;
+package de.tudarmstadt.smartcitystudyapp.adapter;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

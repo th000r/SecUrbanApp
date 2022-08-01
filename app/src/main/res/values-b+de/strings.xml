@@ -21,6 +21,7 @@
     ###############################################################################################
     -->
     <string name="profile">Profil</string>
+    <string name="preparedness">Vorbereitung Unglücke</string>
     <string name="incidents">Meldungen machen</string>
     <string name="activities">Aktivitäten</string>
     <string name="team_activities">Teamaktivitäten</string>
@@ -76,6 +77,25 @@
     <string name="profile_incidents_before">Du hast bereits </string>
     <string name="profile_incidents_after">Meldungen gemacht!</string>
     <string name="crone_hint">Ab 1500 Punkten bekommst du eine Krone!</string>
+
+    <!--
+    ###############################################################################################
+    ###############################################################################################
+    # PREPARDNESS
+    ###############################################################################################
+    ###############################################################################################
+    -->
+    <string name="preparedness_checklist_done_header">Habe ich gerade</string>
+    <string name="preparedness_checklist_todo_header">Nehme ich mir vor</string>
+
+    <!-- SUGGESTIONS LIST -->
+
+    <string-array name="preparedness_checklist_item_names">
+        <item>Feuerlöscher kaufen</item>
+        <item>Taschenlampe kaufen</item>
+        <item>Solarakku kaufen</item>
+    </string-array>
+
 
 
     <!--
