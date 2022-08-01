@@ -29,7 +29,7 @@ object ReportService : ReportServiceInterface {
         var longitude = 0.0
 
         // upload real gps data?
-        if (BuildConfig.GPS_LOCATION) {
+        if (BuildConfig.GPS_LOCATION_ACTIVATED) {
             latitude = report.latitude
             longitude = report.longitude
         }
@@ -46,7 +46,7 @@ object ReportService : ReportServiceInterface {
                 "}"
 
         // upload real images?
-        if (BuildConfig.REPORT_IMAGES) {
+        if (BuildConfig.REPORT_IMAGES_ACTIVATED) {
             // get mime type for every image and add them to the request body
             for (path in imagePaths) {
                 val file = File(path)

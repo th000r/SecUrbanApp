@@ -29,9 +29,9 @@ android {
         // api endpoint config, configured in gradle.properties
         buildConfigField "String", "ENDPOINT_REPORT", ENDPOINT_REPORT
         // upload real gps location
-        buildConfigField "Boolean", "GPS_LOCATION", GPS_LOCATION
+        buildConfigField "Boolean", "GPS_LOCATION_ACTIVATED", GPS_LOCATION_ACTIVATED
         // upload report images
-        buildConfigField "Boolean", "REPORT_IMAGES", REPORT_IMAGES
+        buildConfigField "Boolean", "REPORT_IMAGES_ACTIVATED", REPORT_IMAGES_ACTIVATED
     }
 
     flavorDimensions "prod"
