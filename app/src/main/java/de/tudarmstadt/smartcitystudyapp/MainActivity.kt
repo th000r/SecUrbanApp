@@ -42,9 +42,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity() : AppCompatActivity() {
     private val mainViewModel by viewModels<MainActivityViewModel>()
-
     @Inject
     lateinit var userServiceInterface: UserServiceInterface
+    
     private var count = 0
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var tracker: Tracker
@@ -122,18 +122,18 @@ class MainActivity() : AppCompatActivity() {
             }
 
         })
-        //drawerLayout.openDrawer(GravityCompat.START)
+        drawerLayout.openDrawer(GravityCompat.START)
         drawerLayout.addDrawerListener(object : DrawerListener {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                 // Do Nothing
             }
 
             override fun onDrawerOpened(drawerView: View) {
-                MatomoTracker.toggleNavigationMenu(true)
+                MatomoTracker.navigationMenuToggled(true)
             }
 
             override fun onDrawerClosed(drawerView: View) {
-                MatomoTracker.toggleNavigationMenu(false)
+                MatomoTracker.navigationMenuToggled(false)
             }
 
             override fun onDrawerStateChanged(newState: Int) {

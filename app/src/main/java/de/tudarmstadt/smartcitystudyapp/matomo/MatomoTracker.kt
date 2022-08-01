@@ -57,7 +57,7 @@ object MatomoTracker {
         eventBuilder.with(tracker)
     }
 
-    fun toggleNavigationMenu(toggle: Boolean) {
+    fun navigationMenuToggled(toggle: Boolean) {
         if (toggle) {
             TrackHelper.track().event(category.value, MatomoAction.TOGGLE_MENU_TRUE.value).path(path).with(tracker)
         } else {
