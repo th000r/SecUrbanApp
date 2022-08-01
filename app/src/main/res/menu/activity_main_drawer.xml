@@ -6,7 +6,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profile"
-            android:title="@string/profile" />
+            android:title="@string/profile"
+            android:visible="false" />
         <item
             android:id="@+id/nav_incidents"
             android:title="@string/incidents" />
@@ -15,7 +16,8 @@
            android:title="@string/activities" />
         <item
             android:id="@+id/nav_team_activities"
-            android:title="@string/team_activities" />
+            android:title="@string/team_activities"
+            android:visible="false" />
         <item
            android:id="@+id/nav_help"
            android:title="@string/help" />
