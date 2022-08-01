@@ -20,12 +20,12 @@
     ###############################################################################################
     ###############################################################################################
     -->
-    <string name="profile">Profile</string>
-    <string name="incidents">Incidents</string>
-    <string name="activities">Activities</string>
-    <string name="team_activities">Team Activities</string>
-    <string name="help">Help</string>
-    <string name="site_notice">Imprint</string>
+    <string name="profile">Profil</string>
+    <string name="incidents">Meldungen machen</string>
+    <string name="activities">Aktivitäten</string>
+    <string name="team_activities">Teamaktivitäten</string>
+    <string name="help">Hilfe</string>
+    <string name="site_notice">Impressum</string>
 
 
     <!--

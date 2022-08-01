@@ -46,7 +46,8 @@ class WelcomeActivity : AppCompatActivity() {
     private var btnNext: Button? = null
     private var userId: String? = null
     private var userName: String? = null
-    private var userCity: String? = null
+    // ToDo: Remove?
+    private var userCity: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,8 +86,9 @@ class WelcomeActivity : AppCompatActivity() {
                 userId = userIdEntryField.text.toString()
                 val userNameEntryField = findViewById<EditText>(R.id.user_name_entry_field)
                 userName = userNameEntryField.text.toString()
-                val userCityEntryField = findViewById<EditText>(R.id.city_entry_field)
-                userCity = userCityEntryField.text.toString()
+                // ToDo: Remove?
+                // val userCityEntryField = findViewById<EditText>(R.id.city_entry_field)
+                // userCity = userCityEntryField.text.toString()
                 launchHomeScreen()
             } else if (current < layouts.size) {
                 viewPager!!.currentItem = current
@@ -118,16 +120,21 @@ class WelcomeActivity : AppCompatActivity() {
             val toast = Toast.makeText(this, R.string.user_id_not_set_toast, Toast.LENGTH_SHORT)
             toast.show()
         } else if(userName == null || userName!!.isEmpty()) {
-                val toast = Toast.makeText(this, R.string.user_name_not_set_toast, Toast.LENGTH_SHORT)
-                toast.show()
+            val toast = Toast.makeText(this, R.string.user_name_not_set_toast, Toast.LENGTH_SHORT)
+            toast.show()
+        /*
+        ToDo: Remove?
         } else if(userCity == null || userCity!!.isEmpty()) {
             val toast = Toast.makeText(this, R.string.user_city_not_set_toast, Toast.LENGTH_SHORT)
             toast.show()
+
+        */
         } else {
             this.lifecycleScope.launch {
-                usersAndTeamServiceInterface.addTeam(TeamModel(userCity!!.toLowerCase(), userCity!!.toLowerCase(), 0))
+                // ToDo: Remove?
+                // usersAndTeamServiceInterface.addTeam(TeamModel(userCity!!.toLowerCase(), userCity!!.toLowerCase(), 0))
                 usersAndTeamServiceInterface.addUser(UserModel(userId!!, userName!!, userCity!!, 0, userCity!!.toLowerCase()))
-                //userService.setUser(User(userId!!, userName!!, 0, userCity!!.toLowerCase()))
+                // userService.setUser(User(userId!!, userName!!, 0, userCity!!.toLowerCase()))
             }
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
