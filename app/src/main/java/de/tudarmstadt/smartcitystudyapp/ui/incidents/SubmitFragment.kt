@@ -5,10 +5,8 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.*
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -35,7 +33,6 @@ import de.tudarmstadt.smartcitystudyapp.models.SOURCE_OTHER
 import de.tudarmstadt.smartcitystudyapp.utils.DimensionsUtil
 import de.tudarmstadt.smartcitystudyapp.utils.URIPathUtil
 import org.matomo.sdk.Tracker
-import org.matomo.sdk.extra.MatomoApplication
 import org.matomo.sdk.extra.TrackHelper
 import java.io.File
 import java.io.IOException
@@ -72,7 +69,7 @@ class SubmitFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         /** INIT **/
-        val root = inflater.inflate(R.layout.fragment_submitincidents, container, false)
+        val root = inflater.inflate(R.layout.fragment_incidents_submit, container, false)
         val suggestion: String = arguments?.getString("suggestion") ?: ""
         submitViewModel.source = arguments?.getString("source") ?: SOURCE_OTHER
         tracker = (activity?.application as SmartCityStudyApplication).tracker!!

@@ -43,7 +43,7 @@ class SubmitNotificationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root =
-            inflater.inflate(R.layout.fragment_submitincidents_notification, container, false)
+            inflater.inflate(R.layout.fragment_incidents_notification_submit, container, false)
         val suggestion = ""
         submitViewModel.source = "Notification"
         val galleryButton = root.findViewById<Button>(R.id.incidents_button_gallery)

@@ -1,17 +1,16 @@
 <resources>
     <string name="app_name">PersuasionApp</string>
 
-
     <!--
     ###############################################################################################
     ###############################################################################################
-    # BUTTONS
+    # Allgemein (Buttons, Hints, ... )
     ###############################################################################################
     ###############################################################################################
     -->
-    <string name="next">Weiter</string>
+    <string name="next">Next</string>
     <string name="start">Start</string>
-
+    <string name="hint_standard">Please enter your answer here</string>
 
     <!--
     ###############################################################################################
@@ -21,6 +20,7 @@
     ###############################################################################################
     -->
     <string name="profile">Profile</string>
+    <string name="preparedness">Disaster Preparation</string>
     <string name="incidents">Incidents</string>
     <string name="activities">Activities</string>
     <string name="team_activities">Team Activities</string>
@@ -76,6 +76,29 @@
     <string name="profile_incidents_before">Du hast bereits </string>
     <string name="profile_incidents_after">Meldungen gemacht!</string>
     <string name="crone_hint">Ab 1500 Punkten bekommst du eine Krone!</string>
+
+    <!--
+    ###############################################################################################
+    ###############################################################################################
+    # PREPARDNESS
+    ###############################################################################################
+    ###############################################################################################
+    -->
+
+    <!-- QUESTIONS -->
+    <string name="preparedness_checklist_question_01">Inwiefern macht Ihre Krisenvorbereitung Sie zu einer verlässlichen Person für Ihre Familie und Ihre Freunde?</string>
+
+    <!-- SUGGESTIONS LIST -->
+    <string name="preparedness_checklist_done_header">Done</string>
+    <string name="preparedness_checklist_todo_header">To do</string>
+    <string name="preparedness_checklist_btn_send">Send Answer</string>
+
+    <string-array name="preparedness_checklist_item_names">
+        <item>Buy Fire Extinguisher</item>
+        <item>Buy Flashlight</item>
+        <item>Buy Solar-Charged Batteryr</item>
+    </string-array>
+
 
 
     <!--

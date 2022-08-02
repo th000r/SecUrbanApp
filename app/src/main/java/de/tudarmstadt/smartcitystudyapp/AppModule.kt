@@ -79,4 +79,12 @@ object AppModule {
     ): UsersAndTeamServiceInterface {
         return UsersAndTeamService(database.usersAndTeamDao())
     }
+
+    @Singleton
+    @Provides
+    fun providePreparednessChecklistService(
+        database: AppDatabase
+    ): PreparednessChecklistServiceInterface {
+        return PreparednessChecklistService(database.preparednessChecklistDao())
+    }
 }

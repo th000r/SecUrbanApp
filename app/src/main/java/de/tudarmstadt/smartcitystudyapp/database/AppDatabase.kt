@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import de.tudarmstadt.smartcitystudyapp.models.*
 
-@Database(entities = [UserModel::class, ActivityModel::class, NotificationModel::class, TeamModel::class], version = 1, exportSchema = false)
+@Database(entities = [UserModel::class, ActivityModel::class, NotificationModel::class, TeamModel::class, PreparednessChecklistModel::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     companion object {
         private var INSTANCE: AppDatabase? = null
@@ -31,4 +31,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun teamDao(): TeamDao
 
     abstract fun usersAndTeamDao(): UsersAndTeamDao
+
+    abstract fun preparednessChecklistDao(): PreparednessChecklistDao
 }
