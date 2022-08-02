@@ -40,9 +40,20 @@ class AlarmReceiver() : BroadcastReceiver() {
 
         val pendingIntent: PendingIntent = PendingIntent.getActivity(context, broadcastId, intentToRepeat, PendingIntent.FLAG_UPDATE_CURRENT)
 
+        //Handle intent for cancel
+        val cancelIntent = Intent(context, AlarmReceiver::class.java)
+        cancelIntent.putExtra("action", "cancel")
+        cancelIntent.putExtra("uid", id)
+        val pendingCancelIntent = PendingIntent.getBroadcast(
+            context,
+            id,
+            cancelIntent,
+            PendingIntent.FLAG_ONE_SHOT
+        )
+
         //Build notification
         val repeatedNotification: Notification =
-            buildLocalNotification(context, pendingIntent, intent).build()
+            buildLocalNotification(context, pendingIntent, pendingCancelIntent, intent).build()
 
         when(action) {
             "display" -> {
@@ -76,6 +87,7 @@ class AlarmReceiver() : BroadcastReceiver() {
     fun buildLocalNotification(
         context: Context?,
         pendingIntent: PendingIntent?,
+        pendingCancelIntent: PendingIntent?,
         intent: Intent?
     ): NotificationCompat.Builder {
         return NotificationCompat.Builder(context!!, "de.tudarmstadt.smartcitystudyapp.channel.REPORT")
@@ -83,7 +95,9 @@ class AlarmReceiver() : BroadcastReceiver() {
             .setContentTitle(intent?.getStringExtra("title"))
             .setContentText(intent?.getStringExtra("message"))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setContentIntent(pendingIntent)
+            //.setContentIntent(pendingIntent)
+            .addAction(R.drawable.ic_incidents, NotificationHelper.getActionText(context, R.string.notification_incidents_okay, R.color.main_blue, -1, -1), pendingIntent)
+            .addAction(R.drawable.location, NotificationHelper.getActionText(context, R.string.notification_incidents_cancel, R.color.light_grey, -1, -1), pendingCancelIntent)
             .setAutoCancel(true) as NotificationCompat.Builder
     }
 }

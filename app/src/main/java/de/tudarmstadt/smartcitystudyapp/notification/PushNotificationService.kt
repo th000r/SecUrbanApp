@@ -9,6 +9,7 @@ import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import java.util.*
 
+
 class PushNotificationService(): Service(){
     private var wakeLock: PowerManager.WakeLock? = null
     companion object {
@@ -119,7 +120,7 @@ class PushNotificationService(): Service(){
         notificationSchedule.add(NotificationScheduleModel(3, calendar.get(Calendar.DAY_OF_WEEK), calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE) + 6, NotificationStatusEnum.CANCEL))
 
 
-        /*        notificationSchedule.add(NotificationSchedule(1, Calendar.FRIDAY, 12, 3, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
+        /*       notificationSchedule.add(NotificationSchedule(1, Calendar.FRIDAY, 12, 3, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
             notificationSchedule.add(NotificationSchedule(1, Calendar.FRIDAY, 12, 8, NotificationStatus.CANCEL))
             notificationSchedule.add(NotificationSchedule(1, Calendar.SUNDAY, 9, 43, NotificationStatus.DISPLAY, getString(R.string.notification_incidents_header), getString(R.string.notification_incidents_subheader)))
             notificationSchedule.add(NotificationSchedule(1, Calendar.SUNDAY, 12, 43, NotificationStatus.CANCEL))

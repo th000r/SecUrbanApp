@@ -7,10 +7,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#B00020</color>
     <color name="yellow">#FFC401</color>
-
     <color name="main_blue">#0097B9</color>
     <color name="grey">#4A4A4A</color>
+    <color name="light_grey">#9b9b9b</color>
     <color name="green">#00cc00</color>
+    <color name="dark_green">#008e00</color>
+    <color name="transprent">#00000000</color>
 
     <!-- dots inactive colors -->
     <color name="dot_dark_screen">#026499</color>

@@ -501,6 +501,8 @@
     <string name="notification_incidents_nothing">Hier ist nichts auffälliges!</string>
     <string name="notification_incidents_fgs_header">Ereignis-Service</string>
     <string name="notification_incidents_fgs_subheader">Warten auf Ereignisse</string>
+    <string name="notification_incidents_okay">Okay, los geht\'s!</string>
+    <string name="notification_incidents_cancel">Nein, jetzt nicht</string>
 
     <string name="settings_show_welcome">Willkommensnachricht zeigen</string>
 </resources>

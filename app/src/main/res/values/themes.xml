@@ -39,4 +39,5 @@
     <style name="Theme.SmartCityStudyApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.SmartCityStudyApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

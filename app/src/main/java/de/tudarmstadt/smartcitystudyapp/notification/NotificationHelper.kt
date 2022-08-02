@@ -1,5 +1,6 @@
 package de.tudarmstadt.smartcitystudyapp.notification
 
+import android.R
 import android.app.AlarmManager
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -7,9 +8,22 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.Drawable
+import android.os.Build
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.BackgroundColorSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.ImageSpan
+import android.text.style.TextAppearanceSpan
 import android.util.Log
+import androidx.annotation.ColorRes
+import androidx.annotation.StringRes
+import androidx.annotation.StyleRes
+import androidx.appcompat.content.res.AppCompatResources
 import de.tudarmstadt.smartcitystudyapp.notification.NotificationStatusEnum.*
 import java.util.*
+
 
 /**
  * Local Push Notification Helper
@@ -31,7 +45,7 @@ object NotificationHelper {
      * @param title push notification title
      * @param message push notification message
      */
-    fun scheduleRTCNotification(context: Context, id: Int, dayOfWeek: Int, hour: Int, min: Int, title: String?, message: String?) {
+    fun scheduleSetNotification(context: Context, id: Int, dayOfWeek: Int, hour: Int, min: Int, title: String?, message: String?) {
         //get calendar instance to be able to select what time notification should be scheduled
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
@@ -69,7 +83,7 @@ object NotificationHelper {
 
     }
 
-    fun cancelNotification(context: Context, id: Int, dayOfWeek: Int, hour: Int, min: Int) {
+    fun scheduleCancelNotification(context: Context, id: Int, dayOfWeek: Int, hour: Int, min: Int) {
         //get calendar instance to be able to select what time notification should be scheduled
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
@@ -155,16 +169,47 @@ object NotificationHelper {
                 when (schedule.status) {
                     DISPLAY -> {
                         Log.d("Schedule display", schedule.id.toString() + " " + schedule.status.toString())
-                        scheduleRTCNotification(context, schedule.id, schedule.dayOfWeek, schedule.hour, schedule.min, schedule.title, schedule.message)
+                        scheduleSetNotification(context, schedule.id, schedule.dayOfWeek, schedule.hour, schedule.min, schedule.title, schedule.message)
                         return
                     }
                     CANCEL -> {
                         Log.d("Schedule cancel", schedule.id.toString() + " " + schedule.status.toString())
-                        cancelNotification(context, schedule.id, schedule.dayOfWeek, schedule.hour, schedule.min)
+                        scheduleCancelNotification(context, schedule.id, schedule.dayOfWeek, schedule.hour, schedule.min)
                         return
                     }
                 }
             }
         }
+    }
+
+    fun getActionText(context: Context, @StringRes stringRes: Int, @ColorRes colorText: Int, @ColorRes colorBackground: Int, @StyleRes style: Int) : Spannable? {
+        val spannable: Spannable = SpannableString(context.getText(stringRes))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            if (colorText != -1) {
+                spannable.setSpan(
+                    ForegroundColorSpan(context.getColor(colorText)),
+                    0,
+                    spannable.length,
+                    0
+                )
+            }
+            if (colorBackground != -1) {
+                spannable.setSpan(
+                    BackgroundColorSpan(context.getColor(colorBackground)),
+                    0,
+                    spannable.length,
+                    0
+                )
+            }
+            if (style != -1) {
+                spannable.setSpan(
+                    TextAppearanceSpan(context, style),
+                    0,
+                    spannable.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
+        return spannable
     }
 }
