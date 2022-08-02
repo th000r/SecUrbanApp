@@ -1,17 +1,16 @@
 <resources>
     <string name="app_name">PersuasionApp</string>
 
-
     <!--
     ###############################################################################################
     ###############################################################################################
-    # BUTTONS
+    # Allgemein (Buttons, Hints, ... )
     ###############################################################################################
     ###############################################################################################
     -->
-    <string name="next">Weiter</string>
+    <string name="next">Next</string>
     <string name="start">Start</string>
-
+    <string name="hint_standard">Please enter your answer here</string>
 
     <!--
     ###############################################################################################
@@ -85,10 +84,14 @@
     ###############################################################################################
     ###############################################################################################
     -->
-    <string name="preparedness_checklist_done_header">Done</string>
-    <string name="preparedness_checklist_todo_header">To do</string>
+
+    <!-- QUESTIONS -->
+    <string name="preparedness_checklist_question_01">Inwiefern macht Ihre Krisenvorbereitung Sie zu einer verlässlichen Person für Ihre Familie und Ihre Freunde?</string>
 
     <!-- SUGGESTIONS LIST -->
+    <string name="preparedness_checklist_done_header">Done</string>
+    <string name="preparedness_checklist_todo_header">To do</string>
+    <string name="preparedness_checklist_btn_send">Send Answer</string>
 
     <string-array name="preparedness_checklist_item_names">
         <item>Buy Fire Extinguisher</item>

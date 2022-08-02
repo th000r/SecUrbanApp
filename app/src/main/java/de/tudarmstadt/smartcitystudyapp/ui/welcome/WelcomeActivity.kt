@@ -1,6 +1,7 @@
 package de.tudarmstadt.smartcitystudyapp.ui.welcome
 
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -19,11 +20,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import de.tudarmstadt.smartcitystudyapp.MainActivity
 import de.tudarmstadt.smartcitystudyapp.R
 import de.tudarmstadt.smartcitystudyapp.featuremanager.FeatureManager
+import de.tudarmstadt.smartcitystudyapp.interfaces.PreparednessChecklistServiceInterface
 import de.tudarmstadt.smartcitystudyapp.models.TeamModel
 import de.tudarmstadt.smartcitystudyapp.models.UserModel
 import de.tudarmstadt.smartcitystudyapp.interfaces.TeamServiceInterface
 import de.tudarmstadt.smartcitystudyapp.interfaces.UserServiceInterface
 import de.tudarmstadt.smartcitystudyapp.interfaces.UsersAndTeamServiceInterface
+import de.tudarmstadt.smartcitystudyapp.models.PreparednessChecklistModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -38,6 +41,9 @@ class WelcomeActivity : AppCompatActivity() {
     lateinit var teamServiceInterface: TeamServiceInterface
     @Inject
     lateinit var usersAndTeamServiceInterface: UsersAndTeamServiceInterface
+    @Inject
+    lateinit var preparednessChecklistServiceInterface: PreparednessChecklistServiceInterface
+
     private var viewPager: ViewPager? = null
     private var myViewPagerAdapter: MyViewPagerAdapter? = null
     private var dotsLayout: LinearLayout? = null
@@ -67,6 +73,8 @@ class WelcomeActivity : AppCompatActivity() {
             R.layout.tutorial_slide_3
         )
 
+        initPreparednessChecklistItems(resources)
+
         if (FeatureManager.readFeatures(applicationContext).preinvestigation == true) {
             val array = layouts.copyOf(layouts.size + 1)
             array[layouts.size] = R.layout.preinvestigation
@@ -75,6 +83,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         addBottomDots(0)
         changeStatusBarColor()
+
         myViewPagerAdapter = MyViewPagerAdapter()
         viewPager!!.adapter = myViewPagerAdapter
         viewPager!!.addOnPageChangeListener(viewPagerPageChangeListener)
@@ -132,7 +141,7 @@ class WelcomeActivity : AppCompatActivity() {
         } else {
             this.lifecycleScope.launch {
                 // ToDo: Remove?
-                // usersAndTeamServiceInterface.addTeam(TeamModel(userCity!!.toLowerCase(), userCity!!.toLowerCase(), 0))
+                usersAndTeamServiceInterface.addTeam(TeamModel(userCity!!.toLowerCase(), userCity!!.toLowerCase(), 0))
                 usersAndTeamServiceInterface.addUser(UserModel(userId!!, userName!!, userCity!!, 0, userCity!!.toLowerCase()))
                 // userService.setUser(User(userId!!, userName!!, 0, userCity!!.toLowerCase()))
             }
@@ -173,6 +182,22 @@ class WelcomeActivity : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
     }
+
+
+    private fun initPreparednessChecklistItems(resources: Resources) {
+        var id = 0
+        val itemNames: Array<String> = resources.getStringArray(R.array.preparedness_checklist_item_names)
+
+        //ToDo: get checkbox values from sql db
+        this.lifecycleScope.launch {
+            for (itemName in itemNames) {
+                preparednessChecklistServiceInterface.setPreparednessChecklistItem(
+                    PreparednessChecklistModel(id++, itemName, false, false)
+                )
+            }
+        }
+    }
+
 
     /**
      * View pager adapter

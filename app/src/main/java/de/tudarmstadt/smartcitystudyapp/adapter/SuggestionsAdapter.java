@@ -26,7 +26,7 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
     @NonNull
     @Override
     public SuggestionsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.suggestion_cardview, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_incidents_suggestion, parent, false);
         SuggestionsViewHolder viewHolder = new SuggestionsViewHolder(view);
         viewHolder.itemView.setOnClickListener(listenerView -> {
             Bundle bundle = new Bundle();

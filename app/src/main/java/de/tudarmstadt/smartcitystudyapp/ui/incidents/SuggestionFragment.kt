@@ -23,7 +23,7 @@ class SuggestionFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_suggestion, container, false)
+        val root = inflater.inflate(R.layout.fragment_incidents_suggestion, container, false)
         val headingStringId: Int = arguments?.getInt("headingStringId") ?: R.string.water_heading
         val categoryArrayId = arguments?.getInt("categoryStringId") ?: R.array.water_array
         val headingView = root.findViewById<TextView>(R.id.suggestion_heading)

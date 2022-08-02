@@ -100,7 +100,7 @@
         android:id="@+id/nav_incidents_suggestion"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.incidents.SuggestionFragment"
         android:label="@string/suggestion_heading"
-        tools:layout="@layout/fragment_suggestion">
+        tools:layout="@layout/fragment_incidents_suggestion">
         <action
             android:id="@+id/action_suggestion_to_submit"
             app:destination="@id/nav_incident_submit"/>
@@ -110,7 +110,7 @@
         android:id="@+id/nav_incident_submit"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.incidents.SubmitFragment"
         android:label="@string/heading_incident_submit"
-        tools:layout="@layout/fragment_submitincidents">
+        tools:layout="@layout/fragment_incidents_submit">
         <action
             android:id="@+id/action_submit_to_thankyou"
             app:destination="@id/nav_thankyou"
@@ -122,7 +122,7 @@
         android:id="@+id/nav_incident_submit_notification"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.incidents.SubmitNotificationFragment"
         android:label="@string/heading_incident_submit"
-        tools:layout="@layout/fragment_submitincidents_notification">
+        tools:layout="@layout/fragment_incidents_notification_submit">
         <action
             android:id="@+id/action_submit_notification_to_thankyou"
             app:destination="@id/nav_thankyou"
@@ -134,7 +134,7 @@
         android:id="@+id/nav_thankyou"
         android:name="de.tudarmstadt.smartcitystudyapp.ui.incidents.ThankYouFragment"
         android:label="@string/heading_incident_thankyou"
-        tools:layout="@layout/fragment_thankyou" />
+        tools:layout="@layout/fragment_incidents_thankyou" />
 
     <fragment
         android:id="@+id/nav_preparedness"
